@@ -17,8 +17,9 @@
           "sd": 15.37
         },
         "O": {
-          "mean": 85.98,
-          "sd": 12.37
+          "mean": 74.12,
+          "sd": 10.69,
+          "estimated": true
         },
         "A": {
           "mean": 81.98,
@@ -27,6 +28,10 @@
         "C": {
           "mean": 79.66,
           "sd": 14.49
+        },
+        "O_with_liberalism": {
+          "mean": 85.98,
+          "sd": 12.37
         }
       },
       "facets": {
@@ -98,10 +103,6 @@
           "mean": 15.47,
           "sd": 3.5
         },
-        "O6": {
-          "mean": 11.86,
-          "sd": 3.17
-        },
         "A1": {
           "mean": 13.18,
           "sd": 3.69
@@ -165,8 +166,9 @@
           "sd": 15.21
         },
         "O": {
-          "mean": 86.51,
-          "sd": 12.65
+          "mean": 74.85,
+          "sd": 10.77,
+          "estimated": true
         },
         "A": {
           "mean": 84.22,
@@ -175,6 +177,10 @@
         "C": {
           "mean": 85.5,
           "sd": 14.27
+        },
+        "O_with_liberalism": {
+          "mean": 86.51,
+          "sd": 12.65
         }
       },
       "facets": {
@@ -246,10 +252,6 @@
           "mean": 16.11,
           "sd": 3.25
         },
-        "O6": {
-          "mean": 11.66,
-          "sd": 3.72
-        },
         "A1": {
           "mean": 12.81,
           "sd": 3.69
@@ -313,8 +315,9 @@
           "sd": 14.31
         },
         "O": {
-          "mean": 83.04,
-          "sd": 13.05
+          "mean": 72.0,
+          "sd": 11.05,
+          "estimated": true
         },
         "A": {
           "mean": 88.33,
@@ -323,6 +326,10 @@
         "C": {
           "mean": 91.27,
           "sd": 13.35
+        },
+        "O_with_liberalism": {
+          "mean": 83.04,
+          "sd": 13.05
         }
       },
       "facets": {
@@ -394,10 +401,6 @@
           "mean": 15.4,
           "sd": 3.43
         },
-        "O6": {
-          "mean": 11.04,
-          "sd": 3.93
-        },
         "A1": {
           "mean": 13.42,
           "sd": 3.49
@@ -461,8 +464,9 @@
           "sd": 13.63
         },
         "O": {
-          "mean": 79.78,
-          "sd": 12.21
+          "mean": 69.67,
+          "sd": 10.37,
+          "estimated": true
         },
         "A": {
           "mean": 90.2,
@@ -471,6 +475,10 @@
         "C": {
           "mean": 95.31,
           "sd": 11.99
+        },
+        "O_with_liberalism": {
+          "mean": 79.78,
+          "sd": 12.21
         }
       },
       "facets": {
@@ -542,10 +550,6 @@
           "mean": 14.61,
           "sd": 3.89
         },
-        "O6": {
-          "mean": 10.11,
-          "sd": 4.02
-        },
         "A1": {
           "mean": 13.96,
           "sd": 3.13
@@ -609,8 +613,9 @@
           "sd": 14.98
         },
         "O": {
-          "mean": 89.01,
-          "sd": 11.84
+          "mean": 76.84,
+          "sd": 10.23,
+          "estimated": true
         },
         "A": {
           "mean": 89.14,
@@ -619,6 +624,10 @@
         "C": {
           "mean": 81.27,
           "sd": 14.38
+        },
+        "O_with_liberalism": {
+          "mean": 89.01,
+          "sd": 11.84
         }
       },
       "facets": {
@@ -690,10 +699,6 @@
           "mean": 15.06,
           "sd": 3.51
         },
-        "O6": {
-          "mean": 12.17,
-          "sd": 3.02
-        },
         "A1": {
           "mean": 13.46,
           "sd": 3.72
@@ -757,8 +762,9 @@
           "sd": 14.64
         },
         "O": {
-          "mean": 88.25,
-          "sd": 12.15
+          "mean": 76.19,
+          "sd": 10.4,
+          "estimated": true
         },
         "A": {
           "mean": 91.91,
@@ -767,6 +773,10 @@
         "C": {
           "mean": 87.57,
           "sd": 13.87
+        },
+        "O_with_liberalism": {
+          "mean": 88.25,
+          "sd": 12.15
         }
       },
       "facets": {
@@ -838,10 +848,6 @@
           "mean": 15.28,
           "sd": 3.47
         },
-        "O6": {
-          "mean": 12.06,
-          "sd": 3.46
-        },
         "A1": {
           "mean": 13.15,
           "sd": 3.71
@@ -905,8 +911,9 @@
           "sd": 14.19
         },
         "O": {
-          "mean": 86.15,
-          "sd": 12.62
+          "mean": 74.3,
+          "sd": 10.72,
+          "estimated": true
         },
         "A": {
           "mean": 95.73,
@@ -915,6 +922,10 @@
         "C": {
           "mean": 93.45,
           "sd": 12.94
+        },
+        "O_with_liberalism": {
+          "mean": 86.15,
+          "sd": 12.62
         }
       },
       "facets": {
@@ -986,10 +997,6 @@
           "mean": 14.87,
           "sd": 3.65
         },
-        "O6": {
-          "mean": 11.85,
-          "sd": 3.74
-        },
         "A1": {
           "mean": 13.79,
           "sd": 3.52
@@ -1053,8 +1060,9 @@
           "sd": 12.73
         },
         "O": {
-          "mean": 81.56,
-          "sd": 12.66
+          "mean": 70.75,
+          "sd": 10.71,
+          "estimated": true
         },
         "A": {
           "mean": 97.17,
@@ -1063,6 +1071,10 @@
         "C": {
           "mean": 96.44,
           "sd": 12.43
+        },
+        "O_with_liberalism": {
+          "mean": 81.56,
+          "sd": 12.66
         }
       },
       "facets": {
@@ -1134,10 +1146,6 @@
           "mean": 14.21,
           "sd": 3.47
         },
-        "O6": {
-          "mean": 10.81,
-          "sd": 3.89
-        },
         "A1": {
           "mean": 14.19,
           "sd": 3.39
@@ -1201,8 +1209,9 @@
           "sd": 15.18
         },
         "O": {
-          "mean": 87.5,
-          "sd": 12.11
+          "mean": 75.48,
+          "sd": 10.46,
+          "estimated": true
         },
         "A": {
           "mean": 85.56,
@@ -1211,6 +1220,10 @@
         "C": {
           "mean": 80.47,
           "sd": 14.44
+        },
+        "O_with_liberalism": {
+          "mean": 87.5,
+          "sd": 12.11
         }
       },
       "facets": {
@@ -1282,10 +1295,6 @@
           "mean": 15.27,
           "sd": 3.5
         },
-        "O6": {
-          "mean": 12.02,
-          "sd": 3.09
-        },
         "A1": {
           "mean": 13.32,
           "sd": 3.71
@@ -1349,8 +1358,9 @@
           "sd": 14.93
         },
         "O": {
-          "mean": 87.38,
-          "sd": 12.4
+          "mean": 75.52,
+          "sd": 10.58,
+          "estimated": true
         },
         "A": {
           "mean": 88.06,
@@ -1359,6 +1369,10 @@
         "C": {
           "mean": 86.53,
           "sd": 14.07
+        },
+        "O_with_liberalism": {
+          "mean": 87.38,
+          "sd": 12.4
         }
       },
       "facets": {
@@ -1430,10 +1444,6 @@
           "mean": 15.7,
           "sd": 3.36
         },
-        "O6": {
-          "mean": 11.86,
-          "sd": 3.59
-        },
         "A1": {
           "mean": 12.98,
           "sd": 3.7
@@ -1497,8 +1507,9 @@
           "sd": 14.25
         },
         "O": {
-          "mean": 84.59,
-          "sd": 12.84
+          "mean": 73.14,
+          "sd": 10.89,
+          "estimated": true
         },
         "A": {
           "mean": 92.03,
@@ -1507,6 +1518,10 @@
         "C": {
           "mean": 92.36,
           "sd": 13.14
+        },
+        "O_with_liberalism": {
+          "mean": 84.59,
+          "sd": 12.84
         }
       },
       "facets": {
@@ -1578,10 +1593,6 @@
           "mean": 15.13,
           "sd": 3.54
         },
-        "O6": {
-          "mean": 11.45,
-          "sd": 3.83
-        },
         "A1": {
           "mean": 13.61,
           "sd": 3.5
@@ -1645,8 +1656,9 @@
           "sd": 13.18
         },
         "O": {
-          "mean": 80.67,
-          "sd": 12.44
+          "mean": 70.21,
+          "sd": 10.54,
+          "estimated": true
         },
         "A": {
           "mean": 93.69,
@@ -1655,6 +1667,10 @@
         "C": {
           "mean": 95.88,
           "sd": 12.21
+        },
+        "O_with_liberalism": {
+          "mean": 80.67,
+          "sd": 12.44
         }
       },
       "facets": {
@@ -1726,10 +1742,6 @@
           "mean": 14.41,
           "sd": 3.68
         },
-        "O6": {
-          "mean": 10.46,
-          "sd": 3.96
-        },
         "A1": {
           "mean": 14.07,
           "sd": 3.26
@@ -1780,5 +1792,6 @@
         }
       }
     }
-  ]
+  ],
+  "openness_estimate": "Openness uses 5 facets (Liberalism dropped). Mean = full mean - Liberalism mean. SD = sqrt(sum of the 5 facet variances + 20 x mean inter-facet covariance), where the mean covariance is backed out of the published 6-facet domain SD. Liberalism correlates weakly with the other facets, so this slightly underestimates the true covariance and SD; Openness percentiles may be a little more extreme than they should be. The original 6-facet norms are kept as 'O_with_liberalism'."
 }

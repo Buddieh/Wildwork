@@ -26,8 +26,8 @@
       "label": "Very Accurate"
     }
   ],
-  "scoring": "Reverse '-' keyed items (score = 6 - answer). Facet raw = sum of its 4 items (4-20). Domain raw = sum of its 24 items (24-120). Convert raw to T and percentile with norms-ipip-neo-120.json; see scoring.js.",
-  "order": "Present items in 'n' order. The order already rotates through all 30 facets, so no two adjacent items share a facet.",
+  "scoring": "Reverse '-' keyed items (score = 6 - answer). Facet raw = sum of its 4 items (4-20). Domain raw = sum of its facet raws (24 items, 24-120; Openness 20 items, 20-100). Convert raw to T and percentile with norms-ipip-neo-120.json; see scoring.js.",
+  "order": "Present items in 'n' order (gaps are the 4 dropped Liberalism items). The order rotates through the facets, so no two adjacent items share a facet.",
   "reliability_source": "Kajonius, P. J., & Johnson, J. A. (2019). Assessing the structure of the Five Factor Model of Personality (IPIP-NEO-120) in the public domain. Europe's Journal of Psychology, 15(2), 260-275. Cronbach alpha, N = 320,128.",
   "domains": [
     {
@@ -259,18 +259,6 @@
         "P053",
         "P083",
         "P113"
-      ]
-    },
-    {
-      "id": "O6",
-      "domain": "O",
-      "name": "Liberalism",
-      "alpha": 0.69,
-      "items": [
-        "P028",
-        "P058",
-        "P088",
-        "P118"
       ]
     },
     {
@@ -636,14 +624,6 @@
       "keyed": "+"
     },
     {
-      "id": "P028",
-      "n": 28,
-      "text": "Tend to vote for liberal political candidates",
-      "domain": "O",
-      "facet": "O6",
-      "keyed": "+"
-    },
-    {
       "id": "P029",
       "n": 29,
       "text": "Sympathize with the homeless",
@@ -873,14 +853,6 @@
       "text": "Have a lot of fun",
       "domain": "E",
       "facet": "E6",
-      "keyed": "+"
-    },
-    {
-      "id": "P058",
-      "n": 58,
-      "text": "Believe that there is no absolute right or wrong",
-      "domain": "O",
-      "facet": "O6",
       "keyed": "+"
     },
     {
@@ -1116,14 +1088,6 @@
       "keyed": "+"
     },
     {
-      "id": "P088",
-      "n": 88,
-      "text": "Tend to vote for conservative political candidates",
-      "domain": "O",
-      "facet": "O6",
-      "keyed": "-"
-    },
-    {
       "id": "P089",
       "n": 89,
       "text": "Am not interested in other people's problems",
@@ -1356,14 +1320,6 @@
       "keyed": "+"
     },
     {
-      "id": "P118",
-      "n": 118,
-      "text": "Believe that we should be tough on crime",
-      "domain": "O",
-      "facet": "O6",
-      "keyed": "-"
-    },
-    {
       "id": "P119",
       "n": 119,
       "text": "Try not to think about the needy",
@@ -1379,5 +1335,16 @@
       "facet": "C6",
       "keyed": "-"
     }
-  ]
+  ],
+  "dropped": {
+    "facet": "O6 Liberalism",
+    "items": [
+      "P028",
+      "P058",
+      "P088",
+      "P118"
+    ],
+    "reason": "US political content (voting for liberal or conservative candidates, being tough on crime). Removed so the test reads the same worldwide.",
+    "impact": "Openness is scored from its other 5 facets (20 items) with estimated norms; see norms-ipip-neo-120.json. All other domains and facets keep their exact published norms."
+  }
 }
