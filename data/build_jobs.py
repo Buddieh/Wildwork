@@ -70,7 +70,7 @@ class Source:
         for n in names:
             if key(n) in self.files:
                 return rows(self.files[key(n)])
-        raise SystemExit(f"Missing O*NET file: {names[0]}.csv")
+        raise SystemExit(f"Missing O*NET file: {names[0]}.csv. Files found: {sorted(self.files)}")
 
 
 def build(src, bright_text, version):
@@ -80,7 +80,7 @@ def build(src, bright_text, version):
                                   "modernTitles": [], "riasec": {}, "jobZone": None, "workStyles": {},
                                   "outlook": {"bright": False, "categories": []}}
 
-    for r in src.get("interests"):
+    for r in src.get("career_interest_types", "interests"):
         if r["scaleid"] == "OI" and r["onetsoccode"] in jobs and r["elementname"] in RIASEC:
             jobs[r["onetsoccode"]]["riasec"][RIASEC[r["elementname"]]] = float(r["datavalue"])
 
