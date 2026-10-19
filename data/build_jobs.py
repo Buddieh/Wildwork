@@ -24,6 +24,7 @@ UA = {"User-Agent": "Wildwork job-data builder (https://github.com/Buddieh/Wildw
 RIASEC = {"Realistic": "R", "Investigative": "I", "Artistic": "A", "Social": "S", "Enterprising": "E", "Conventional": "C"}
 JOB_POSTINGS_SOURCE = "10"  # Source code for titles taken from employer job postings
 MAX_MODERN_TITLES = 5
+SKIP_WORDS = {"intern", "internship", "trainee", "student"}
 
 OUT = Path(__file__).with_name("jobs.json")
 
@@ -73,6 +74,16 @@ class Source:
         raise SystemExit(f"Missing O*NET file: {names[0]}.csv. Files found: {sorted(self.files)}")
 
 
+def singular(t):
+    return re.sub(r"s$", "", t.lower().strip())
+
+
+def plain_title(title, job):
+    """Skip titles that only restate the official one or describe trainee positions."""
+    words = set(re.findall(r"[a-z]+", title.lower()))
+    return title and singular(title) != singular(job["title"]) and not words & SKIP_WORDS
+
+
 def build(src, bright_text, version):
     jobs = {}
     for r in src.get("occupation_data"):
@@ -98,8 +109,10 @@ def build(src, bright_text, version):
     for r in src.get("job_titles", "alternate_titles"):
         job = jobs.get(r["onetsoccode"])
         sources = {s.strip() for s in r.get("sources", "").split(",")}
-        title = r.get("jobtitle") or r.get("alternatetitle") or r.get("shorttitle", "")
-        if job and JOB_POSTINGS_SOURCE in sources and title.lower() != job["title"].lower() and title not in job["modernTitles"]:
+        title = r.get("jobtitle") or r.get("alternatetitle", "")
+        if "(" in title and r.get("shorttitle"):
+            title = r["shorttitle"]
+        if job and JOB_POSTINGS_SOURCE in sources and plain_title(title, job) and title not in job["modernTitles"]:
             job["modernTitles"].append(title)
     for job in jobs.values():
         # No popularity data in the file, so prefer short, plain titles.
@@ -110,7 +123,7 @@ def build(src, bright_text, version):
         for r in rows(bright_text):
             job = jobs.get(r.get("code", ""))
             if job:
-                job["outlook"] = {"bright": True, "categories": [c.strip() for c in r.get("categories", "").split(",") if c.strip()]}
+                job["outlook"] = {"bright": True, "categories": [c.strip() for c in re.split(r"[;,]", r.get("categories", "")) if c.strip()]}
                 bright += 1
 
     usable = [j for j in jobs.values() if len(j["riasec"]) == 6]
