@@ -110,8 +110,9 @@ def build(src, bright_text, version):
         job = jobs.get(r["onetsoccode"])
         sources = {s.strip() for s in r.get("sources", "").split(",")}
         title = r.get("jobtitle") or r.get("alternatetitle", "")
-        if "(" in title and r.get("shorttitle"):
-            title = r["shorttitle"]
+        m = re.fullmatch(r"(.+?)\s*\((.+)\)", title)
+        if m:  # "OR Nurse (Operating Room Nurse)" -> the spelled-out half
+            title = max(m.groups(), key=len)
         if job and JOB_POSTINGS_SOURCE in sources and plain_title(title, job) and title not in job["modernTitles"]:
             job["modernTitles"].append(title)
     for job in jobs.values():
