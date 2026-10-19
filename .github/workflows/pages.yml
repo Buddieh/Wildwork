@@ -1,0 +1,53 @@
+name: Publish site
+
+# Copies the static site and its data onto the gh-pages branch, which GitHub Pages serves at
+# https://buddieh.github.io/Wildwork/. Runs on site changes and after each monthly job-data refresh
+# (that workflow's own push can't trigger this one, so it is chained with workflow_run).
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - app/**
+      - questionnaire/**
+      - data/jobs.json
+      - .github/workflows/pages.yml
+  workflow_run:
+    workflows: ["Refresh job data"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Assemble site
+        run: |
+          mkdir -p _site/questionnaire _site/data
+          cp index.html _site/
+          cp -r fa _site/fa
+          cp -r app _site/app
+          rm -f _site/app/constellations/_*.json
+          cp questionnaire/*.json questionnaire/scoring.js _site/questionnaire/
+          cp data/jobs.json _site/data/
+          [ -f data/jobs-fa.json ] && cp data/jobs-fa.json _site/data/
+          touch _site/.nojekyll
+      - name: Push to gh-pages
+        run: |
+          cd _site
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Publish site from ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
