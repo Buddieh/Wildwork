@@ -1,0 +1,1383 @@
+{
+  "instrument": "IPIP-NEO-120",
+  "citation": "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory: Development of the IPIP-NEO-120. Journal of Research in Personality, 51, 78-89. https://doi.org/10.1016/j.jrp.2014.05.003",
+  "license": "Public domain (International Personality Item Pool, https://ipip.ori.org/). Items are used verbatim; do not reword them or the norms stop applying.",
+  "instructions": "Describe yourself as you generally are now, not as you wish to be in the future. Describe yourself as you honestly see yourself, in relation to other people you know of the same sex as you are, and roughly your same age. Read each statement carefully and pick the response that best describes you.",
+  "stem": "I...",
+  "scale": [
+    {
+      "value": 1,
+      "label": "Very Inaccurate"
+    },
+    {
+      "value": 2,
+      "label": "Moderately Inaccurate"
+    },
+    {
+      "value": 3,
+      "label": "Neither Accurate Nor Inaccurate"
+    },
+    {
+      "value": 4,
+      "label": "Moderately Accurate"
+    },
+    {
+      "value": 5,
+      "label": "Very Accurate"
+    }
+  ],
+  "scoring": "Reverse '-' keyed items (score = 6 - answer). Facet raw = sum of its 4 items (4-20). Domain raw = sum of its 24 items (24-120). Convert raw to T and percentile with norms-ipip-neo-120.json; see scoring.js.",
+  "order": "Present items in 'n' order. The order already rotates through all 30 facets, so no two adjacent items share a facet.",
+  "reliability_source": "Kajonius, P. J., & Johnson, J. A. (2019). Assessing the structure of the Five Factor Model of Personality (IPIP-NEO-120) in the public domain. Europe's Journal of Psychology, 15(2), 260-275. Cronbach alpha, N = 320,128.",
+  "domains": [
+    {
+      "id": "N",
+      "name": "Neuroticism",
+      "alpha": 0.9
+    },
+    {
+      "id": "E",
+      "name": "Extraversion",
+      "alpha": 0.89
+    },
+    {
+      "id": "O",
+      "name": "Openness",
+      "alpha": 0.82
+    },
+    {
+      "id": "A",
+      "name": "Agreeableness",
+      "alpha": 0.85
+    },
+    {
+      "id": "C",
+      "name": "Conscientiousness",
+      "alpha": 0.9
+    }
+  ],
+  "facets": [
+    {
+      "id": "N1",
+      "domain": "N",
+      "name": "Anxiety",
+      "alpha": 0.79,
+      "items": [
+        "P001",
+        "P031",
+        "P061",
+        "P091"
+      ]
+    },
+    {
+      "id": "N2",
+      "domain": "N",
+      "name": "Anger",
+      "alpha": 0.87,
+      "items": [
+        "P006",
+        "P036",
+        "P066",
+        "P096"
+      ]
+    },
+    {
+      "id": "N3",
+      "domain": "N",
+      "name": "Depression",
+      "alpha": 0.85,
+      "items": [
+        "P011",
+        "P041",
+        "P071",
+        "P101"
+      ]
+    },
+    {
+      "id": "N4",
+      "domain": "N",
+      "name": "Self-Consciousness",
+      "alpha": 0.72,
+      "items": [
+        "P016",
+        "P046",
+        "P076",
+        "P106"
+      ]
+    },
+    {
+      "id": "N5",
+      "domain": "N",
+      "name": "Immoderation",
+      "alpha": 0.72,
+      "items": [
+        "P021",
+        "P051",
+        "P081",
+        "P111"
+      ]
+    },
+    {
+      "id": "N6",
+      "domain": "N",
+      "name": "Vulnerability",
+      "alpha": 0.78,
+      "items": [
+        "P026",
+        "P056",
+        "P086",
+        "P116"
+      ]
+    },
+    {
+      "id": "E1",
+      "domain": "E",
+      "name": "Friendliness",
+      "alpha": 0.81,
+      "items": [
+        "P002",
+        "P032",
+        "P062",
+        "P092"
+      ]
+    },
+    {
+      "id": "E2",
+      "domain": "E",
+      "name": "Gregariousness",
+      "alpha": 0.8,
+      "items": [
+        "P007",
+        "P037",
+        "P067",
+        "P097"
+      ]
+    },
+    {
+      "id": "E3",
+      "domain": "E",
+      "name": "Assertiveness",
+      "alpha": 0.86,
+      "items": [
+        "P012",
+        "P042",
+        "P072",
+        "P102"
+      ]
+    },
+    {
+      "id": "E4",
+      "domain": "E",
+      "name": "Activity Level",
+      "alpha": 0.71,
+      "items": [
+        "P017",
+        "P047",
+        "P077",
+        "P107"
+      ]
+    },
+    {
+      "id": "E5",
+      "domain": "E",
+      "name": "Excitement-Seeking",
+      "alpha": 0.74,
+      "items": [
+        "P022",
+        "P052",
+        "P082",
+        "P112"
+      ]
+    },
+    {
+      "id": "E6",
+      "domain": "E",
+      "name": "Cheerfulness",
+      "alpha": 0.8,
+      "items": [
+        "P027",
+        "P057",
+        "P087",
+        "P117"
+      ]
+    },
+    {
+      "id": "O1",
+      "domain": "O",
+      "name": "Imagination",
+      "alpha": 0.75,
+      "items": [
+        "P003",
+        "P033",
+        "P063",
+        "P093"
+      ]
+    },
+    {
+      "id": "O2",
+      "domain": "O",
+      "name": "Artistic Interests",
+      "alpha": 0.75,
+      "items": [
+        "P008",
+        "P038",
+        "P068",
+        "P098"
+      ]
+    },
+    {
+      "id": "O3",
+      "domain": "O",
+      "name": "Emotionality",
+      "alpha": 0.66,
+      "items": [
+        "P013",
+        "P043",
+        "P073",
+        "P103"
+      ]
+    },
+    {
+      "id": "O4",
+      "domain": "O",
+      "name": "Adventurousness",
+      "alpha": 0.71,
+      "items": [
+        "P018",
+        "P048",
+        "P078",
+        "P108"
+      ]
+    },
+    {
+      "id": "O5",
+      "domain": "O",
+      "name": "Intellect",
+      "alpha": 0.74,
+      "items": [
+        "P023",
+        "P053",
+        "P083",
+        "P113"
+      ]
+    },
+    {
+      "id": "O6",
+      "domain": "O",
+      "name": "Liberalism",
+      "alpha": 0.69,
+      "items": [
+        "P028",
+        "P058",
+        "P088",
+        "P118"
+      ]
+    },
+    {
+      "id": "A1",
+      "domain": "A",
+      "name": "Trust",
+      "alpha": 0.86,
+      "items": [
+        "P004",
+        "P034",
+        "P064",
+        "P094"
+      ]
+    },
+    {
+      "id": "A2",
+      "domain": "A",
+      "name": "Morality",
+      "alpha": 0.74,
+      "items": [
+        "P009",
+        "P039",
+        "P069",
+        "P099"
+      ]
+    },
+    {
+      "id": "A3",
+      "domain": "A",
+      "name": "Altruism",
+      "alpha": 0.73,
+      "items": [
+        "P014",
+        "P044",
+        "P074",
+        "P104"
+      ]
+    },
+    {
+      "id": "A4",
+      "domain": "A",
+      "name": "Cooperation",
+      "alpha": 0.69,
+      "items": [
+        "P019",
+        "P049",
+        "P079",
+        "P109"
+      ]
+    },
+    {
+      "id": "A5",
+      "domain": "A",
+      "name": "Modesty",
+      "alpha": 0.72,
+      "items": [
+        "P024",
+        "P054",
+        "P084",
+        "P114"
+      ]
+    },
+    {
+      "id": "A6",
+      "domain": "A",
+      "name": "Sympathy",
+      "alpha": 0.73,
+      "items": [
+        "P029",
+        "P059",
+        "P089",
+        "P119"
+      ]
+    },
+    {
+      "id": "C1",
+      "domain": "C",
+      "name": "Self-Efficacy",
+      "alpha": 0.77,
+      "items": [
+        "P005",
+        "P035",
+        "P065",
+        "P095"
+      ]
+    },
+    {
+      "id": "C2",
+      "domain": "C",
+      "name": "Orderliness",
+      "alpha": 0.85,
+      "items": [
+        "P010",
+        "P040",
+        "P070",
+        "P100"
+      ]
+    },
+    {
+      "id": "C3",
+      "domain": "C",
+      "name": "Dutifulness",
+      "alpha": 0.67,
+      "items": [
+        "P015",
+        "P045",
+        "P075",
+        "P105"
+      ]
+    },
+    {
+      "id": "C4",
+      "domain": "C",
+      "name": "Achievement-Striving",
+      "alpha": 0.78,
+      "items": [
+        "P020",
+        "P050",
+        "P080",
+        "P110"
+      ]
+    },
+    {
+      "id": "C5",
+      "domain": "C",
+      "name": "Self-Discipline",
+      "alpha": 0.72,
+      "items": [
+        "P025",
+        "P055",
+        "P085",
+        "P115"
+      ]
+    },
+    {
+      "id": "C6",
+      "domain": "C",
+      "name": "Cautiousness",
+      "alpha": 0.88,
+      "items": [
+        "P030",
+        "P060",
+        "P090",
+        "P120"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "P001",
+      "n": 1,
+      "text": "Worry about things",
+      "domain": "N",
+      "facet": "N1",
+      "keyed": "+"
+    },
+    {
+      "id": "P002",
+      "n": 2,
+      "text": "Make friends easily",
+      "domain": "E",
+      "facet": "E1",
+      "keyed": "+"
+    },
+    {
+      "id": "P003",
+      "n": 3,
+      "text": "Have a vivid imagination",
+      "domain": "O",
+      "facet": "O1",
+      "keyed": "+"
+    },
+    {
+      "id": "P004",
+      "n": 4,
+      "text": "Trust others",
+      "domain": "A",
+      "facet": "A1",
+      "keyed": "+"
+    },
+    {
+      "id": "P005",
+      "n": 5,
+      "text": "Complete tasks successfully",
+      "domain": "C",
+      "facet": "C1",
+      "keyed": "+"
+    },
+    {
+      "id": "P006",
+      "n": 6,
+      "text": "Get angry easily",
+      "domain": "N",
+      "facet": "N2",
+      "keyed": "+"
+    },
+    {
+      "id": "P007",
+      "n": 7,
+      "text": "Love large parties",
+      "domain": "E",
+      "facet": "E2",
+      "keyed": "+"
+    },
+    {
+      "id": "P008",
+      "n": 8,
+      "text": "Believe in the importance of art",
+      "domain": "O",
+      "facet": "O2",
+      "keyed": "+"
+    },
+    {
+      "id": "P009",
+      "n": 9,
+      "text": "Use others for my own ends",
+      "domain": "A",
+      "facet": "A2",
+      "keyed": "-"
+    },
+    {
+      "id": "P010",
+      "n": 10,
+      "text": "Like to tidy up",
+      "domain": "C",
+      "facet": "C2",
+      "keyed": "+"
+    },
+    {
+      "id": "P011",
+      "n": 11,
+      "text": "Often feel blue",
+      "domain": "N",
+      "facet": "N3",
+      "keyed": "+"
+    },
+    {
+      "id": "P012",
+      "n": 12,
+      "text": "Take charge",
+      "domain": "E",
+      "facet": "E3",
+      "keyed": "+"
+    },
+    {
+      "id": "P013",
+      "n": 13,
+      "text": "Experience my emotions intensely",
+      "domain": "O",
+      "facet": "O3",
+      "keyed": "+"
+    },
+    {
+      "id": "P014",
+      "n": 14,
+      "text": "Love to help others",
+      "domain": "A",
+      "facet": "A3",
+      "keyed": "+"
+    },
+    {
+      "id": "P015",
+      "n": 15,
+      "text": "Keep my promises",
+      "domain": "C",
+      "facet": "C3",
+      "keyed": "+"
+    },
+    {
+      "id": "P016",
+      "n": 16,
+      "text": "Find it difficult to approach others",
+      "domain": "N",
+      "facet": "N4",
+      "keyed": "+"
+    },
+    {
+      "id": "P017",
+      "n": 17,
+      "text": "Am always busy",
+      "domain": "E",
+      "facet": "E4",
+      "keyed": "+"
+    },
+    {
+      "id": "P018",
+      "n": 18,
+      "text": "Prefer variety to routine",
+      "domain": "O",
+      "facet": "O4",
+      "keyed": "+"
+    },
+    {
+      "id": "P019",
+      "n": 19,
+      "text": "Love a good fight",
+      "domain": "A",
+      "facet": "A4",
+      "keyed": "-"
+    },
+    {
+      "id": "P020",
+      "n": 20,
+      "text": "Work hard",
+      "domain": "C",
+      "facet": "C4",
+      "keyed": "+"
+    },
+    {
+      "id": "P021",
+      "n": 21,
+      "text": "Go on binges",
+      "domain": "N",
+      "facet": "N5",
+      "keyed": "+"
+    },
+    {
+      "id": "P022",
+      "n": 22,
+      "text": "Love excitement",
+      "domain": "E",
+      "facet": "E5",
+      "keyed": "+"
+    },
+    {
+      "id": "P023",
+      "n": 23,
+      "text": "Love to read challenging material",
+      "domain": "O",
+      "facet": "O5",
+      "keyed": "+"
+    },
+    {
+      "id": "P024",
+      "n": 24,
+      "text": "Believe that I am better than others",
+      "domain": "A",
+      "facet": "A5",
+      "keyed": "-"
+    },
+    {
+      "id": "P025",
+      "n": 25,
+      "text": "Am always prepared",
+      "domain": "C",
+      "facet": "C5",
+      "keyed": "+"
+    },
+    {
+      "id": "P026",
+      "n": 26,
+      "text": "Panic easily",
+      "domain": "N",
+      "facet": "N6",
+      "keyed": "+"
+    },
+    {
+      "id": "P027",
+      "n": 27,
+      "text": "Radiate joy",
+      "domain": "E",
+      "facet": "E6",
+      "keyed": "+"
+    },
+    {
+      "id": "P028",
+      "n": 28,
+      "text": "Tend to vote for liberal political candidates",
+      "domain": "O",
+      "facet": "O6",
+      "keyed": "+"
+    },
+    {
+      "id": "P029",
+      "n": 29,
+      "text": "Sympathize with the homeless",
+      "domain": "A",
+      "facet": "A6",
+      "keyed": "+"
+    },
+    {
+      "id": "P030",
+      "n": 30,
+      "text": "Jump into things without thinking",
+      "domain": "C",
+      "facet": "C6",
+      "keyed": "-"
+    },
+    {
+      "id": "P031",
+      "n": 31,
+      "text": "Fear for the worst",
+      "domain": "N",
+      "facet": "N1",
+      "keyed": "+"
+    },
+    {
+      "id": "P032",
+      "n": 32,
+      "text": "Feel comfortable around people",
+      "domain": "E",
+      "facet": "E1",
+      "keyed": "+"
+    },
+    {
+      "id": "P033",
+      "n": 33,
+      "text": "Enjoy wild flights of fantasy",
+      "domain": "O",
+      "facet": "O1",
+      "keyed": "+"
+    },
+    {
+      "id": "P034",
+      "n": 34,
+      "text": "Believe that others have good intentions",
+      "domain": "A",
+      "facet": "A1",
+      "keyed": "+"
+    },
+    {
+      "id": "P035",
+      "n": 35,
+      "text": "Excel in what I do",
+      "domain": "C",
+      "facet": "C1",
+      "keyed": "+"
+    },
+    {
+      "id": "P036",
+      "n": 36,
+      "text": "Get irritated easily",
+      "domain": "N",
+      "facet": "N2",
+      "keyed": "+"
+    },
+    {
+      "id": "P037",
+      "n": 37,
+      "text": "Talk to a lot of different people at parties",
+      "domain": "E",
+      "facet": "E2",
+      "keyed": "+"
+    },
+    {
+      "id": "P038",
+      "n": 38,
+      "text": "See beauty in things that others might not notice",
+      "domain": "O",
+      "facet": "O2",
+      "keyed": "+"
+    },
+    {
+      "id": "P039",
+      "n": 39,
+      "text": "Cheat to get ahead",
+      "domain": "A",
+      "facet": "A2",
+      "keyed": "-"
+    },
+    {
+      "id": "P040",
+      "n": 40,
+      "text": "Often forget to put things back in their proper place",
+      "domain": "C",
+      "facet": "C2",
+      "keyed": "-"
+    },
+    {
+      "id": "P041",
+      "n": 41,
+      "text": "Dislike myself",
+      "domain": "N",
+      "facet": "N3",
+      "keyed": "+"
+    },
+    {
+      "id": "P042",
+      "n": 42,
+      "text": "Try to lead others",
+      "domain": "E",
+      "facet": "E3",
+      "keyed": "+"
+    },
+    {
+      "id": "P043",
+      "n": 43,
+      "text": "Feel others' emotions",
+      "domain": "O",
+      "facet": "O3",
+      "keyed": "+"
+    },
+    {
+      "id": "P044",
+      "n": 44,
+      "text": "Am concerned about others",
+      "domain": "A",
+      "facet": "A3",
+      "keyed": "+"
+    },
+    {
+      "id": "P045",
+      "n": 45,
+      "text": "Tell the truth",
+      "domain": "C",
+      "facet": "C3",
+      "keyed": "+"
+    },
+    {
+      "id": "P046",
+      "n": 46,
+      "text": "Am afraid to draw attention to myself",
+      "domain": "N",
+      "facet": "N4",
+      "keyed": "+"
+    },
+    {
+      "id": "P047",
+      "n": 47,
+      "text": "Am always on the go",
+      "domain": "E",
+      "facet": "E4",
+      "keyed": "+"
+    },
+    {
+      "id": "P048",
+      "n": 48,
+      "text": "Prefer to stick with things that I know",
+      "domain": "O",
+      "facet": "O4",
+      "keyed": "-"
+    },
+    {
+      "id": "P049",
+      "n": 49,
+      "text": "Yell at people",
+      "domain": "A",
+      "facet": "A4",
+      "keyed": "-"
+    },
+    {
+      "id": "P050",
+      "n": 50,
+      "text": "Do more than what's expected of me",
+      "domain": "C",
+      "facet": "C4",
+      "keyed": "+"
+    },
+    {
+      "id": "P051",
+      "n": 51,
+      "text": "Rarely overindulge",
+      "domain": "N",
+      "facet": "N5",
+      "keyed": "-"
+    },
+    {
+      "id": "P052",
+      "n": 52,
+      "text": "Seek adventure",
+      "domain": "E",
+      "facet": "E5",
+      "keyed": "+"
+    },
+    {
+      "id": "P053",
+      "n": 53,
+      "text": "Avoid philosophical discussions",
+      "domain": "O",
+      "facet": "O5",
+      "keyed": "-"
+    },
+    {
+      "id": "P054",
+      "n": 54,
+      "text": "Think highly of myself",
+      "domain": "A",
+      "facet": "A5",
+      "keyed": "-"
+    },
+    {
+      "id": "P055",
+      "n": 55,
+      "text": "Carry out my plans",
+      "domain": "C",
+      "facet": "C5",
+      "keyed": "+"
+    },
+    {
+      "id": "P056",
+      "n": 56,
+      "text": "Become overwhelmed by events",
+      "domain": "N",
+      "facet": "N6",
+      "keyed": "+"
+    },
+    {
+      "id": "P057",
+      "n": 57,
+      "text": "Have a lot of fun",
+      "domain": "E",
+      "facet": "E6",
+      "keyed": "+"
+    },
+    {
+      "id": "P058",
+      "n": 58,
+      "text": "Believe that there is no absolute right or wrong",
+      "domain": "O",
+      "facet": "O6",
+      "keyed": "+"
+    },
+    {
+      "id": "P059",
+      "n": 59,
+      "text": "Feel sympathy for those who are worse off than myself",
+      "domain": "A",
+      "facet": "A6",
+      "keyed": "+"
+    },
+    {
+      "id": "P060",
+      "n": 60,
+      "text": "Make rash decisions",
+      "domain": "C",
+      "facet": "C6",
+      "keyed": "-"
+    },
+    {
+      "id": "P061",
+      "n": 61,
+      "text": "Am afraid of many things",
+      "domain": "N",
+      "facet": "N1",
+      "keyed": "+"
+    },
+    {
+      "id": "P062",
+      "n": 62,
+      "text": "Avoid contacts with others",
+      "domain": "E",
+      "facet": "E1",
+      "keyed": "-"
+    },
+    {
+      "id": "P063",
+      "n": 63,
+      "text": "Love to daydream",
+      "domain": "O",
+      "facet": "O1",
+      "keyed": "+"
+    },
+    {
+      "id": "P064",
+      "n": 64,
+      "text": "Trust what people say",
+      "domain": "A",
+      "facet": "A1",
+      "keyed": "+"
+    },
+    {
+      "id": "P065",
+      "n": 65,
+      "text": "Handle tasks smoothly",
+      "domain": "C",
+      "facet": "C1",
+      "keyed": "+"
+    },
+    {
+      "id": "P066",
+      "n": 66,
+      "text": "Lose my temper",
+      "domain": "N",
+      "facet": "N2",
+      "keyed": "+"
+    },
+    {
+      "id": "P067",
+      "n": 67,
+      "text": "Prefer to be alone",
+      "domain": "E",
+      "facet": "E2",
+      "keyed": "-"
+    },
+    {
+      "id": "P068",
+      "n": 68,
+      "text": "Do not like poetry",
+      "domain": "O",
+      "facet": "O2",
+      "keyed": "-"
+    },
+    {
+      "id": "P069",
+      "n": 69,
+      "text": "Take advantage of others",
+      "domain": "A",
+      "facet": "A2",
+      "keyed": "-"
+    },
+    {
+      "id": "P070",
+      "n": 70,
+      "text": "Leave a mess in my room",
+      "domain": "C",
+      "facet": "C2",
+      "keyed": "-"
+    },
+    {
+      "id": "P071",
+      "n": 71,
+      "text": "Am often down in the dumps",
+      "domain": "N",
+      "facet": "N3",
+      "keyed": "+"
+    },
+    {
+      "id": "P072",
+      "n": 72,
+      "text": "Take control of things",
+      "domain": "E",
+      "facet": "E3",
+      "keyed": "+"
+    },
+    {
+      "id": "P073",
+      "n": 73,
+      "text": "Rarely notice my emotional reactions",
+      "domain": "O",
+      "facet": "O3",
+      "keyed": "-"
+    },
+    {
+      "id": "P074",
+      "n": 74,
+      "text": "Am indifferent to the feelings of others",
+      "domain": "A",
+      "facet": "A3",
+      "keyed": "-"
+    },
+    {
+      "id": "P075",
+      "n": 75,
+      "text": "Break rules",
+      "domain": "C",
+      "facet": "C3",
+      "keyed": "-"
+    },
+    {
+      "id": "P076",
+      "n": 76,
+      "text": "Only feel comfortable with friends",
+      "domain": "N",
+      "facet": "N4",
+      "keyed": "+"
+    },
+    {
+      "id": "P077",
+      "n": 77,
+      "text": "Do a lot in my spare time",
+      "domain": "E",
+      "facet": "E4",
+      "keyed": "+"
+    },
+    {
+      "id": "P078",
+      "n": 78,
+      "text": "Dislike changes",
+      "domain": "O",
+      "facet": "O4",
+      "keyed": "-"
+    },
+    {
+      "id": "P079",
+      "n": 79,
+      "text": "Insult people",
+      "domain": "A",
+      "facet": "A4",
+      "keyed": "-"
+    },
+    {
+      "id": "P080",
+      "n": 80,
+      "text": "Do just enough work to get by",
+      "domain": "C",
+      "facet": "C4",
+      "keyed": "-"
+    },
+    {
+      "id": "P081",
+      "n": 81,
+      "text": "Easily resist temptations",
+      "domain": "N",
+      "facet": "N5",
+      "keyed": "-"
+    },
+    {
+      "id": "P082",
+      "n": 82,
+      "text": "Enjoy being reckless",
+      "domain": "E",
+      "facet": "E5",
+      "keyed": "+"
+    },
+    {
+      "id": "P083",
+      "n": 83,
+      "text": "Have difficulty understanding abstract ideas",
+      "domain": "O",
+      "facet": "O5",
+      "keyed": "-"
+    },
+    {
+      "id": "P084",
+      "n": 84,
+      "text": "Have a high opinion of myself",
+      "domain": "A",
+      "facet": "A5",
+      "keyed": "-"
+    },
+    {
+      "id": "P085",
+      "n": 85,
+      "text": "Waste my time",
+      "domain": "C",
+      "facet": "C5",
+      "keyed": "-"
+    },
+    {
+      "id": "P086",
+      "n": 86,
+      "text": "Feel that I'm unable to deal with things",
+      "domain": "N",
+      "facet": "N6",
+      "keyed": "+"
+    },
+    {
+      "id": "P087",
+      "n": 87,
+      "text": "Love life",
+      "domain": "E",
+      "facet": "E6",
+      "keyed": "+"
+    },
+    {
+      "id": "P088",
+      "n": 88,
+      "text": "Tend to vote for conservative political candidates",
+      "domain": "O",
+      "facet": "O6",
+      "keyed": "-"
+    },
+    {
+      "id": "P089",
+      "n": 89,
+      "text": "Am not interested in other people's problems",
+      "domain": "A",
+      "facet": "A6",
+      "keyed": "-"
+    },
+    {
+      "id": "P090",
+      "n": 90,
+      "text": "Rush into things",
+      "domain": "C",
+      "facet": "C6",
+      "keyed": "-"
+    },
+    {
+      "id": "P091",
+      "n": 91,
+      "text": "Get stressed out easily",
+      "domain": "N",
+      "facet": "N1",
+      "keyed": "+"
+    },
+    {
+      "id": "P092",
+      "n": 92,
+      "text": "Keep others at a distance",
+      "domain": "E",
+      "facet": "E1",
+      "keyed": "-"
+    },
+    {
+      "id": "P093",
+      "n": 93,
+      "text": "Like to get lost in thought",
+      "domain": "O",
+      "facet": "O1",
+      "keyed": "+"
+    },
+    {
+      "id": "P094",
+      "n": 94,
+      "text": "Distrust people",
+      "domain": "A",
+      "facet": "A1",
+      "keyed": "-"
+    },
+    {
+      "id": "P095",
+      "n": 95,
+      "text": "Know how to get things done",
+      "domain": "C",
+      "facet": "C1",
+      "keyed": "+"
+    },
+    {
+      "id": "P096",
+      "n": 96,
+      "text": "Am not easily annoyed",
+      "domain": "N",
+      "facet": "N2",
+      "keyed": "-"
+    },
+    {
+      "id": "P097",
+      "n": 97,
+      "text": "Avoid crowds",
+      "domain": "E",
+      "facet": "E2",
+      "keyed": "-"
+    },
+    {
+      "id": "P098",
+      "n": 98,
+      "text": "Do not enjoy going to art museums",
+      "domain": "O",
+      "facet": "O2",
+      "keyed": "-"
+    },
+    {
+      "id": "P099",
+      "n": 99,
+      "text": "Obstruct others' plans",
+      "domain": "A",
+      "facet": "A2",
+      "keyed": "-"
+    },
+    {
+      "id": "P100",
+      "n": 100,
+      "text": "Leave my belongings around",
+      "domain": "C",
+      "facet": "C2",
+      "keyed": "-"
+    },
+    {
+      "id": "P101",
+      "n": 101,
+      "text": "Feel comfortable with myself",
+      "domain": "N",
+      "facet": "N3",
+      "keyed": "-"
+    },
+    {
+      "id": "P102",
+      "n": 102,
+      "text": "Wait for others to lead the way",
+      "domain": "E",
+      "facet": "E3",
+      "keyed": "-"
+    },
+    {
+      "id": "P103",
+      "n": 103,
+      "text": "Don't understand people who get emotional",
+      "domain": "O",
+      "facet": "O3",
+      "keyed": "-"
+    },
+    {
+      "id": "P104",
+      "n": 104,
+      "text": "Take no time for others",
+      "domain": "A",
+      "facet": "A3",
+      "keyed": "-"
+    },
+    {
+      "id": "P105",
+      "n": 105,
+      "text": "Break my promises",
+      "domain": "C",
+      "facet": "C3",
+      "keyed": "-"
+    },
+    {
+      "id": "P106",
+      "n": 106,
+      "text": "Am not bothered by difficult social situations",
+      "domain": "N",
+      "facet": "N4",
+      "keyed": "-"
+    },
+    {
+      "id": "P107",
+      "n": 107,
+      "text": "Like to take it easy",
+      "domain": "E",
+      "facet": "E4",
+      "keyed": "-"
+    },
+    {
+      "id": "P108",
+      "n": 108,
+      "text": "Am attached to conventional ways",
+      "domain": "O",
+      "facet": "O4",
+      "keyed": "-"
+    },
+    {
+      "id": "P109",
+      "n": 109,
+      "text": "Get back at others",
+      "domain": "A",
+      "facet": "A4",
+      "keyed": "-"
+    },
+    {
+      "id": "P110",
+      "n": 110,
+      "text": "Put little time and effort into my work",
+      "domain": "C",
+      "facet": "C4",
+      "keyed": "-"
+    },
+    {
+      "id": "P111",
+      "n": 111,
+      "text": "Am able to control my cravings",
+      "domain": "N",
+      "facet": "N5",
+      "keyed": "-"
+    },
+    {
+      "id": "P112",
+      "n": 112,
+      "text": "Act wild and crazy",
+      "domain": "E",
+      "facet": "E5",
+      "keyed": "+"
+    },
+    {
+      "id": "P113",
+      "n": 113,
+      "text": "Am not interested in theoretical discussions",
+      "domain": "O",
+      "facet": "O5",
+      "keyed": "-"
+    },
+    {
+      "id": "P114",
+      "n": 114,
+      "text": "Boast about my virtues",
+      "domain": "A",
+      "facet": "A5",
+      "keyed": "-"
+    },
+    {
+      "id": "P115",
+      "n": 115,
+      "text": "Have difficulty starting tasks",
+      "domain": "C",
+      "facet": "C5",
+      "keyed": "-"
+    },
+    {
+      "id": "P116",
+      "n": 116,
+      "text": "Remain calm under pressure",
+      "domain": "N",
+      "facet": "N6",
+      "keyed": "-"
+    },
+    {
+      "id": "P117",
+      "n": 117,
+      "text": "Look at the bright side of life",
+      "domain": "E",
+      "facet": "E6",
+      "keyed": "+"
+    },
+    {
+      "id": "P118",
+      "n": 118,
+      "text": "Believe that we should be tough on crime",
+      "domain": "O",
+      "facet": "O6",
+      "keyed": "-"
+    },
+    {
+      "id": "P119",
+      "n": 119,
+      "text": "Try not to think about the needy",
+      "domain": "A",
+      "facet": "A6",
+      "keyed": "-"
+    },
+    {
+      "id": "P120",
+      "n": 120,
+      "text": "Act without thinking",
+      "domain": "C",
+      "facet": "C6",
+      "keyed": "-"
+    }
+  ]
+}
