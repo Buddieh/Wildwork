@@ -36,10 +36,12 @@ jobs:
         run: |
           mkdir -p _site/questionnaire _site/data
           cp index.html _site/
+          cp -r fa _site/fa
           cp -r app _site/app
           rm -f _site/app/constellations/_*.json
           cp questionnaire/*.json questionnaire/scoring.js _site/questionnaire/
           cp data/jobs.json _site/data/
+          [ -f data/jobs-fa.json ] && cp data/jobs-fa.json _site/data/
           touch _site/.nojekyll
       - name: Push to gh-pages
         run: |
