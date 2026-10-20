@@ -2,6 +2,8 @@
 // inside a PNG "star map" (a tEXt chunk) that they download. Opening the file, or pasting the code,
 // restores everything. Nothing leaves the browser.
 
+import { starfield } from "./constellation.js";
+
 const KEY = "wildwork";
 const PREFIX = "WW1-";
 let cfg; // { encode(st) -> digits string, decode(digits) -> st | null, card(st) -> { svg, title, lines[], color } }
@@ -105,15 +107,10 @@ async function drawCard(st, T) {
   const g = ctx.createRadialGradient(W / 2, 360, 50, W / 2, 500, 1100);
   g.addColorStop(0, "#1f2a4d"); g.addColorStop(1, "#070b18");
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-  // Background stars, seeded from the code so each map looks a little different.
-  let seed = [...card.seed].reduce((h, ch) => Math.imul(h ^ ch.charCodeAt(0), 16777619), 2166136261) >>> 0;
-  const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 2 ** 32;
-  for (let k = 0; k < 260; k++) {
-    ctx.globalAlpha = 0.15 + rnd() * 0.6;
-    ctx.fillStyle = "#fff";
-    ctx.beginPath(); ctx.arc(rnd() * W, rnd() * H, 0.6 + rnd() * 1.6, 0, Math.PI * 2); ctx.fill();
-  }
-  ctx.globalAlpha = 1;
+  // Background sky (the same vector starfield as the site), seeded from the code so each map looks a little different.
+  const seed = [...card.seed].reduce((h, ch) => Math.imul(h ^ ch.charCodeAt(0), 16777619), 2166136261) >>> 0;
+  const sky = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${starfield(seed, W, H, { count: 520, band: true, scale: 2.2 })}</svg>`;
+  ctx.drawImage(await loadImage(URL.createObjectURL(new Blob([sky], { type: "image/svg+xml" }))), 0, 0, W, H);
   if (card.svg) {
     const img = await loadImage(URL.createObjectURL(new Blob([card.svg], { type: "image/svg+xml" })));
     ctx.drawImage(img, 140, 90, 800, 800);

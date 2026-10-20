@@ -1,6 +1,6 @@
 import { scorePersonality, scoreInterests } from "../questionnaire/scoring.js";
 import { ANIMALS, DOMAINS, rankAnimals, typeCodes } from "./animals.js";
-import { constellationSvg } from "./constellation.js";
+import { constellationSvg, starfield } from "./constellation.js";
 import { matchJobs, workStyleProfile, interestLabel, personalityLabel, styleHighlights, WEIGHTS } from "./match.js";
 import * as save from "./save.js";
 
@@ -159,7 +159,7 @@ function starCard(st) {
   const { pct, animals } = computePersonality(st);
   const id = animals[0].id, a = D.art[id];
   return {
-    svg: constellationSvg(id, a, a.color, { percentiles: pct, size: 800 }),
+    svg: constellationSvg(id, a, a.color, { percentiles: pct, size: 800, disc: false }),
     color: a.color, eyebrow: T.save.cardEyebrow, title: T.animal.the(A(id).name),
     subtitle: interestsDone(st) ? A(id).tagline : T.save.progress(num(answered), num(total)), seed: id + answered,
   };
@@ -179,13 +179,14 @@ async function share() {
 // Hand-placed so the figures feel scattered rather than gridded; x/y in % of the field, r = tilt in degrees.
 const SKY = [
   ["owl", 9, 12, -6], ["fox", 33, 8, 4], ["dolphin", 58, 12, -8], ["wolf", 84, 9, 5],
-  ["cat", 20, 36, 3], ["lion", 46, 34, -3], ["deer", 72, 37, 6], ["hummingbird", 94, 33, -10],
+  ["cat", 20, 36, 3], ["lion", 46, 34, -3], ["deer", 72, 37, 6], ["hummingbird", 90, 33, -10],
   ["octopus", 7, 60, 5], ["elephant", 33, 62, -4], ["panda", 58, 59, 3], ["meerkat", 84, 62, -5],
   ["hedgehog", 18, 86, -3], ["otter", 44, 88, 4], ["beaver", 69, 86, -4], ["raccoon", 92, 88, 6],
 ];
 
 function skyField() {
-  return `<div class="skyfield" role="list">${SKY.map(([id, x, y, rot]) => html`
+  const bg = `<svg class="skyfield-bg" aria-hidden="true" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">${starfield(20251019, 1200, 900, { count: 520, band: true, scale: 1.5, twinkle: true })}</svg>`;
+  return `<div class="skyfield" role="list">${bg}${SKY.map(([id, x, y, rot]) => html`
     <a class="sky-animal" role="listitem" href="#/animals/${id}" style="--x:${x}%;--y:${y}%;--rot:${rot}deg">
       ${art(id, { disc: false, size: 120 })}<span>${esc(A(id).name)}</span>
     </a>`).join("")}</div>`;
@@ -730,6 +731,7 @@ function reviewQuiz() {
 }
 
 function chrome() {
+  document.querySelector(".sky").innerHTML = `<svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">${starfield(7, 1600, 1000, { count: 380, band: true, scale: 1.6 })}</svg>`;
   document.querySelector(".top nav").innerHTML = `<a href="#/animals">${T.nav.animals}</a><a href="#/method">${T.nav.method}</a><a href="${new URL(T.langSwitch.href, ROOT).href}" lang="${LANG === "fa" ? "en" : "fa"}">${T.langSwitch.label}</a>`;
   document.querySelector(".brand").href = "#/";
   document.querySelector(".foot").innerHTML = `<p>${T.footer.ipip}</p><p>${T.footer.onet}</p><p>${T.footer.privacy}</p>`;
