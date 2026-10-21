@@ -205,7 +205,6 @@ details summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 .today { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 14px; }
 .today li { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; }
 .today .act { margin: 0 0 8px; font-weight: 600; }
-.today-job small { color: var(--muted); font-weight: 400; margin-inline-start: 4px; }
 .outlook b { font-weight: 600; }
 .outlook b.up { color: var(--good); }
 .outlook b.down { color: var(--warn); }

@@ -604,7 +604,8 @@ function jobCard(m, interests, styles) {
   const hl = styleHighlights(styles, j.workStyles);
   const level = z => T.results.levels[z >= 0.35 ? "high" : z <= -0.35 ? "low" : "average"];
   const titles = L.modernTitles || j.modernTitles;
-  const trending = j.trendingTitles || [];
+  const trending = (j.trendingTitles || []).slice(0, 5);
+  const trendingNew = trending.filter(t => t.toLowerCase() !== j.title.toLowerCase() && t.toLowerCase() + "s" !== j.title.toLowerCase());
   const aka = titles.filter(t => t.toLowerCase() !== jobTitle(j).toLowerCase() && !trending.some(x => x.toLowerCase() === t.toLowerCase())).slice(0, 4);
   return html`
   <article class="job">
@@ -613,7 +614,7 @@ function jobCard(m, interests, styles) {
       <div>
         <h3>${esc(jobTitle(j))}</h3>
         ${L.title ? `<p class="aka" dir="ltr">${esc(j.title)}</p>` : ""}
-        ${trending.length ? `<p class="aka trend-titles"><span class="badge trend" title="${T.results.trendTitle}">${T.results.trendBadge}</span> <span dir="ltr">${trending.map(esc).join(", ")}</span></p>` : ""}
+        ${trending.length ? `<p class="aka trend-titles"><span class="badge trend" title="${T.results.trendTitle}">${trendingNew.length ? T.results.trendBadge : T.results.trendBadgeSame}</span> <span dir="ltr">${trendingNew.map(esc).join(", ")}</span></p>` : ""}
         ${aka.length ? `<p class="aka">${T.results.aka} ${aka.map(esc).join(T.results.list)}</p>` : ""}
         <div class="badges">
           ${j.outlook?.bright ? `<span class="badge grow" title="${T.results.growTitle}">${T.results.growBadge}</span>` : ""}
@@ -648,7 +649,7 @@ function todaySection(st, jobsData, matches, shared) {
   if (!liked.length) return "";
   const chip = m => {
     const j = m.job, modern = LANG === "fa" ? "" : j.trendingTitles?.[0] || "";
-    return `<button class="chip today-job" data-find="${j.code}" title="${esc(T.results.todayFind)}">${esc(modern || jobTitle(j))}${modern ? ` <small>${esc(jobTitle(j))}</small>` : ""} <span class="muted">#${num(m.rank)}</span></button>`;
+    return `<button class="chip today-job" data-find="${j.code}" title="${esc(jobTitle(j))}. ${esc(T.results.todayFind)}">${esc(modern || jobTitle(j))} <span class="muted">#${num(m.rank)}</span></button>`;
   };
   return html`
   <section class="section">

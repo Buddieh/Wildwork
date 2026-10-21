@@ -1,7 +1,8 @@
 name: Refresh job data
 
-# Rebuilds data/jobs.json from the latest O*NET release. O*NET updates quarterly; checking monthly keeps
-# new titles and Bright Outlook flags current without manual work.
+# Rebuilds data/jobs.json from the latest O*NET release, the BLS projections shown on O*NET OnLine, the AI
+# exposure datasets and data/market_titles.json. O*NET updates quarterly; checking monthly keeps new titles,
+# outlook figures and Bright Outlook flags current without manual work.
 on:
   schedule:
     - cron: "0 6 1 * *"
@@ -9,6 +10,7 @@ on:
   push:
     paths:
       - data/build_jobs.py
+      - data/market_titles.json
       - .github/workflows/job-data.yml
 
 permissions:

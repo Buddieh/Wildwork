@@ -221,13 +221,11 @@ def build(src, bright_text, version, projections=(None, None), market=None, ai=(
                 bright += 1
 
     proj, period = projections
-    with_projection = 0
     if proj:
         for job in jobs.values():
             soc = job["code"].split(".")[0]
             if soc in proj:
                 job["outlook"]["projection"] = dict(proj[soc])
-                with_projection += 1
         # Projections are per SOC group, so subgroups such as 15-1299.08 share them; say which group they describe.
         shared = {}
         for c in jobs:
@@ -240,7 +238,6 @@ def build(src, bright_text, version, projections=(None, None), market=None, ai=(
                         jobs[c]["outlook"]["projection"]["group"] = base["title"] if base else True
 
     potential, observed = ai
-    with_ai = 0
     for job in jobs.values():
         soc = job["code"].split(".")[0]
         entry = {}
@@ -250,7 +247,6 @@ def build(src, bright_text, version, projections=(None, None), market=None, ai=(
             entry["observed"] = round(observed[soc], 3)
         if entry:
             job["ai"] = entry
-            with_ai += 1
 
     if market:
         for t in market.get("rising", []):
@@ -262,6 +258,8 @@ def build(src, bright_text, version, projections=(None, None), market=None, ai=(
                 jobs[t["code"]]["outlook"]["declining"] = True
 
     usable = [j for j in jobs.values() if len(j["riasec"]) == 6]
+    with_projection = sum(1 for j in usable if "projection" in j["outlook"])
+    with_ai = sum(1 for j in usable if "ai" in j)
     return {
         "meta": {
             "onetVersion": version.replace("_", "."),
