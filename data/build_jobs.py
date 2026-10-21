@@ -26,6 +26,11 @@ BLS_PROJECTIONS = "https://www.bls.gov/emp/ind-occ-matrix/occupation.xlsx"
 BLS_PROJECTIONS_PAGE = "https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm"
 BLS_CROSSWALK = "https://www.bls.gov/emp/classifications-crosswalks/nem-onet-to-soc-crosswalk.xlsx"
 UA = {"User-Agent": "Wildwork job-data builder (https://github.com/Buddieh/Wildwork)"}
+# BLS refuses requests unless the User-Agent names a contact and the request looks like a normal download.
+BLS_HEADERS = {"User-Agent": "Wildwork job-data builder https://github.com/Buddieh/Wildwork "
+                             "41898282+github-actions[bot]@users.noreply.github.com",
+               "Accept": "text/html,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,*/*;q=0.8",
+               "Accept-Language": "en-US,en;q=0.9", "Referer": "https://www.bls.gov/emp/data/occupational-data.htm"}
 
 RIASEC = {"Realistic": "R", "Investigative": "I", "Artistic": "A", "Social": "S", "Enterprising": "E", "Conventional": "C"}
 JOB_POSTINGS_SOURCE = "10"  # Source code for titles taken from employer job postings
@@ -36,8 +41,8 @@ OUT = Path(__file__).with_name("jobs.json")
 MARKET = Path(__file__).with_name("market_titles.json")
 
 
-def fetch(url):
-    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=120) as r:
+def fetch(url, headers=UA):
+    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=120) as r:
         return r.read()
 
 
@@ -160,7 +165,7 @@ def load_bls(folder=None):
             p = Path(folder) / name
             return p.read_bytes() if p.exists() else None
         try:
-            return fetch(url)
+            return fetch(url, BLS_HEADERS)
         except OSError as e:
             print(f"BLS file unavailable ({url}):", e, file=sys.stderr)
             return None
