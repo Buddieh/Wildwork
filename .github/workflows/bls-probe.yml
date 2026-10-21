@@ -8,9 +8,7 @@ jobs:
     steps:
       - run: |
           A='Wildwork job-data builder (https://github.com/Buddieh/Wildwork)'
-          for u in 'https://www.onetonline.org/find/all/All_Occupations.csv?fmt=csv' 'https://www.onetonline.org/find/all?fmt=csv' 'https://www.onetonline.org/find/bright/All_Bright_Outlook_Occupations.csv?b=0&fmt=csv' 'https://www.onetonline.org/find/zone/Job_Zone_Four.csv?z=4&fmt=csv'; do
-            echo "== $u"; curl -sL -A "$A" "$u" | head -3
-          done
-          echo "== page links"; curl -sL -A "$A" 'https://www.onetonline.org/find/all' | grep -o 'href="[^"]*fmt=[^"]*"' | sort -u | head
-          echo "== summary outlook block"; curl -sL -A "$A" 'https://www.onetonline.org/link/localtrends/15-1252.00' | sed 's/<[^>]*>/ /g' | grep -E '[0-9]' | grep -iE 'project|growth|openings|employ|wage' | head -15
-          echo "== HF"; curl -sL -o /dev/null -w '%{http_code}\n' https://huggingface.co/datasets/Anthropic/EconomicIndex/resolve/main/labor_market_impacts/job_exposure.csv
+          echo "== localtrends"; curl -sL -A "$A" 'https://www.onetonline.org/link/localtrends/15-1252.00' | grep -n -A12 -i 'Employment.*(2025)' | head -60
+          echo "== localtrends shared code"; curl -sL -A "$A" 'https://www.onetonline.org/link/localtrends/15-1299.08' | sed 's/<[^>]*>/ /g' | grep -E '[0-9]{2}' | grep -ivE 'script|function|var ' | head -20
+          echo "== summary wages"; curl -sL -A "$A" 'https://www.onetonline.org/link/summary/23-1011.00' | grep -n -B2 -A10 -i 'Median wages' | head -60
+          echo "== summary wage high"; curl -sL -A "$A" 'https://www.onetonline.org/link/summary/29-1211.00' | sed 's/<[^>]*>/ /g' | grep -A3 -i 'median wages' | head -8
