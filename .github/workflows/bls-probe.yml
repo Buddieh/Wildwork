@@ -7,16 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          U=https://www.bls.gov/emp/ind-occ-matrix/occupation.xlsx
-          H=(-H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.9' -H 'Accept-Encoding: gzip, deflate, br' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none')
-          echo "contact+headers: $(curl -s -o /dev/null -w '%{http_code}' -A 'Wildwork job-data builder https://github.com/Buddieh/Wildwork 41898282+github-actions[bot]@users.noreply.github.com' "${H[@]}" $U)"
-          echo "contact+accept-only: $(curl -s -o /dev/null -w '%{http_code}' -A 'Wildwork job-data builder https://github.com/Buddieh/Wildwork 41898282+github-actions[bot]@users.noreply.github.com' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.9' -H 'Accept-Encoding: gzip, deflate, br' $U)"
-          echo "contact+sec-fetch: $(curl -s -o /dev/null -w '%{http_code}' -A 'Wildwork job-data builder https://github.com/Buddieh/Wildwork 41898282+github-actions[bot]@users.noreply.github.com' -H 'Accept-Language: en-US,en;q=0.9' -H 'Sec-Fetch-Mode: navigate' $U)"
-          python3 - <<'PY'
-          import urllib.request
-          h={"User-Agent":"Wildwork job-data builder https://github.com/Buddieh/Wildwork 41898282+github-actions[bot]@users.noreply.github.com","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Language":"en-US,en;q=0.9","Upgrade-Insecure-Requests":"1","Sec-Fetch-Dest":"document","Sec-Fetch-Mode":"navigate","Sec-Fetch-Site":"none"}
-          for u in ["https://www.bls.gov/emp/ind-occ-matrix/occupation.xlsx","https://www.bls.gov/emp/classifications-crosswalks/nem-onet-to-soc-crosswalk.xlsx"]:
-              try:
-                  with urllib.request.urlopen(urllib.request.Request(u,headers=h),timeout=60) as r: print("py", u, r.status, len(r.read()))
-              except Exception as e: print("py", u, e)
-          PY
+          A='Wildwork job-data builder (https://github.com/Buddieh/Wildwork)'
+          for u in 'https://www.onetonline.org/find/all/All_Occupations.csv?fmt=csv' 'https://www.onetonline.org/find/all?fmt=csv' 'https://www.onetonline.org/find/bright/All_Bright_Outlook_Occupations.csv?b=0&fmt=csv' 'https://www.onetonline.org/find/zone/Job_Zone_Four.csv?z=4&fmt=csv'; do
+            echo "== $u"; curl -sL -A "$A" "$u" | head -3
+          done
+          echo "== page links"; curl -sL -A "$A" 'https://www.onetonline.org/find/all' | grep -o 'href="[^"]*fmt=[^"]*"' | sort -u | head
+          echo "== summary outlook block"; curl -sL -A "$A" 'https://www.onetonline.org/link/localtrends/15-1252.00' | sed 's/<[^>]*>/ /g' | grep -E '[0-9]' | grep -iE 'project|growth|openings|employ|wage' | head -15
+          echo "== HF"; curl -sL -o /dev/null -w '%{http_code}\n' https://huggingface.co/datasets/Anthropic/EconomicIndex/resolve/main/labor_market_impacts/job_exposure.csv
