@@ -8,11 +8,15 @@ jobs:
     steps:
       - run: |
           U=https://www.bls.gov/emp/ind-occ-matrix/occupation.xlsx
-          echo "plain: $(curl -s -o /dev/null -w '%{http_code}' $U)"
-          echo "contact: $(curl -s -o /dev/null -w '%{http_code}' -A 'Wildwork research wildwork@users.noreply.github.com' $U)"
-          echo "browser: $(curl -s -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.9' -H 'Accept-Encoding: gzip, deflate, br' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none' $U)"
-          echo "api: $(curl -s -o /dev/null -w '%{http_code}' https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0)"
-          echo "onet-cross: $(curl -s -o /dev/null -w '%{http_code}' https://www.onetcenter.org/taxonomy/2019/soc.html)"
-          echo "dol-data: $(curl -s -o /dev/null -w '%{http_code}' https://www.careeronestop.org/)"
-          curl -s -A 'Mozilla/5.0' 'https://www.onetonline.org/find/bright?b=0' | grep -io 'fmt=[a-z]*[^"]*' | sort -u | head
-          curl -s -A 'Mozilla/5.0' 'https://www.onetonline.org/link/summary/15-1252.00' | grep -io -E 'projected[^<]{0,80}|median wages[^<]{0,80}|\$[0-9,]+[^<]{0,40}' | head
+          H=(-H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.9' -H 'Accept-Encoding: gzip, deflate, br' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none')
+          echo "contact+headers: $(curl -s -o /dev/null -w '%{http_code}' -A 'Wildwork job-data builder https://github.com/Buddieh/Wildwork 41898282+github-actions[bot]@users.noreply.github.com' "${H[@]}" $U)"
+          echo "contact+accept-only: $(curl -s -o /dev/null -w '%{http_code}' -A 'Wildwork job-data builder https://github.com/Buddieh/Wildwork 41898282+github-actions[bot]@users.noreply.github.com' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.9' -H 'Accept-Encoding: gzip, deflate, br' $U)"
+          echo "contact+sec-fetch: $(curl -s -o /dev/null -w '%{http_code}' -A 'Wildwork job-data builder https://github.com/Buddieh/Wildwork 41898282+github-actions[bot]@users.noreply.github.com' -H 'Accept-Language: en-US,en;q=0.9' -H 'Sec-Fetch-Mode: navigate' $U)"
+          python3 - <<'PY'
+          import urllib.request
+          h={"User-Agent":"Wildwork job-data builder https://github.com/Buddieh/Wildwork 41898282+github-actions[bot]@users.noreply.github.com","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Language":"en-US,en;q=0.9","Upgrade-Insecure-Requests":"1","Sec-Fetch-Dest":"document","Sec-Fetch-Mode":"navigate","Sec-Fetch-Site":"none"}
+          for u in ["https://www.bls.gov/emp/ind-occ-matrix/occupation.xlsx","https://www.bls.gov/emp/classifications-crosswalks/nem-onet-to-soc-crosswalk.xlsx"]:
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(u,headers=h),timeout=60) as r: print("py", u, r.status, len(r.read()))
+              except Exception as e: print("py", u, e)
+          PY
