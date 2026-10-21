@@ -51,10 +51,14 @@ async function loadData() {
   return { personality, norms, interests, wsMap, art, fa };
 }
 
+let jobsMeta = {};
 function loadJobs() {
   jobsPromise ||= (async () => {
-    const [data, tr] = await Promise.all([getJSON("data/jobs.json"), LANG === "fa" ? getJSON("data/jobs-fa.json", true) : null]);
+    const [data, tr, today] = await Promise.all([getJSON("data/jobs.json"), LANG === "fa" ? getJSON("data/jobs-fa.json", true) : null,
+      getJSON("questionnaire/items-today.json", true)]);
+    data.today = today?.items || {};
     if (tr) for (const j of data.jobs) if (tr[j.code]) j.local = tr[j.code];
+    jobsMeta = data.meta;
     return data;
   })();
   return jobsPromise;
@@ -515,7 +519,7 @@ async function resultsScreen(st, shared) {
   const matches = matchJobs(jobsData.jobs, interests.raw, styles);
   const order = Object.entries(interests.raw).sort((a, b) => b[1] - a[1]);
   const zones = new Set([1, 2, 3, 4, 5].filter(z => z <= (st.jobZone || 5)));
-  let growingOnly = false, query = "", shown = PAGE;
+  let growingOnly = false, trendingOnly = false, query = "", shown = PAGE;
 
   const code = order.slice(0, 3).map(([k], i) => `${k}${interests.tiedWithNext[i] && i < 2 ? "<span class='muted'>=</span>" : ""}`).join("");
 
@@ -532,12 +536,14 @@ async function resultsScreen(st, shared) {
     </div>
   </section>
 
+  ${todaySection(st, jobsData, matches, shared)}
+
   <section class="section">
     <h2>${T.results.jobsTitle(shared)}</h2>
     <p class="muted">${T.results.jobsLede(num(WEIGHTS.interests * 100), num(WEIGHTS.personality * 100))}</p>
     <div class="filters">
       <div><p class="small muted" style="margin-bottom:6px">${T.results.prep}</p><div class="chips" id="zones">${zoneFilterChips(zones)}</div></div>
-      <div class="row"><input type="search" id="q" placeholder="${T.results.search}" aria-label="${T.results.search}"><button class="chip" id="grow" aria-pressed="false">${T.results.growing}</button></div>
+      <div class="row"><input type="search" id="q" placeholder="${T.results.search}" aria-label="${T.results.search}"><button class="chip" id="grow" aria-pressed="false">${T.results.growing}</button><button class="chip" id="trend" aria-pressed="false">${T.results.trending}</button></div>
     </div>
     <div class="jobs" id="jobs"></div>
     <div class="more" id="more"></div>
@@ -552,8 +558,8 @@ async function resultsScreen(st, shared) {
   const list = app.querySelector("#jobs"), more = app.querySelector("#more");
   const drawJobs = () => {
     const q = query.trim().toLowerCase();
-    const hit = m => [m.job.title, m.job.local?.title, ...m.job.modernTitles, ...(m.job.local?.modernTitles || [])].some(t => t && t.toLowerCase().includes(q));
-    const filtered = matches.filter(m => zones.has(m.job.jobZone) && (!growingOnly || m.job.outlook?.bright) && (!q || hit(m)));
+    const hit = m => [m.job.title, m.job.local?.title, ...m.job.modernTitles, ...(m.job.trendingTitles || []), ...(m.job.local?.modernTitles || [])].some(t => t && t.toLowerCase().includes(q));
+    const filtered = matches.filter(m => zones.has(m.job.jobZone) && (!growingOnly || m.job.outlook?.bright) && (!trendingOnly || m.job.trendingTitles?.length) && (!q || hit(m)));
     list.innerHTML = filtered.slice(0, shown).map(m => jobCard(m, interests, styles)).join("") || `<p class="muted">${T.results.none}</p>`;
     more.innerHTML = filtered.length > shown ? `<button class="btn" id="more-btn">${T.results.more(num(filtered.length - shown))}</button>` : "";
     const mb = more.querySelector("#more-btn");
@@ -567,7 +573,23 @@ async function resultsScreen(st, shared) {
   });
   const grow = app.querySelector("#grow");
   grow.onclick = () => { growingOnly = !growingOnly; grow.setAttribute("aria-pressed", growingOnly); shown = PAGE; drawJobs(); };
-  app.querySelector("#q").oninput = e => { query = e.target.value; shown = PAGE; drawJobs(); };
+  const trend = app.querySelector("#trend");
+  trend.onclick = () => { trendingOnly = !trendingOnly; trend.setAttribute("aria-pressed", trendingOnly); shown = PAGE; drawJobs(); };
+  const search = app.querySelector("#q");
+  search.oninput = e => { query = e.target.value; shown = PAGE; drawJobs(); };
+  // "These activities today": a job chip searches the list for that job, widening the preparation filter if needed.
+  app.querySelectorAll("[data-find]").forEach(b => b.onclick = () => {
+    const m = matches.find(x => x.job.code === b.dataset.find);
+    if (!m) return;
+    if (!zones.has(m.job.jobZone)) {
+      zones.add(m.job.jobZone);
+      app.querySelector(`#zones [data-zone="${m.job.jobZone}"]`)?.setAttribute("aria-pressed", "true");
+    }
+    growingOnly = trendingOnly = false;
+    grow.setAttribute("aria-pressed", false); trend.setAttribute("aria-pressed", false);
+    query = search.value = m.job.title; shown = PAGE; drawJobs();
+    list.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
   drawJobs();
   if (!shared) save.bind(app, T, S, restore);
 }
@@ -582,7 +604,8 @@ function jobCard(m, interests, styles) {
   const hl = styleHighlights(styles, j.workStyles);
   const level = z => T.results.levels[z >= 0.35 ? "high" : z <= -0.35 ? "low" : "average"];
   const titles = L.modernTitles || j.modernTitles;
-  const aka = titles.filter(t => t.toLowerCase() !== jobTitle(j).toLowerCase()).slice(0, 4);
+  const trending = j.trendingTitles || [];
+  const aka = titles.filter(t => t.toLowerCase() !== jobTitle(j).toLowerCase() && !trending.some(x => x.toLowerCase() === t.toLowerCase())).slice(0, 4);
   return html`
   <article class="job">
     <div class="job-top">
@@ -590,11 +613,15 @@ function jobCard(m, interests, styles) {
       <div>
         <h3>${esc(jobTitle(j))}</h3>
         ${L.title ? `<p class="aka" dir="ltr">${esc(j.title)}</p>` : ""}
+        ${trending.length ? `<p class="aka trend-titles"><span class="badge trend" title="${T.results.trendTitle}">${T.results.trendBadge}</span> <span dir="ltr">${trending.map(esc).join(", ")}</span></p>` : ""}
         ${aka.length ? `<p class="aka">${T.results.aka} ${aka.map(esc).join(T.results.list)}</p>` : ""}
         <div class="badges">
           ${j.outlook?.bright ? `<span class="badge grow" title="${T.results.growTitle}">${T.results.growBadge}</span>` : ""}
+          ${j.outlook?.declining ? `<span class="badge shrink" title="${T.results.shrinkTitle}">${T.results.shrinkBadge}</span>` : ""}
           <span class="badge">${T.zones.long[j.jobZone]}</span>
         </div>
+        ${outlookLine(j.outlook?.projection)}
+        ${aiLine(j.ai)}
         <div class="fits">
           <div class="fit"><div class="lbl"><span>${T.results.interests}</span><b>${T.results.fit[interestLabel(m.interestR)]}</b></div><div class="bar"><div style="width:${iPct}%"></div></div></div>
           <div class="fit" title="${T.results.relTitle}"><div class="lbl"><span>${T.results.personality}</span><b>${T.results.fit[personalityLabel(m.personalityPct)]}</b></div><div class="bar"><div style="width:${pPct}%;background:#818cf8"></div></div></div>
@@ -610,6 +637,47 @@ function jobCard(m, interests, styles) {
       </div>
     </div>
   </article>`;
+}
+
+// The career-quiz activities this person liked most, each linked to occupations that do that work today. Shown only
+// after the test so the validated item wording is never changed or primed.
+function todaySection(st, jobsData, matches, shared) {
+  const byCode = Object.fromEntries(matches.map(m => [m.job.code, m]));
+  const liked = D.interests.items.filter(it => st.i[it.id] >= 4 && jobsData.today[it.id])
+    .sort((a, b) => st.i[b.id] - st.i[a.id] || a.n - b.n).slice(0, 6);
+  if (!liked.length) return "";
+  const chip = m => {
+    const j = m.job, modern = LANG === "fa" ? "" : j.trendingTitles?.[0] || "";
+    return `<button class="chip today-job" data-find="${j.code}" title="${esc(T.results.todayFind)}">${esc(modern || jobTitle(j))}${modern ? ` <small>${esc(jobTitle(j))}</small>` : ""} <span class="muted">#${num(m.rank)}</span></button>`;
+  };
+  return html`
+  <section class="section">
+    <h2>${T.results.todayTitle}</h2>
+    <p class="muted">${T.results.todayLede(shared)}</p>
+    <ul class="today">
+      ${liked.map(it => `<li><p class="act">${itemText(it, "interests")}</p><div class="chips">${jobsData.today[it.id].map(c => byCode[c]).filter(Boolean).map(chip).join("")}</div></li>`).join("")}
+    </ul>
+  </section>`;
+}
+
+// BLS projection figures for the card: growth over the period, openings a year, median pay (all US).
+function outlookLine(p) {
+  if (!p || p.changePct == null) return "";
+  const period = jobsMeta.projections?.period || "";
+  const sign = p.changePct > 0 ? "+" : p.changePct < 0 ? "−" : "";
+  const parts = [`<b class="${p.changePct >= 5 ? "up" : p.changePct < 0 ? "down" : ""}">${T.results.growth(sign + num(Math.abs(p.changePct)))}</b>`];
+  if (p.openings) parts.push(T.results.openings(T.big(Math.round(p.openings / 100) * 100)));
+  if (p.wage) parts.push(T.results.wage(T.big(Math.round(p.wage / 10) * 10), p.wageAtLeast));
+  return `<p class="outlook small" title="${esc(T.results.outlookTitle)}"><span class="muted">${T.results.outlookUS(period)}</span> ${parts.join(" · ")}${p.group === true ? `<br><span class="muted">${T.results.outlookShared}</span>` : p.group ? `<br><span class="muted">${T.results.outlookGroup}</span> <span dir="ltr">${esc(p.group)}</span>` : ""}</p>`;
+}
+
+// AI exposure from two research measures: what share of tasks AI could speed up, and how much of that is in use.
+function aiLine(ai) {
+  if (!ai || ai.potential == null) return "";
+  const pct = x => num(Math.round(x * 100));
+  const parts = [T.results.aiPotential(pct(ai.potential))];
+  if (ai.observed != null) parts.push(T.results.aiObserved(pct(ai.observed)));
+  return `<p class="outlook small ai" title="${esc(T.results.aiTitle)}"><span class="muted">${T.results.aiLabel}</span> ${parts.join(" · ")} <a href="#/method" class="muted">ⓘ</a></p>`;
 }
 
 function patternText(id) {

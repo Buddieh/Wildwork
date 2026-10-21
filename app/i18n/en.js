@@ -3,6 +3,7 @@
 export default {
   dir: "ltr",
   num: n => String(n),
+  big: n => n.toLocaleString("en-US"),
   pct: p => { const n = Math.max(1, Math.min(99, Math.round(p))); const s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); },
   percentile: "percentile",
   langSwitch: { href: "fa/", label: "فارسی" },
@@ -99,12 +100,27 @@ export default {
     tie: '"=" marks scores within 3 points of each other, which is too close to call; their order could swap if you took the test again.',
     jobsTitle: shared => shared ? "Jobs that fit them" : "Jobs that fit you",
     jobsLede: (wi, wp) => `Ranked by how well each occupation's interest profile matches (${wi}%) and how well the personality fits the work styles it needs (${wp}%). Treat the top 20 or so as a shortlist to explore, not a strict order.`,
-    prep: "Preparation needed", search: "Search jobs", growing: "Growing fast in the US",
+    prep: "Preparation needed", search: "Search jobs", growing: "Growing fast in the US", trending: "Trending roles",
     none: "No jobs match these filters.", more: n => `Show more (${n} left)`,
     loading: "Matching against 900+ occupations…",
     myAnimal: shared => shared ? "Their animal" : "My animal",
     share: "Share my results", redo: "Redo part 2",
     aka: "Also called:", growBadge: "Growing", growTitle: "O*NET Bright Outlook: projected to grow quickly or have many openings in the US",
+    trendBadge: "Trending titles", trendTitle: "Job titles named as fast-growing in recent job-market reports (LinkedIn Jobs on the Rise, WEF Future of Jobs and others) that belong to this occupation",
+    shrinkBadge: "Shrinking role", shrinkTitle: "Named as a declining role in recent job-market reports such as the WEF Future of Jobs Report",
+    outlookUS: period => `US outlook${period ? ` ${period}` : ""}:`,
+    outlookTitle: "US Bureau of Labor Statistics projections: change in the number of jobs over ten years, average openings a year (new jobs plus people leaving), and median yearly pay. US figures; your country may differ.",
+    growth: s => `${s}% jobs`,
+    openings: n => `${n} openings a year`,
+    wage: (n, atLeast) => `${atLeast ? "$" + n + "+" : "$" + n} median pay`,
+    outlookGroup: "Figures for the wider group:", outlookShared: "Figures shared with related occupations.",
+    aiLabel: "AI:",
+    aiPotential: p => `could speed up ${p}% of its tasks`,
+    aiObserved: p => p === "0" ? "no notable use seen yet" : `already in use for ${p}% of them`,
+    aiTitle: "Could speed up: share of tasks a GPT-4-class AI could do at least twice as fast (Eloundou et al., Science 2024, rated in 2023). In use: share of those tasks with real work-related AI use in late 2025 (Anthropic, 2026). Exposure is not the same as job loss. See How it works.",
+    todayTitle: "These activities today",
+    todayLede: shared => `The career-quiz activities ${shared ? "they" : "you"} liked most, and jobs where that's core work now. The number is the job's place in ${shared ? "their" : "your"} list; tap one to find it.`,
+    todayFind: "Show this job in the list below",
     interests: "Interests", personality: "Personality", relTitle: "Compared with your fit for other occupations",
     why: "Why it fits",
     jobMostly: (types, shared) => `This job is mostly ${types}${shared ? `; it shares ${shared} with your top three` : "; none of these is in your top three, but the overall shape of the profiles is similar"}.`,
@@ -176,6 +192,14 @@ export default {
       <li>Both parts are put on the same scale across all occupations before weighting. Interests carry more weight because they predict job choice and satisfaction more strongly than personality.</li>
       <li>The preparation filter uses O*NET Job Zones. The "Growing" badge is O*NET's Bright Outlook flag for the US and is never part of the score.</li>
       <li>The job list comes from the latest O*NET database (refreshed monthly), including the modern titles employers use in postings.</li>
+    </ul>
+    <h2>Today's job market</h2>
+    <p class="muted">Shown on every job card as information. None of it changes your match ranking: your fit comes from you, and market forecasts are uncertain.</p>
+    <ul>
+      <li><b>US outlook</b>: the Bureau of Labor Statistics 2025–35 projections as published on O*NET OnLine: how much the number of jobs is expected to change over ten years, average openings a year (new jobs plus people retiring or switching), and median yearly pay. When several occupations share one set of figures, the card says which wider group they describe. Ten-year projections are educated guesses and often miss, especially for jobs that AI is changing.</li>
+      <li><b>AI</b>: two research measures. "Could speed up" is the share of the job's tasks that a GPT-4-class AI, alone or with software built on it, could do at least twice as fast, as rated by people in <a href="https://www.science.org/doi/10.1126/science.adj0998">Eloundou and colleagues (2024, <i>Science</i>)</a>. It describes what was technically possible in 2023 and may now be higher. "In use for" is the share of those tasks where real work-related AI use was seen in late 2025, counting automation fully and assistance by half, from <a href="https://www.anthropic.com/research/labor-market-impacts">Anthropic's labor-market study (March 2026)</a>, based on conversations with its AI, Claude. Wildwork was built with help from Claude, so keep in mind that this source comes from Anthropic. Exposure isn't the same as job loss: in many jobs AI takes over some tasks and the people doing them shift to others. That study found no clear rise in unemployment in highly exposed jobs so far, but tentative signs of fewer young people getting hired into them.</li>
+      <li><b>Trending titles</b>: job titles that recent job-market reports name as fast-growing (LinkedIn Jobs on the Rise, the World Economic Forum's Future of Jobs Report 2025 and others), each matched to the O*NET occupation that does that work. A "Shrinking role" badge means those reports name it as declining.</li>
+      <li><b>These activities today</b>: after the test, the career-quiz activities you liked most are linked to jobs where that's core work now. The questions themselves stay word for word, because changing or annotating them would change what they measure.</li>
     </ul>
     <h2>Your privacy</h2>
     <ul>
