@@ -1,0 +1,1901 @@
+{
+ "about": "Current job titles named as fast-growing in recent labour-market reports, each mapped to the O*NET occupation that does that work (O*NET's own title search first, maintainer judgement where it was clearly wrong; see note). 'declining' lists roles the WEF Future of Jobs Report 2025 names as fastest-declining worldwide (US declines are already shown as BLS figures). Display only; never part of the match score. Refresh by hand about once a year when new editions come out.",
+ "updated": "2026-10-21",
+ "confidence_key": {
+  "onet": "O*NET's own title search returns this code first, or the title is an O*NET alternate title of the code",
+  "close": "clear best fit, but O*NET's search ranks it below 1st or returns keyword noise",
+  "loose": "role straddles occupations; 'alt' gives the second code"
+ },
+ "sources": [
+  {
+   "id": "li-2026-us",
+   "name": "LinkedIn Jobs on the Rise 2026 (United States, 25 roles)",
+   "url": "https://www.beckershospitalreview.com/workforce/25-fastest-growing-jobs-in-the-us-linkedin",
+   "also_read": [
+    "https://www.hrfuture.net/employee-lifecycle/recruitment-hiring/linkedin-reveals-25-fastest-growing-jobs-for-2026/"
+   ],
+   "original": "https://www.linkedin.com/pulse/linkedin-jobs-rise-2026-25-fastest-growing-roles-us-linkedin-news-dlb1c",
+   "published": "2026-01-07",
+   "region": "US",
+   "note": "Full ranked list read via two secondary reports; LinkedIn original blocks automated fetch (robots)."
+  },
+  {
+   "id": "li-2026-uk",
+   "name": "LinkedIn Jobs on the Rise 2026 (United Kingdom, partial)",
+   "url": "https://www.pbctoday.co.uk/news/hr-skills-news/uk-construction-careers-make-list-fastest-growing-jobs-skills-shortage-looms/158243/",
+   "also_read": [
+    "https://www.glurecruit.co.uk/jobs-on-the-rise-in-2026/"
+   ],
+   "published": "2026-01-09",
+   "region": "UK",
+   "note": "Only ~20 of 25 roles recoverable from secondary coverage, mostly unranked."
+  },
+  {
+   "id": "li-2026-ca",
+   "name": "LinkedIn Jobs on the Rise 2026 (Canada, 15 roles)",
+   "url": "https://www.bnnbloomberg.ca/business/2026/01/12/these-are-the-15-fastest-growing-jobs-in-canada-according-to-linkedin/",
+   "also_read": [
+    "https://www.blogto.com/tech/2026/01/fastest-growing-jobs-canada-2026/"
+   ],
+   "published": "2026-01-12",
+   "region": "CA"
+  },
+  {
+   "id": "li-2026-au",
+   "name": "LinkedIn Jobs on the Rise 2026 (Australia, 15 roles)",
+   "url": "https://www.forbes.com.au/news/careers/linkedin-reveals-the-15-fastest-growing-jobs-in-australia/",
+   "also_read": [
+    "https://ia.acs.org.au/article/2026/ai-jobs-are-the-fastest-growing-in-australia.html"
+   ],
+   "published": "2026-01-08",
+   "region": "AU"
+  },
+  {
+   "id": "li-2026-in",
+   "name": "LinkedIn Jobs on the Rise 2026 (India, 25 roles)",
+   "url": "https://www.hrkatha.com/features/research/top-10-fast-growing-jobs-in-india-the-paradox-of-preparation/",
+   "also_read": [
+    "https://www.lingayasvidyapeeth.edu.in/top-fastest-growing-jobs-in-india/"
+   ],
+   "published": "2026-01-14",
+   "region": "IN",
+   "note": "Top 10 confirmed by HRKatha; ranks 11-25 only from a university blog (consistent with top 10, lower confidence)."
+  },
+  {
+   "id": "li-2026-de",
+   "name": "LinkedIn Trendberufe / Jobs on the Rise 2026 (Germany, 25 roles)",
+   "url": "https://www.e-fellows.net/karriere/trendberufe-2026",
+   "published": "2026-01-13",
+   "region": "DE",
+   "note": "German titles translated to English."
+  },
+  {
+   "id": "li-2026-eu",
+   "name": "LinkedIn Jobs on the Rise 2026, top 3 per country (France, Germany, Italy, Spain, UK)",
+   "url": "https://www.euronews.com/2026/01/08/half-of-europeans-seek-a-new-job-in-2026-but-most-feel-unprepared-to-find-one",
+   "published": "2026-01-08",
+   "region": "FR, DE, IT, ES, UK"
+  },
+  {
+   "id": "li-2025-us",
+   "name": "LinkedIn Jobs on the Rise 2025 (United States, 25 roles)",
+   "url": "https://www.hrgrapevine.com/us/content/article/2025-01-08-artificial-intelligence-roles-top-linkedins-us-jobs-on-the-rise-report",
+   "also_read": [
+    "https://afrotech.com/top-25-jobs-of-2025",
+    "https://www.foxbusiness.com/personal-finance/fastest-growing-jobs-us-linkedin"
+   ],
+   "published": "2025-01-07",
+   "region": "US"
+  },
+  {
+   "id": "li-2025-uk",
+   "name": "LinkedIn Jobs on the Rise 2025 (United Kingdom, 20 of 25 roles)",
+   "url": "https://onrec.com/news/statistics/linkedin-reveals-the-jobs-the-rise-for-2025",
+   "also_read": [
+    "https://workplacejournal.co.uk/2025/01/linkedin-reveals-top-25-fastest-growing-jobs-in-the-uk-for-2025/"
+   ],
+   "published": "2025-01-08",
+   "region": "UK"
+  },
+  {
+   "id": "li-2025-in",
+   "name": "LinkedIn Jobs on the Rise 2025 (India, 25 roles)",
+   "url": "https://www.peoplematters.in/news/economy-policy/top-25-fastest-growing-jobs-in-india-ai-engineers-and-behavioral-therapists-on-the-list-44065",
+   "published": "2025-01-22",
+   "region": "IN"
+  },
+  {
+   "id": "li-2025-uae",
+   "name": "LinkedIn Jobs on the Rise 2025 (UAE, 15 roles)",
+   "url": "https://economymiddleeast.com/news/15-fastest-growing-jobs-in-uae-and-saudi-arabia-in-2025-linkedin",
+   "published": "2025-01",
+   "region": "AE",
+   "note": "Page shows no date; edition year from headline/URL."
+  },
+  {
+   "id": "li-2025-ksa",
+   "name": "LinkedIn Jobs on the Rise 2025 (Saudi Arabia, 15 roles)",
+   "url": "https://economymiddleeast.com/news/15-fastest-growing-jobs-in-uae-and-saudi-arabia-in-2025-linkedin",
+   "published": "2025-01",
+   "region": "SA",
+   "note": "Same article as li-2025-uae."
+  },
+  {
+   "id": "wef-2025",
+   "name": "World Economic Forum, Future of Jobs Report 2025 (fastest-growing / fastest-declining jobs 2025-2030)",
+   "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/2-jobs-outlook/",
+   "also_read": [
+    "https://weforum.org/stories/2025/01/future-of-jobs-report-2025-the-fastest-growing-and-declining-jobs/",
+    "https://euronews.com/business/2025/02/01/jobs-market-at-a-crossroads-which-are-the-fastest-growing-and-declining-jobs",
+    "https://nairametrics.com/2025/01/09/top-10-fastest-declining-jobs-in-2025-report/",
+    "https://thekenyatimes.com/latest-kenya-times-news/report-reveals-15-fastest-growing-jobs/"
+   ],
+   "published": "2025-01",
+   "region": "Global",
+   "note": "WEF figure 2.2 is an image; ranked lists reconstructed from WEF prose plus three secondary reports that agree. PDF could not be downloaded."
+  },
+  {
+   "id": "bls-2025-35",
+   "name": "US BLS Employment Projections 2025-2035 (fastest growing / fastest declining occupations, Tables 1.3/1.5)",
+   "url": "https://www.bls.gov/emp/tables/fastest-growing-occupations.htm",
+   "also_read": [
+    "https://www.bls.gov/emp/tables/fastest-declining-occupations.htm",
+    "https://www.bls.gov/news.release/ecopro.nr0.htm"
+   ],
+   "published": "2026-08-27",
+   "region": "US",
+   "note": "BLS has superseded the 2024-34 edition with 2025-35 (released 2026-08-27)."
+  },
+  {
+   "id": "msft-wti-2025",
+   "name": "Microsoft Work Trend Index 2025: AI roles leaders are considering hiring",
+   "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born",
+   "published": "2025-04-23",
+   "region": "Global (31 countries)",
+   "note": "Survey of hiring intent, not observed hiring growth."
+  },
+  {
+   "id": "indeed-2026",
+   "name": "Indeed Hiring Lab: AI in job titles (data to Q1 2026)",
+   "url": "https://hiringlab.indeed.com/?p=20706",
+   "also_read": [
+    "https://www.networkworld.com/article/4195712/ai-job-titles-expand-beyond-tech-as-it-hiring-remains-strong.html"
+   ],
+   "published": "2026-07-08",
+   "region": "US, DE, UK, FR, NL, ES",
+   "note": "Gives counts of AI-titled jobs, not a ranked title list; used only for AI Engineer."
+  }
+ ],
+ "rising": [
+  {
+   "title": "AI Engineer",
+   "code": "15-1252.00",
+   "code_title": "Software Developers",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-us",
+    "li-2026-uk",
+    "li-2026-ca",
+    "li-2026-au",
+    "li-2026-in",
+    "li-2026-de",
+    "li-2026-eu",
+    "li-2025-us",
+    "li-2025-uk",
+    "li-2025-in",
+    "li-2025-uae",
+    "indeed-2026"
+   ],
+   "alt": "15-2051.00",
+   "note": "O*NET search returns 15-1221.00 (research scientists) first and Software Developers third. Most AI Engineer ads are about building and shipping LLM/agent applications, which fits Software Developers best; ML-model-heavy roles fit Data Scientists, where O*NET files 'Machine Learning Engineer'. German 'KI-Entwickler' merged here."
+  },
+  {
+   "title": "Machine Learning Researcher",
+   "code": "15-1221.00",
+   "code_title": "Computer and Information Research Scientists",
+   "confidence": "close",
+   "sources": [
+    "li-2026-us",
+    "li-2026-uk",
+    "li-2026-ca",
+    "li-2025-us",
+    "li-2025-uk",
+    "bls-2025-35"
+   ],
+   "alt": "15-2051.00",
+   "note": "Also 'AI researcher'. O*NET ranks Data Scientists 1st and Computer and Information Research Scientists 2nd; research roles fit 15-1221 (which BLS lists as fast-growing)."
+  },
+  {
+   "title": "Head of AI",
+   "code": "11-3021.00",
+   "code_title": "Computer and Information Systems Managers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-uk",
+    "li-2026-de",
+    "li-2026-eu",
+    "li-2026-au",
+    "li-2026-in"
+   ],
+   "note": "Merges Director of AI and AI Manager. O*NET search returns nothing relevant; senior tech management fits Computer and Information Systems Managers."
+  },
+  {
+   "title": "Sustainability Manager",
+   "code": "11-1011.03",
+   "code_title": "Chief Sustainability Officers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-in",
+    "li-2026-de",
+    "li-2025-uae",
+    "li-2025-ksa"
+   ],
+   "note": "O*NET alternate title of Chief Sustainability Officers."
+  },
+  {
+   "title": "Media Buyer",
+   "code": "13-1161.00",
+   "code_title": "Market Research Analysts and Marketing Specialists",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-in",
+    "li-2025-in",
+    "li-2025-uae",
+    "li-2025-ksa"
+   ],
+   "alt": "11-2011.00",
+   "note": "O*NET returns PR Specialists and Purchasing Agents. No exact O*NET home for buying digital ad space."
+  },
+  {
+   "title": "AI Consultant",
+   "code": "13-1111.00",
+   "code_title": "Management Analysts",
+   "confidence": "close",
+   "sources": [
+    "li-2026-us",
+    "li-2026-ca",
+    "li-2025-us"
+   ],
+   "note": "Merges 'AI consultants and strategists'. O*NET search returns keyword noise (Intelligence Analysts); advisory role fits Management Analysts."
+  },
+  {
+   "title": "Cybersecurity Specialist",
+   "code": "15-1212.00",
+   "code_title": "Information Security Analysts",
+   "confidence": "close",
+   "sources": [
+    "wef-2025",
+    "bls-2025-35",
+    "li-2026-in"
+   ],
+   "alt": "13-1199.07",
+   "note": "O*NET ranks 13-1199.07 first, but WEF and BLS both name 'Information Security Analysts', which is 15-1212."
+  },
+  {
+   "title": "Data Analyst",
+   "code": "15-2051.01",
+   "code_title": "Business Intelligence Analysts",
+   "confidence": "close",
+   "sources": [
+    "wef-2025",
+    "msft-wti-2025",
+    "li-2025-uae"
+   ],
+   "alt": "15-2051.00",
+   "note": "O*NET ranks Data Scientists 1st and BI Analysts 2nd. Typical data analyst work (reporting, dashboards) fits BI Analysts better."
+  },
+  {
+   "title": "Power Systems Engineer",
+   "code": "17-2071.00",
+   "code_title": "Electrical Engineers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-ca",
+    "li-2026-au",
+    "li-2025-in"
+   ],
+   "note": "O*NET ranks Solar Energy Systems Engineers 1st and Electrical Engineers 2nd. Grid and power-systems work is electrical engineering."
+  },
+  {
+   "title": "Construction Manager",
+   "code": "11-9021.00",
+   "code_title": "Construction Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us",
+    "li-2026-ca",
+    "li-2026-de"
+   ],
+   "note": "Includes 'construction project lead' and German 'Bauleiter'."
+  },
+  {
+   "title": "BIM Coordinator",
+   "code": "17-3011.00",
+   "code_title": "Architectural and Civil Drafters",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-in",
+    "li-2025-uae",
+    "li-2025-ksa"
+   ],
+   "note": "Merges BIM Technician and BIM Modeler."
+  },
+  {
+   "title": "Health and Safety Officer",
+   "code": "19-5011.00",
+   "code_title": "Occupational Health and Safety Specialists",
+   "confidence": "close",
+   "sources": [
+    "li-2026-de",
+    "li-2026-eu",
+    "bls-2025-35"
+   ],
+   "alt": "19-5012.00",
+   "note": "Merges HSE Officer and EHS Specialist. O*NET ranks the technicians occupation 1st and specialists 2nd; BLS lists both as fast-growing."
+  },
+  {
+   "title": "Strategy Consultant",
+   "code": "13-1111.00",
+   "code_title": "Management Analysts",
+   "confidence": "close",
+   "sources": [
+    "li-2026-us",
+    "li-2026-in",
+    "li-2026-uk"
+   ],
+   "note": "Merges Strategic Advisor and Independent Consultant. O*NET search for 'strategy consultant' returns noise; 'management consultant' returns 13-1111 first."
+  },
+  {
+   "title": "Partnerships Manager",
+   "code": "11-2022.00",
+   "code_title": "Sales Managers",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-au",
+    "li-2026-uk",
+    "li-2025-in"
+   ],
+   "alt": "11-2021.00",
+   "note": "Strategic or corporate partnerships. O*NET search returns HR occupations (keyword noise). No good O*NET home."
+  },
+  {
+   "title": "Sales Director",
+   "code": "11-2022.00",
+   "code_title": "Sales Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-au",
+    "li-2026-de",
+    "li-2026-uk"
+   ],
+   "note": "Head of Sales / Sales Manager. O*NET alternate title of Sales Managers."
+  },
+  {
+   "title": "Travel Advisor",
+   "code": "41-3041.00",
+   "code_title": "Travel Agents",
+   "confidence": "close",
+   "sources": [
+    "li-2026-us",
+    "li-2025-us",
+    "li-2025-in"
+   ],
+   "note": "O*NET ranks ticket agents and travel clerks 1st; 'travel advisor' is the modern name for a travel agent."
+  },
+  {
+   "title": "Fundraising Officer",
+   "code": "13-1131.00",
+   "code_title": "Fundraisers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us",
+    "li-2025-uk",
+    "li-2025-in"
+   ],
+   "note": "Merges Fundraising Manager (UK) and Development Officer (IN)."
+  },
+  {
+   "title": "Machine Learning Engineer",
+   "code": "15-2051.00",
+   "code_title": "Data Scientists",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uae",
+    "li-2026-uk"
+   ],
+   "note": "O*NET top match, and an O*NET alternate title of Data Scientists."
+  },
+  {
+   "title": "Software Engineer",
+   "code": "15-1252.00",
+   "code_title": "Software Developers",
+   "confidence": "onet",
+   "sources": [
+    "wef-2025",
+    "li-2026-in"
+   ]
+  },
+  {
+   "title": "Data Scientist",
+   "code": "15-2051.00",
+   "code_title": "Data Scientists",
+   "confidence": "onet",
+   "sources": [
+    "wef-2025",
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Quantitative Analyst",
+   "code": "13-2099.01",
+   "code_title": "Financial Quantitative Analysts",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us",
+    "li-2025-uk"
+   ],
+   "note": "Also 'quantitative researcher'."
+  },
+  {
+   "title": "Control Systems Engineer",
+   "code": "17-2071.00",
+   "code_title": "Electrical Engineers",
+   "confidence": "loose",
+   "sources": [
+    "li-2025-uk",
+    "li-2025-us"
+   ],
+   "alt": "17-2199.05",
+   "note": "Merges Instrumentation and Control Engineer. O*NET ranks Mechatronics 1st; O*NET also lists the title under Chemical and Electronics Engineers."
+  },
+  {
+   "title": "Mechanical Engineer",
+   "code": "17-2141.00",
+   "code_title": "Mechanical Engineers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-au",
+    "li-2025-in"
+   ]
+  },
+  {
+   "title": "EHS Manager",
+   "code": "19-5011.00",
+   "code_title": "Occupational Health and Safety Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-au",
+    "li-2025-ksa"
+   ],
+   "note": "Head of EHS / Health and Safety Manager."
+  },
+  {
+   "title": "Environmental Officer",
+   "code": "19-2041.00",
+   "code_title": "Environmental Scientists and Specialists, Including Health",
+   "confidence": "loose",
+   "sources": [
+    "li-2025-uk",
+    "li-2026-eu"
+   ],
+   "alt": "19-4042.00",
+   "note": "Merges Environmental Coordinator. O*NET ranks environmental technicians 1st; compliance-focused officer roles fit Environmental Scientists and Specialists."
+  },
+  {
+   "title": "Sustainability Specialist",
+   "code": "13-1199.05",
+   "code_title": "Sustainability Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us",
+    "li-2025-in"
+   ],
+   "note": "Includes Sustainability Analyst."
+  },
+  {
+   "title": "Energy Analyst",
+   "code": "13-1199.05",
+   "code_title": "Sustainability Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-uk",
+    "li-2026-de"
+   ],
+   "alt": "47-4011.01",
+   "note": "O*NET alternate title of Sustainability Specialists; O*NET search ranks Energy Auditors 1st."
+  },
+  {
+   "title": "Quantity Surveyor",
+   "code": "13-1051.00",
+   "code_title": "Cost Estimators",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-ksa",
+    "li-2025-uk"
+   ],
+   "note": "Merges Cost Engineer (UK 2025)."
+  },
+  {
+   "title": "Urban Designer",
+   "code": "19-3051.00",
+   "code_title": "Urban and Regional Planners",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-in",
+    "li-2025-us"
+   ],
+   "note": "Merges Community Planner (US 2025)."
+  },
+  {
+   "title": "Aircraft Maintenance Engineer",
+   "code": "49-3011.00",
+   "code_title": "Aircraft Mechanics and Service Technicians",
+   "confidence": "close",
+   "sources": [
+    "li-2025-uk",
+    "li-2025-in"
+   ],
+   "note": "Merges Aircraft Mechanic. O*NET ranks Aerospace Engineers 1st, but outside the US this title means a licensed maintenance technician."
+  },
+  {
+   "title": "Logistics Analyst",
+   "code": "13-1081.02",
+   "code_title": "Logistics Analysts",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-eu",
+    "bls-2025-35"
+   ],
+   "note": "BLS lists Logisticians (+17.6%)."
+  },
+  {
+   "title": "Clinical Services Manager",
+   "code": "11-9111.00",
+   "code_title": "Medical and Health Services Managers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-ca",
+    "bls-2025-35"
+   ],
+   "note": "O*NET ranks Clinical Data Managers 1st (keyword noise) and Medical and Health Services Managers 2nd (+24% per BLS)."
+  },
+  {
+   "title": "Psychotherapist",
+   "code": "19-3033.00",
+   "code_title": "Clinical and Counseling Psychologists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-ca",
+    "li-2026-au"
+   ]
+  },
+  {
+   "title": "Behavioral Therapist",
+   "code": "21-1014.00",
+   "code_title": "Mental Health Counselors",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-in",
+    "li-2025-in"
+   ],
+   "alt": "21-1013.00",
+   "note": "O*NET ranks Marriage and Family Therapists 1st. In India the title usually means ABA or child-behaviour therapy, which falls between counselling and psychology."
+  },
+  {
+   "title": "Home Health Aide",
+   "code": "31-1121.00",
+   "code_title": "Home Health Aides",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uk",
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Account Executive",
+   "code": "41-3091.00",
+   "code_title": "Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-us",
+    "li-2025-uk"
+   ],
+   "alt": "41-4012.00",
+   "note": "Merges Sales Executive. O*NET ranks Advertising and Promotions Managers 1st (ad-agency usage); today's B2B account executives are sales reps."
+  },
+  {
+   "title": "Business Development Manager",
+   "code": "11-2022.00",
+   "code_title": "Sales Managers",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-us",
+    "li-2026-in"
+   ],
+   "alt": "41-3091.00",
+   "note": "Merges Business Development Executive and Director of BD. O*NET ranks Chief Executives 1st, Sales Managers 2nd. O*NET has no business-development occupation."
+  },
+  {
+   "title": "Chief Revenue Officer",
+   "code": "11-2022.00",
+   "code_title": "Sales Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us",
+    "li-2025-uk"
+   ],
+   "alt": "11-1011.00",
+   "note": "Merges Chief Growth Officer. O*NET top match is Sales Managers."
+  },
+  {
+   "title": "Event Coordinator",
+   "code": "13-1121.00",
+   "code_title": "Meeting, Convention, and Event Planners",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us",
+    "li-2026-de"
+   ],
+   "note": "Includes Event Manager."
+  },
+  {
+   "title": "Private Equity Analyst",
+   "code": "13-2051.00",
+   "code_title": "Financial and Investment Analysts",
+   "confidence": "close",
+   "sources": [
+    "li-2025-us",
+    "li-2026-de"
+   ],
+   "alt": "13-2099.01",
+   "note": "O*NET ranks Quantitative Analysts 1st; deal analysis fits Financial and Investment Analysts."
+  },
+  {
+   "title": "Finance Director",
+   "code": "11-3031.00",
+   "code_title": "Financial Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-de",
+    "li-2026-uk"
+   ],
+   "note": "Includes CFO."
+  },
+  {
+   "title": "Tax Advisor",
+   "code": "13-2011.00",
+   "code_title": "Accountants and Auditors",
+   "confidence": "close",
+   "sources": [
+    "li-2026-au",
+    "li-2026-de"
+   ],
+   "alt": "13-2082.00",
+   "note": "Merges Tax Specialist (AU) and Steuerberater (DE). O*NET ranks Tax Preparers 1st; these professional advisory roles fit Accountants."
+  },
+  {
+   "title": "Risk Manager",
+   "code": "13-2054.00",
+   "code_title": "Financial Risk Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-in",
+    "li-2025-uk"
+   ],
+   "note": "Merges Risk Management Consultant (IN) and Credit Risk Manager (UK)."
+  },
+  {
+   "title": "Property Director",
+   "code": "11-9141.00",
+   "code_title": "Property, Real Estate, and Community Association Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-uk",
+    "li-2026-de"
+   ],
+   "note": "Merges German Head of Real Estate / Building Management."
+  },
+  {
+   "title": "Chief AI Officer",
+   "code": "11-3021.00",
+   "code_title": "Computer and Information Systems Managers",
+   "confidence": "close",
+   "sources": [
+    "msft-wti-2025"
+   ],
+   "alt": "11-1011.00",
+   "note": "O*NET search returns security roles (keyword noise)."
+  },
+  {
+   "title": "AI Agent Developer",
+   "code": "15-1252.00",
+   "code_title": "Software Developers",
+   "confidence": "close",
+   "sources": [
+    "msft-wti-2025"
+   ],
+   "note": "Microsoft's 'AI Agent Specialist'. O*NET ranks Software Developers 2nd, after keyword noise."
+  },
+  {
+   "title": "AI Security Specialist",
+   "code": "15-1212.00",
+   "code_title": "Information Security Analysts",
+   "confidence": "onet",
+   "sources": [
+    "msft-wti-2025"
+   ]
+  },
+  {
+   "title": "Big Data Specialist",
+   "code": "15-1243.01",
+   "code_title": "Data Warehousing Specialists",
+   "confidence": "onet",
+   "sources": [
+    "wef-2025"
+   ],
+   "alt": "15-1243.00",
+   "note": "WEF #1 fastest-growing (+113%)."
+  },
+  {
+   "title": "Data Warehousing Specialist",
+   "code": "15-1243.01",
+   "code_title": "Data Warehousing Specialists",
+   "confidence": "onet",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "FinTech Engineer",
+   "code": "15-1252.00",
+   "code_title": "Software Developers",
+   "confidence": "close",
+   "sources": [
+    "wef-2025"
+   ],
+   "note": "WEF #2. O*NET search returns mechanical roles (keyword noise); fintech engineers are software engineers."
+  },
+  {
+   "title": "Security Management Specialist",
+   "code": "13-1199.07",
+   "code_title": "Security Management Specialists",
+   "confidence": "onet",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "UX Designer",
+   "code": "15-1255.00",
+   "code_title": "Web and Digital Interface Designers",
+   "confidence": "close",
+   "sources": [
+    "wef-2025"
+   ],
+   "note": "O*NET ranks Fashion Designers 1st (keyword noise) and Web and Digital Interface Designers 2nd."
+  },
+  {
+   "title": "DevOps Engineer",
+   "code": "15-1252.00",
+   "code_title": "Software Developers",
+   "confidence": "close",
+   "sources": [
+    "wef-2025"
+   ],
+   "alt": "15-1299.08",
+   "note": "O*NET ranks Nuclear Engineers 1st (keyword noise) and Software Developers 2nd."
+  },
+  {
+   "title": "IoT Engineer",
+   "code": "17-2061.00",
+   "code_title": "Computer Hardware Engineers",
+   "confidence": "loose",
+   "sources": [
+    "wef-2025"
+   ],
+   "alt": "15-1299.08",
+   "note": "WEF 'Internet of Things Specialists'. O*NET has no IoT occupation; it straddles hardware and systems engineering."
+  },
+  {
+   "title": "Data Center Technician",
+   "code": "15-1231.00",
+   "code_title": "Computer Network Support Specialists",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-us"
+   ],
+   "alt": "49-2011.00",
+   "note": "O*NET returns Database Administrators (keyword noise). Racking and cabling servers is closest to network support and computer repair."
+  },
+  {
+   "title": "IT Support Specialist",
+   "code": "15-1232.00",
+   "code_title": "Computer User Support Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-ca"
+   ]
+  },
+  {
+   "title": "Database Analyst",
+   "code": "15-1242.00",
+   "code_title": "Database Administrators",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-ca"
+   ]
+  },
+  {
+   "title": "ASIC Engineer",
+   "code": "17-2061.00",
+   "code_title": "Computer Hardware Engineers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-in"
+   ]
+  },
+  {
+   "title": "Data Governance Manager",
+   "code": "15-1243.01",
+   "code_title": "Data Warehousing Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uk"
+   ],
+   "alt": "15-1243.00"
+  },
+  {
+   "title": "Robotics Technician",
+   "code": "17-3024.01",
+   "code_title": "Robotics Technicians",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-in"
+   ]
+  },
+  {
+   "title": "Electric Vehicle Engineer",
+   "code": "17-2141.02",
+   "code_title": "Automotive Engineers",
+   "confidence": "close",
+   "sources": [
+    "wef-2025"
+   ],
+   "note": "WEF 'Autonomous and Electric Vehicle Specialists'. O*NET ranks Automotive Engineers 3rd, after inspectors and repairers."
+  },
+  {
+   "title": "Preconstruction Manager",
+   "code": "11-9021.00",
+   "code_title": "Construction Managers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-uk"
+   ],
+   "alt": "13-1051.00",
+   "note": "O*NET search returns nothing relevant."
+  },
+  {
+   "title": "Building Inspector",
+   "code": "47-4011.00",
+   "code_title": "Construction and Building Inspectors",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-uk"
+   ]
+  },
+  {
+   "title": "HVAC Engineer",
+   "code": "17-2141.00",
+   "code_title": "Mechanical Engineers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-uk"
+   ],
+   "alt": "49-9021.00",
+   "note": "Engineering role (design of HVAC systems), so Mechanical Engineers rather than HVAC mechanics."
+  },
+  {
+   "title": "Mechanical Designer",
+   "code": "17-3013.00",
+   "code_title": "Mechanical Drafters",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-uk"
+   ],
+   "note": "O*NET alternate title of Mechanical Drafters."
+  },
+  {
+   "title": "Electrical Designer",
+   "code": "17-3012.00",
+   "code_title": "Electrical and Electronics Drafters",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-in"
+   ],
+   "note": "O*NET alternate title of Electrical and Electronics Drafters."
+  },
+  {
+   "title": "Safety Engineer",
+   "code": "17-2111.00",
+   "code_title": "Health and Safety Engineers, Except Mining Safety Engineers and Inspectors",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-uk"
+   ]
+  },
+  {
+   "title": "Environmental Engineer",
+   "code": "17-2081.00",
+   "code_title": "Environmental Engineers",
+   "confidence": "onet",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Renewable Energy Engineer",
+   "code": "17-2199.03",
+   "code_title": "Energy Engineers, Except Wind and Solar",
+   "confidence": "onet",
+   "sources": [
+    "wef-2025"
+   ],
+   "alt": "17-2199.11"
+  },
+  {
+   "title": "Energy Manager",
+   "code": "17-2199.03",
+   "code_title": "Energy Engineers, Except Wind and Solar",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uk"
+   ]
+  },
+  {
+   "title": "Solar Consultant",
+   "code": "41-4011.07",
+   "code_title": "Solar Sales Representatives and Assessors",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-in"
+   ]
+  },
+  {
+   "title": "Solar Installer",
+   "code": "47-2231.00",
+   "code_title": "Solar Photovoltaic Installers",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ],
+   "note": "BLS #2 fastest-growing (+36.5%)."
+  },
+  {
+   "title": "Wind Turbine Technician",
+   "code": "49-9081.00",
+   "code_title": "Wind Turbine Service Technicians",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Nuclear Engineer",
+   "code": "17-2161.00",
+   "code_title": "Nuclear Engineers",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us"
+   ]
+  },
+  {
+   "title": "Bridge Engineer",
+   "code": "17-2051.00",
+   "code_title": "Civil Engineers",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us"
+   ]
+  },
+  {
+   "title": "Geotechnical Engineer",
+   "code": "17-2051.00",
+   "code_title": "Civil Engineers",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-ksa"
+   ]
+  },
+  {
+   "title": "Geophysicist",
+   "code": "19-2042.00",
+   "code_title": "Geoscientists, Except Hydrologists and Geographers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-de"
+   ]
+  },
+  {
+   "title": "Automation Engineer",
+   "code": "17-2199.05",
+   "code_title": "Mechatronics Engineers",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-ksa"
+   ]
+  },
+  {
+   "title": "Delivery Driver",
+   "code": "53-3033.00",
+   "code_title": "Light Truck Drivers",
+   "confidence": "close",
+   "sources": [
+    "wef-2025"
+   ],
+   "alt": "53-3031.00",
+   "note": "WEF 'Light Truck or Delivery Services Drivers' is SOC 53-3033. O*NET's title search ranks Driver/Sales Workers 1st."
+  },
+  {
+   "title": "Pilot",
+   "code": "53-2011.00",
+   "code_title": "Airline Pilots, Copilots, and Flight Engineers",
+   "confidence": "close",
+   "sources": [
+    "li-2025-uk"
+   ],
+   "alt": "53-2012.00",
+   "note": "O*NET ranks Commercial Pilots 1st, Airline Pilots 2nd. UK demand is mainly airline pilots."
+  },
+  {
+   "title": "Train Driver",
+   "code": "53-4011.00",
+   "code_title": "Locomotive Engineers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-de"
+   ]
+  },
+  {
+   "title": "Bus Driver",
+   "code": "53-3052.00",
+   "code_title": "Bus Drivers, Transit and Intercity",
+   "confidence": "close",
+   "sources": [
+    "li-2026-de"
+   ],
+   "note": "O*NET ranks school bus drivers 1st; German list means transit drivers."
+  },
+  {
+   "title": "Nurse Practitioner",
+   "code": "29-1171.00",
+   "code_title": "Nurse Practitioners",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ],
+   "note": "BLS #1 fastest-growing (+41%)."
+  },
+  {
+   "title": "Psychiatric Nurse Practitioner",
+   "code": "29-1141.02",
+   "code_title": "Advanced Practice Psychiatric Nurses",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us"
+   ],
+   "alt": "29-1171.00",
+   "note": "O*NET top match is Advanced Practice Psychiatric Nurses."
+  },
+  {
+   "title": "Advanced Practice Provider",
+   "code": "29-1171.00",
+   "code_title": "Nurse Practitioners",
+   "confidence": "loose",
+   "sources": [
+    "li-2025-us"
+   ],
+   "alt": "29-1071.00",
+   "note": "Umbrella term for NPs and PAs. O*NET ranks psychiatric nurses 1st."
+  },
+  {
+   "title": "Physician Assistant",
+   "code": "29-1071.00",
+   "code_title": "Physician Assistants",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Cardiologist",
+   "code": "29-1212.00",
+   "code_title": "Cardiologists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-ca"
+   ]
+  },
+  {
+   "title": "Clinical Psychologist",
+   "code": "19-3033.00",
+   "code_title": "Clinical and Counseling Psychologists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-uk"
+   ]
+  },
+  {
+   "title": "Mental Health Counselor",
+   "code": "21-1014.00",
+   "code_title": "Mental Health Counselors",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ],
+   "note": "BLS SOC 21-1018 (+18.4%). O*NET-SOC keeps it as 21-1014."
+  },
+  {
+   "title": "Veterinarian",
+   "code": "29-1131.00",
+   "code_title": "Veterinarians",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-in"
+   ]
+  },
+  {
+   "title": "Physical Therapist",
+   "code": "29-1123.00",
+   "code_title": "Physical Therapists",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us"
+   ]
+  },
+  {
+   "title": "Physical Therapist Assistant",
+   "code": "31-2021.00",
+   "code_title": "Physical Therapist Assistants",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Occupational Therapy Assistant",
+   "code": "31-2011.00",
+   "code_title": "Occupational Therapy Assistants",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Psychiatric Technician",
+   "code": "29-2053.00",
+   "code_title": "Psychiatric Technicians",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Ophthalmic Technician",
+   "code": "29-2057.00",
+   "code_title": "Ophthalmic Medical Technicians",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Hearing Aid Specialist",
+   "code": "29-2092.00",
+   "code_title": "Hearing Aid Specialists",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Epidemiologist",
+   "code": "19-1041.00",
+   "code_title": "Epidemiologists",
+   "confidence": "onet",
+   "sources": [
+    "bls-2025-35"
+   ]
+  },
+  {
+   "title": "Radiation Therapist",
+   "code": "29-1124.00",
+   "code_title": "Radiation Therapists",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uk"
+   ]
+  },
+  {
+   "title": "Patient Care Technician",
+   "code": "31-1131.00",
+   "code_title": "Nursing Assistants",
+   "confidence": "close",
+   "sources": [
+    "li-2025-ksa"
+   ],
+   "note": "O*NET ranks Patient Representatives 1st. PCTs do hands-on care, like Nursing Assistants (O*NET's 2nd)."
+  },
+  {
+   "title": "Sterilization Technician",
+   "code": "31-9093.00",
+   "code_title": "Medical Equipment Preparers",
+   "confidence": "close",
+   "sources": [
+    "li-2025-ksa"
+   ],
+   "note": "O*NET ranks Medical Equipment Preparers 2nd."
+  },
+  {
+   "title": "New Home Sales Consultant",
+   "code": "41-9022.00",
+   "code_title": "Real Estate Sales Agents",
+   "confidence": "close",
+   "sources": [
+    "li-2026-us"
+   ],
+   "note": "LinkedIn 'New home sales specialists'. O*NET ranks Real Estate Sales Agents 2nd."
+  },
+  {
+   "title": "Real Estate Consultant",
+   "code": "41-9022.00",
+   "code_title": "Real Estate Sales Agents",
+   "confidence": "close",
+   "sources": [
+    "li-2025-uae"
+   ]
+  },
+  {
+   "title": "Advertising Sales Specialist",
+   "code": "41-3011.00",
+   "code_title": "Advertising Sales Agents",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us"
+   ]
+  },
+  {
+   "title": "Sales Development Representative",
+   "code": "41-3091.00",
+   "code_title": "Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uae"
+   ]
+  },
+  {
+   "title": "Outside Sales Representative",
+   "code": "41-4011.00",
+   "code_title": "Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",
+   "confidence": "loose",
+   "sources": [
+    "li-2025-us"
+   ],
+   "alt": "41-4012.00",
+   "note": "O*NET top match is the technical-products sales occupation. Non-technical outside sales fits 41-4012."
+  },
+  {
+   "title": "Car Sales Manager",
+   "code": "41-1011.00",
+   "code_title": "First-Line Supervisors of Retail Sales Workers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-ca"
+   ],
+   "alt": "11-2022.00"
+  },
+  {
+   "title": "Field Marketing Representative",
+   "code": "13-1161.00",
+   "code_title": "Market Research Analysts and Marketing Specialists",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-us"
+   ],
+   "alt": "41-9011.00",
+   "note": "O*NET ranks wholesale sales reps 1st. The role runs events and in-person promotions."
+  },
+  {
+   "title": "Media Director",
+   "code": "11-2011.00",
+   "code_title": "Advertising and Promotions Managers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-au"
+   ],
+   "note": "O*NET ranks Media Programming Directors (broadcast) 1st."
+  },
+  {
+   "title": "Brand Strategist",
+   "code": "11-2021.00",
+   "code_title": "Marketing Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-in"
+   ]
+  },
+  {
+   "title": "Marketing Consultant",
+   "code": "13-1161.00",
+   "code_title": "Market Research Analysts and Marketing Specialists",
+   "confidence": "close",
+   "sources": [
+    "li-2026-in"
+   ],
+   "note": "O*NET ranks Search Marketing Strategists 1st."
+  },
+  {
+   "title": "Influencer Marketing Specialist",
+   "code": "13-1161.00",
+   "code_title": "Market Research Analysts and Marketing Specialists",
+   "confidence": "close",
+   "sources": [
+    "li-2025-in"
+   ],
+   "note": "O*NET search returns noise. No dedicated O*NET occupation."
+  },
+  {
+   "title": "Public Affairs Specialist",
+   "code": "27-3031.00",
+   "code_title": "Public Relations Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us"
+   ]
+  },
+  {
+   "title": "Wedding Planner",
+   "code": "13-1121.00",
+   "code_title": "Meeting, Convention, and Event Planners",
+   "confidence": "close",
+   "sources": [
+    "li-2026-in"
+   ],
+   "note": "O*NET ranks DJs 1st (keyword noise) and Event Planners 2nd."
+  },
+  {
+   "title": "Director of Development",
+   "code": "11-2033.00",
+   "code_title": "Fundraising Managers",
+   "confidence": "close",
+   "sources": [
+    "li-2025-us"
+   ],
+   "note": "Nonprofit fundraising lead. O*NET search returns noise."
+  },
+  {
+   "title": "Grants Consultant",
+   "code": "13-1131.00",
+   "code_title": "Fundraisers",
+   "confidence": "close",
+   "sources": [
+    "li-2025-us"
+   ],
+   "alt": "27-3042.00",
+   "note": "O*NET ranks Technical Writers 1st and Fundraisers 2nd for 'grant writer'."
+  },
+  {
+   "title": "Background Investigator",
+   "code": "33-9021.00",
+   "code_title": "Private Detectives and Investigators",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us"
+   ]
+  },
+  {
+   "title": "Fraud Investigator",
+   "code": "13-2099.04",
+   "code_title": "Fraud Examiners, Investigators and Analysts",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-ca"
+   ]
+  },
+  {
+   "title": "Financial Advisor",
+   "code": "13-2052.00",
+   "code_title": "Personal Financial Advisors",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us"
+   ]
+  },
+  {
+   "title": "Private Client Advisor",
+   "code": "13-2052.00",
+   "code_title": "Personal Financial Advisors",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uae"
+   ]
+  },
+  {
+   "title": "Investment Broker",
+   "code": "41-3031.00",
+   "code_title": "Securities, Commodities, and Financial Services Sales Agents",
+   "confidence": "close",
+   "sources": [
+    "li-2026-uk"
+   ],
+   "alt": "13-2051.00",
+   "note": "O*NET ranks Financial and Investment Analysts 1st and Securities Sales Agents 3rd. A broker executes trades and sells, which is 41-3031."
+  },
+  {
+   "title": "Treasury Analyst",
+   "code": "13-2051.00",
+   "code_title": "Financial and Investment Analysts",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uk"
+   ]
+  },
+  {
+   "title": "Treasury Manager",
+   "code": "11-3031.01",
+   "code_title": "Treasurers and Controllers",
+   "confidence": "close",
+   "sources": [
+    "li-2025-us"
+   ]
+  },
+  {
+   "title": "Tax Manager",
+   "code": "11-3031.00",
+   "code_title": "Financial Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-uae"
+   ],
+   "note": "O*NET alternate title of Financial Managers."
+  },
+  {
+   "title": "Head of Internal Audit",
+   "code": "13-2011.00",
+   "code_title": "Accountants and Auditors",
+   "confidence": "close",
+   "sources": [
+    "li-2026-de"
+   ],
+   "alt": "11-9199.02"
+  },
+  {
+   "title": "Claims Adjuster",
+   "code": "13-1031.00",
+   "code_title": "Claims Adjusters, Examiners, and Investigators",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-de"
+   ]
+  },
+  {
+   "title": "Regulatory Affairs Consultant",
+   "code": "13-1041.07",
+   "code_title": "Regulatory Affairs Specialists",
+   "confidence": "close",
+   "sources": [
+    "li-2026-au"
+   ],
+   "alt": "11-9199.01",
+   "note": "O*NET ranks Regulatory Affairs Managers 1st and Specialists 2nd."
+  },
+  {
+   "title": "Legal Director",
+   "code": "23-1011.00",
+   "code_title": "Lawyers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-au"
+   ],
+   "note": "O*NET search returns paralegals (keyword noise). A legal director is a senior lawyer."
+  },
+  {
+   "title": "Organizational Development Manager",
+   "code": "11-3131.00",
+   "code_title": "Training and Development Managers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-au"
+   ],
+   "alt": "19-3032.00",
+   "note": "O*NET ranks I-O Psychologists 1st and Training and Development Managers 2nd."
+  },
+  {
+   "title": "Workforce Development Manager",
+   "code": "11-3131.00",
+   "code_title": "Training and Development Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us"
+   ]
+  },
+  {
+   "title": "Learning and Development Specialist",
+   "code": "13-1151.00",
+   "code_title": "Training and Development Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-de"
+   ],
+   "note": "German 'Spezialist fuer Personalentwicklung'."
+  },
+  {
+   "title": "HR Manager",
+   "code": "11-3121.00",
+   "code_title": "Human Resources Managers",
+   "confidence": "close",
+   "sources": [
+    "li-2026-in"
+   ],
+   "note": "O*NET ranks Compensation and Benefits Managers 1st, HR Managers 2nd."
+  },
+  {
+   "title": "HR Operations Specialist",
+   "code": "13-1071.00",
+   "code_title": "Human Resources Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-ksa"
+   ]
+  },
+  {
+   "title": "Employee Relations Specialist",
+   "code": "13-1075.00",
+   "code_title": "Labor Relations Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-uk"
+   ]
+  },
+  {
+   "title": "Employment Advisor",
+   "code": "21-1012.00",
+   "code_title": "Educational, Guidance, and Career Counselors and Advisors",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-uk"
+   ],
+   "alt": "13-1071.00",
+   "note": "UK 'employment consultant'. O*NET ranks HR Specialists 1st; in the UK the role usually helps jobseekers into work, which is career counselling."
+  },
+  {
+   "title": "Benefits Advisor",
+   "code": "11-3111.00",
+   "code_title": "Compensation and Benefits Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-us"
+   ],
+   "alt": "13-1141.00",
+   "note": "O*NET top match and alternate title."
+  },
+  {
+   "title": "Hospitality Manager",
+   "code": "11-9081.00",
+   "code_title": "Lodging Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-de"
+   ]
+  },
+  {
+   "title": "Food and Beverage Manager",
+   "code": "11-9051.00",
+   "code_title": "Food Service Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-in"
+   ]
+  },
+  {
+   "title": "Quality Manager",
+   "code": "11-3051.01",
+   "code_title": "Quality Control Systems Managers",
+   "confidence": "onet",
+   "sources": [
+    "li-2026-in"
+   ],
+   "note": "Manufacturing Quality Manager."
+  },
+  {
+   "title": "Account Manager",
+   "code": "41-3091.00",
+   "code_title": "Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",
+   "confidence": "loose",
+   "sources": [
+    "li-2026-in"
+   ],
+   "alt": "11-2022.00",
+   "note": "O*NET search returns noise. O*NET lists 'Account Manager' under Sales Managers, but most account managers are individual-contributor client roles."
+  },
+  {
+   "title": "SAP Consultant",
+   "code": "15-1211.00",
+   "code_title": "Computer Systems Analysts",
+   "confidence": "close",
+   "sources": [
+    "li-2025-ksa"
+   ],
+   "note": "O*NET search returns noise; ERP consultants fit Computer Systems Analysts."
+  },
+  {
+   "title": "Security Guard",
+   "code": "33-9032.00",
+   "code_title": "Security Guards",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us"
+   ]
+  },
+  {
+   "title": "Research Librarian",
+   "code": "25-4022.00",
+   "code_title": "Librarians and Media Collections Specialists",
+   "confidence": "onet",
+   "sources": [
+    "li-2025-us"
+   ]
+  },
+  {
+   "title": "School Counselor",
+   "code": "21-1012.00",
+   "code_title": "Educational, Guidance, and Career Counselors and Advisors",
+   "confidence": "close",
+   "sources": [
+    "li-2025-in"
+   ],
+   "note": "O*NET ranks School Psychologists 1st."
+  },
+  {
+   "title": "Landscaper",
+   "code": "37-3011.00",
+   "code_title": "Landscaping and Groundskeeping Workers",
+   "confidence": "close",
+   "sources": [
+    "li-2025-ksa"
+   ],
+   "note": "O*NET ranks landscaping supervisors 1st."
+  }
+ ],
+ "declining": [
+  {
+   "title": "Postal Service Clerk",
+   "code": "43-5051.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Bank Teller",
+   "code": "43-3071.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Data Entry Clerk",
+   "code": "43-9021.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Cashier",
+   "code": "41-2011.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Ticket Agent",
+   "code": "43-4181.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Administrative Assistant",
+   "code": "43-6014.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Executive Assistant",
+   "code": "43-6011.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Printing Press Operator",
+   "code": "51-5112.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Bookkeeper",
+   "code": "43-3031.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Payroll Clerk",
+   "code": "43-3051.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Stock Clerk",
+   "code": "43-5071.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Train Conductor",
+   "code": "53-4031.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Door-to-Door Salesperson",
+   "code": "41-9091.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Graphic Designer",
+   "code": "27-1024.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Legal Secretary",
+   "code": "43-6012.00",
+   "sources": [
+    "wef-2025"
+   ]
+  },
+  {
+   "title": "Accountant",
+   "code": "13-2011.00",
+   "sources": [
+    "wef-2025"
+   ]
+  }
+ ],
+ "dropped": [
+  {
+   "title": "Founder",
+   "sources": [
+    "li-2026-us",
+    "li-2026-ca",
+    "li-2026-au",
+    "li-2026-in"
+   ],
+   "reason": "too vague to map"
+  },
+  {
+   "title": "Lecturer / Professor",
+   "sources": [
+    "li-2026-uk",
+    "li-2026-eu",
+    "li-2025-uk"
+   ],
+   "reason": "spans every postsecondary-teacher subject code; O*NET has no 25-1199 in this list"
+  },
+  {
+   "title": "Sales Specialist, Legal Specialist, Commercial Advisor",
+   "sources": [
+    "li-2026-in"
+   ],
+   "reason": "too generic"
+  },
+  {
+   "title": "IT Specialist, Contract Officer, Reporting Manager, Business Excellence Manager, Technical Sales Manager",
+   "sources": [
+    "li-2026-de"
+   ],
+   "reason": "too generic or ambiguous once translated"
+  },
+  {
+   "title": "Head of Insurance",
+   "sources": [
+    "li-2026-uk"
+   ],
+   "reason": "too vague"
+  },
+  {
+   "title": "Process Engineer, Planning Engineer, Infrastructure Engineer, Development Specialist, Sales Officer, Solution Specialist, Piping Engineer",
+   "sources": [
+    "li-2025-uae",
+    "li-2025-ksa"
+   ],
+   "reason": "ambiguous across industries; O*NET search gave no consistent home"
+  },
+  {
+   "title": "Renewal Specialist, Closing Manager, Growth Consultant, Export Sales Manager, Teacher, Guest Relations Manager, Cafe Manager, Trade Marketing Specialist, Creative Strategist",
+   "sources": [
+    "li-2025-in"
+   ],
+   "reason": "older 2025 India-only roles, vague or already covered"
+  },
+  {
+   "title": "Director of Employer Relations",
+   "sources": [
+    "li-2025-us"
+   ],
+   "reason": "no clear occupation"
+  },
+  {
+   "title": "Performance Engineer",
+   "sources": [
+    "li-2025-uk"
+   ],
+   "reason": "ambiguous (software vs mechanical)"
+  },
+  {
+   "title": "AI Data Specialist, AI ROI Analyst, AI Media & Content Manager, AI Finance Strategist, AI Customer Success Lead, AI Business Process Consultant",
+   "sources": [
+    "msft-wti-2025"
+   ],
+   "reason": "hypothetical survey roles (hiring intent), not observed titles"
+  },
+  {
+   "title": "Prompt Engineer",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 15-1252.00."
+  },
+  {
+   "title": "Data Annotator",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 43-9021.00."
+  },
+  {
+   "title": "AI Trainer",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 27-3043.00."
+  },
+  {
+   "title": "Commissioning Manager",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 17-2199.03."
+  },
+  {
+   "title": "Healthcare Reimbursement Specialist",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 29-9021.00."
+  },
+  {
+   "title": "Venture Partner",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 11-3031.03."
+  },
+  {
+   "title": "Chief Risk Officer",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 11-1011.00."
+  },
+  {
+   "title": "Legal Researcher",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 23-2011.00."
+  },
+  {
+   "title": "Chief Product Officer",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 11-2021.00."
+  },
+  {
+   "title": "Land Agent",
+   "reason": "Left out by the maintainers: no O*NET occupation does this work closely enough (mapping would mislead). Researched mapping was 41-9022.00."
+  }
+ ]
+}
