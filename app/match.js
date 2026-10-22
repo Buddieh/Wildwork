@@ -67,8 +67,30 @@ export function matchJobs(jobs, interestRaw, styles) {
     s.personalityPct = (100 * lo) / Math.max(1, sortedP.length - 1);
   }
   scored.sort((a, b) => b.score - a.score);
-  scored.forEach((s, i) => { s.rank = i + 1; });
+  scored.forEach((s, i) => { s.rank = i + 1; s.band = fitBand(i + 1, scored.length); });
   return scored;
+}
+
+// Matches are shown in bands rather than exact ranks: retaking the test with ordinary measurement error swaps about
+// a third of the top 20, so the difference between #3 and #9 means nothing. Cut-offs are shares of all occupations.
+export const BANDS = [["top", 0.03], ["strong", 0.10], ["good", 0.25], ["some", 0.5], ["weak", 1]];
+export function fitBand(rank, n) {
+  return BANDS.find(([, share]) => rank <= Math.max(1, Math.round(share * n)))[0];
+}
+
+// Job families = SOC major groups (first two digits of the O*NET code). A family's place is the mean score of its three
+// best matches, so one lucky job doesn't carry a family and big families don't win just by being big.
+export function jobFamilies(scored) {
+  const fam = new Map();
+  for (const s of scored) {
+    const k = s.job.code.slice(0, 2);
+    if (!fam.has(k)) fam.set(k, []);
+    fam.get(k).push(s); // scored is already best-first
+  }
+  return [...fam].map(([code, jobs]) => {
+    const top = jobs.slice(0, 3);
+    return { code, jobs, score: top.reduce((t, s) => t + s.score, 0) / top.length };
+  }).sort((a, b) => b.score - a.score);
 }
 
 export function interestLabel(r) {

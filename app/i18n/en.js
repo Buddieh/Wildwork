@@ -63,9 +63,32 @@ export default {
     title: "Now, what kind of work would you enjoy?",
     dated: "60 short activities, about 6 minutes. Some sound old-fashioned (they are the official O*NET items, kept word for word because they are the best-tested ones); just ask yourself whether you'd like that kind of task.",
     go: "Start part 2",
+    haveEyebrow: "Two last questions",
+    haveNote: "Count related work experience too: a few years in a field can stand in for a level of formal training. This doesn't change your scores; it splits jobs into ones that fit your training now and ones that need more.",
     zoneEyebrow: "Last question",
+    zoneSame: " (what I have now)",
     zoneNote: "This doesn't change your scores. It hides jobs that need more preparation than you want, and you can change it on the results page.",
     redoConfirm: "Clear your work-interest answers and redo part 2?",
+  },
+  haveQuestion: {
+    question: "What education or training do you have now?",
+    options: [
+      "Basic schooling, or none",
+      "High school, or a few months of job training",
+      "Vocational school, an apprenticeship or an associate's degree",
+      "A bachelor's degree",
+      "A graduate or professional degree",
+    ],
+  },
+  zoneQuestion: {
+    question: "What's the most education or training you'd be willing to do for the right job?",
+    options: [
+      "Little or none: start working right away",
+      "Some: high-school level or a few months of training",
+      "Medium: vocational school, apprenticeship or associate's degree",
+      "Considerable: a bachelor's degree",
+      "Extensive: a graduate or professional degree",
+    ],
   },
   animal: {
     yours: "Your animal", theirs: "Their animal",
@@ -99,8 +122,19 @@ export default {
     flat: "Your six interest scores are close together, so no type clearly leads. Matches below rely more on small differences than usual; treat them as a starting list to explore.",
     tie: '"=" marks scores within 3 points of each other, which is too close to call; their order could swap if you took the test again.',
     jobsTitle: shared => shared ? "Jobs that fit them" : "Jobs that fit you",
-    jobsLede: (wi, wp) => `Ranked by how well each occupation's interest profile matches (${wi}%) and how well the personality fits the work styles it needs (${wp}%). Treat the top 20 or so as a shortlist to explore, not a strict order.`,
-    prep: "Preparation needed", search: "Search jobs", growing: "Growing fast in the US", trending: "Trending roles",
+    jobsLede: (wi, wp) => `Each occupation's fit combines how well its interest profile matches (${wi}%) and how well the personality fits the work styles it needs (${wp}%). Jobs are grouped into families, best directions first, and shown in fit bands rather than exact ranks, because small differences in score aren't meaningful.`,
+    haveLabel: "Training you have now", willingLabel: "The most you'd do", notSet: "Not set",
+    viewDir: "By direction", viewList: "All jobs",
+    haveMissing: "Set the training you have now to see which jobs fit it and which need more study.",
+    noZone1: "No occupation in O*NET needs less than some preparation, so jobs at that level are shown.",
+    readyNow: "With your training now", later: "With more study",
+    noneNow: "Nothing in this family fits your current training; each of these needs more study.",
+    famCount: (n, g) => `${n} jobs in range · ${g} good matches or better`,
+    showAll: n => `Show all ${n}`, showFewer: "Show fewer", moreFamilies: n => `Show more directions (${n} left)`,
+    band: { top: "Top match", strong: "Strong match", good: "Good match", some: "Partial match", weak: "Weak match" },
+    bandTitle: "Where this job falls among all 900+ occupations for you: top match = best 3%, strong = top 10%, good = top 25%, partial = top half.",
+    fitsNow: "Fits your training now", needsMore: "Needs more training",
+    search: "Search jobs", growing: "Growing fast in the US", trending: "Trending roles",
     none: "No jobs match these filters.", more: n => `Show more (${n} left)`,
     loading: "Matching against 900+ occupations…",
     myAnimal: shared => shared ? "Their animal" : "My animal",
@@ -119,7 +153,7 @@ export default {
     aiObserved: p => p === "0" ? "no notable use seen yet" : `already in use for ${p}% of them`,
     aiTitle: "Could speed up: share of tasks a GPT-4-class AI could do at least twice as fast (Eloundou et al., Science 2024, rated in 2023). In use: share of those tasks with real work-related AI use in late 2025 (Anthropic, 2026). Exposure is not the same as job loss. See How it works.",
     todayTitle: "These activities today",
-    todayLede: shared => `The career-quiz activities ${shared ? "they" : "you"} liked most, and jobs where that's core work now. The number is the job's place in ${shared ? "their" : "your"} list; tap one to find it.`,
+    todayLede: shared => `The career-quiz activities ${shared ? "they" : "you"} liked most, and jobs where that's core work now, with how well each fits ${shared ? "them" : "you"}. Tap one to find it in the list.`,
     todayFind: "Show this job in the list below",
     interests: "Interests", personality: "Personality", relTitle: "Compared with your fit for other occupations",
     why: "Why it fits",
@@ -133,6 +167,15 @@ export default {
     fit: { Excellent: "Excellent", Strong: "Strong", Moderate: "Moderate", Weak: "Weak", "Not rated": "Not rated" },
     interestsBold: "Interests.",
   },
+  families: {
+    11: "Management", 13: "Business and finance", 15: "Computers and math", 17: "Architecture and engineering",
+    19: "Life, physical and social science", 21: "Community and social services", 23: "Law", 25: "Education and libraries",
+    27: "Arts, design, media and sports", 29: "Healthcare practitioners", 31: "Healthcare support", 33: "Protective services",
+    35: "Food preparation and serving", 37: "Building and grounds care", 39: "Personal care and service", 41: "Sales",
+    43: "Office and administrative support", 45: "Farming, fishing and forestry", 47: "Construction and extraction",
+    49: "Installation, maintenance and repair", 51: "Production and manufacturing", 53: "Transportation and moving goods", 55: "Military",
+  },
+  levelNames: { 1: "Basic schooling or none", 2: "High school or short training", 3: "Vocational or associate's", 4: "Bachelor's degree", 5: "Graduate or professional degree" },
   zones: {
     long: { 1: "Little or no preparation", 2: "Some preparation", 3: "Medium preparation", 4: "Considerable preparation", 5: "Extensive preparation" },
     short: { 1: "No prep", 2: "Some prep", 3: "Medium prep", 4: "Degree", 5: "Advanced degree" },
@@ -190,7 +233,8 @@ export default {
       <li><b>Interest fit (70%)</b>: the correlation between your six interest scores and each occupation's O*NET interest ratings, using the whole profile rather than just the top letter.</li>
       <li><b>Personality fit (30%)</b>: your facet scores are translated into O*NET's 21 work styles and compared with how much each style helps performance in the occupation. Less reliable facets count for less. The label shows how this job ranks for you among all occupations, because most work styles help in most jobs. The facet-to-style translation is our own content-based mapping and hasn't been tested empirically.</li>
       <li>Both parts are put on the same scale across all occupations before weighting. Interests carry more weight because they predict job choice and satisfaction more strongly than personality.</li>
-      <li>The preparation filter uses O*NET Job Zones. The "Growing" badge is O*NET's Bright Outlook flag for the US and is never part of the score.</li>
+      <li>Jobs are grouped into the major groups of the US Standard Occupational Classification. A family's place comes from its three best matches, so one lucky job doesn't carry it and a big family doesn't win by size. Fit bands show where a job falls among all occupations for you, because retaking the test with ordinary measurement error reshuffles about a third of the top 20.</li>
+      <li>Your training now and the most you'd do are compared with O*NET Job Zones, which describe the education, experience and on-the-job training an occupation usually needs. They never change a score. The "Growing" badge is O*NET's Bright Outlook flag for the US and is never part of the score.</li>
       <li>The job list comes from the latest O*NET database (refreshed monthly), including the modern titles employers use in postings.</li>
     </ul>
     <h2>Today's job market</h2>

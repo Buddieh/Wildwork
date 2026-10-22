@@ -17,7 +17,7 @@
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 html[lang="fa"] { --serif: "Vazirmatn", Tahoma, sans-serif; --sans: "Vazirmatn", Tahoma, sans-serif; }
-html[lang="fa"] h1, html[lang="fa"] h2, html[lang="fa"] h3 { letter-spacing: 0; line-height: 1.4; }
+html[lang="fa"] h1, html[lang="fa"] h2, html[lang="fa"] h3, html[lang="fa"] h4 { letter-spacing: 0; line-height: 1.4; }
 html[lang="fa"] body { line-height: 1.85; }
 html[lang="fa"] .eyebrow { letter-spacing: 0; }
 
@@ -46,10 +46,10 @@ body {
 .bg-twinkle { animation: twinkle var(--tw, 4s) ease-in-out var(--twd, 0s) infinite; }
 @media (prefers-reduced-motion: reduce) { .bg-twinkle { animation: none; } }
 a { color: var(--accent); }
-h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -0.01em; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -0.01em; }
 h1 { font-size: clamp(2rem, 6vw, 3.2rem); }
 h2 { font-size: clamp(1.4rem, 4vw, 1.9rem); }
-h3 { font-size: 1.15rem; }
+h3, h4 { font-size: 1.15rem; }
 p { margin: 0 0 1em; }
 .muted { color: var(--muted); }
 .small { font-size: .875rem; }
@@ -198,9 +198,17 @@ details summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 .filters input[type="search"] { font: inherit; color: var(--text); background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; max-width: 360px; }
 .jobs { display: grid; gap: 12px; }
 .job { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
-.job-top { display: grid; grid-template-columns: 36px 1fr; gap: 12px; }
-.rank { font-family: var(--serif); font-size: 1.3rem; color: var(--faint); }
-.job h3 { margin: 0 0 4px; }
+.job h3, .job h4 { margin: 0 0 4px; }
+.family-head h3 { font-size: 1.35rem; }
+.levels { align-items: end; }
+.levels .field select { max-width: 260px; }
+.family { display: grid; gap: 10px; padding-top: 6px; }
+.family + .family { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 22px; }
+.family-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
+.family-head h3 { margin: 0; }
+.family .sub { margin: 4px 0 0; font-size: .85rem; font-weight: 600; color: var(--muted); }
+.badge.band-top, .badge.band-strong { background: rgba(251, 191, 36, .16); color: var(--accent); }
+.badge.ready { background: rgba(74, 222, 128, .14); color: var(--good); }
 .aka { color: var(--muted); font-size: .85rem; margin: 0 0 10px; }
 .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .badge { font-size: .75rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--panel-strong); color: var(--muted); }
