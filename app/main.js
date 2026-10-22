@@ -1,7 +1,7 @@
 import { scorePersonality, scoreInterests } from "../questionnaire/scoring.js";
 import { ANIMALS, DOMAINS, rankAnimals, typeCodes } from "./animals.js";
 import { constellationSvg, starfield } from "./constellation.js";
-import { matchJobs, workStyleProfile, interestLabel, personalityLabel, styleHighlights, WEIGHTS } from "./match.js";
+import { matchJobs, jobFamilies, workStyleProfile, interestLabel, personalityLabel, styleHighlights, WEIGHTS } from "./match.js";
 import * as save from "./save.js";
 
 const LANG = document.documentElement.lang === "fa" ? "fa" : "en";
@@ -11,6 +11,7 @@ const app = document.getElementById("app");
 const STORE_KEY = "wildwork-v1";
 const RIASEC_COLORS = { R: "#fb923c", I: "#38bdf8", A: "#f472b6", S: "#4ade80", E: "#fbbf24", C: "#a78bfa" };
 const PAGE = 20;
+const FAMILIES = 6;
 
 let D;           // loaded data
 let S = blank(); // the visitor's own state
@@ -18,7 +19,7 @@ let jobsPromise;
 let keyHandler = null;
 
 function blank() {
-  return { person: {}, p: {}, i: {}, jobZone: null, pIndex: 0, iIndex: 0 };
+  return { person: {}, p: {}, i: {}, have: null, jobZone: null, pIndex: 0, iIndex: 0 };
 }
 
 // ---------- storage (best effort: private windows may block it) ----------
@@ -116,41 +117,48 @@ function computePersonality(st) {
 }
 
 // ---------- share links ----------
-// #/r/1.<age>.<sex m|f|x>.<jobZone>.<116 personality digits>.<60 interest digits>  (0 = unanswered)
+// #/r/2.<age>.<sex m|f|x>.<jobZone>.<training now>.<116 personality digits>.<60 interest digits>  (0 = unanswered)
+// Version 1 links (no training-now field) still open.
 function encodeShare(st) {
   const p = D.personality.items.map(it => st.p[it.id] || 0).join("");
   const i = D.interests.items.map(it => st.i[it.id] || 0).join("");
   const sex = st.person.sex === "male" ? "m" : st.person.sex === "female" ? "f" : "x";
-  return `#/r/1.${st.person.age || ""}.${sex}.${st.jobZone || 0}.${p}.${interestsDone(st) ? i : ""}`;
+  return `#/r/2.${st.person.age || ""}.${sex}.${st.jobZone || 0}.${st.have || 0}.${p}.${interestsDone(st) ? i : ""}`;
 }
 
 function decodeShare(code) {
-  const [v, age, sex, jz, p, i = ""] = code.split(".");
-  if (v !== "1" || !/^[0-5]+$/.test(p) || p.length !== D.personality.items.length) return null;
+  const parts = code.split(".");
+  if (parts[0] === "1") parts.splice(4, 0, "0");
+  const [v, age, sex, jz, have, p, i = ""] = parts;
+  if (!["1", "2"].includes(v) || !/^[0-5]$/.test(have) || !/^[0-5]+$/.test(p) || p.length !== D.personality.items.length) return null;
   const st = blank();
   st.person = { age: age ? +age : undefined, sex: sex === "m" ? "male" : sex === "f" ? "female" : undefined };
   D.personality.items.forEach((it, k) => { if (+p[k]) st.p[it.id] = +p[k]; });
   if (i.length === D.interests.items.length && /^[0-5]+$/.test(i)) D.interests.items.forEach((it, k) => { if (+i[k]) st.i[it.id] = +i[k]; });
   st.jobZone = +jz || null;
+  st.have = +have || null;
   return st;
 }
 
-// Compact all-digit form of the state for the star code: age (3 base-6 digits), sex, job zone, answers.
+// Compact all-digit form of the state for the star code: age (3 base-6 digits), sex, job zone, training now, answers.
+// Codes saved before the training-now digit existed are one digit shorter and still decode.
 function encodeDigits(st) {
   const age = Math.max(0, Math.min(215, st.person.age || 0)).toString(6).padStart(3, "0");
   const sex = st.person.sex === "male" ? 1 : st.person.sex === "female" ? 2 : 0;
-  return age + sex + (st.jobZone || 0) + D.personality.items.map(it => st.p[it.id] || 0).join("") + D.interests.items.map(it => st.i[it.id] || 0).join("");
+  return age + sex + (st.jobZone || 0) + (st.have || 0) + D.personality.items.map(it => st.p[it.id] || 0).join("") + D.interests.items.map(it => st.i[it.id] || 0).join("");
 }
 
 function decodeDigits(d) {
   const nP = D.personality.items.length, nI = D.interests.items.length;
-  if (d.length !== 5 + nP + nI || !/^[0-5]+$/.test(d)) return null;
+  if (d.length === 5 + nP + nI) d = d.slice(0, 5) + "0" + d.slice(5);
+  if (d.length !== 6 + nP + nI || !/^[0-5]+$/.test(d)) return null;
   const st = blank();
   const age = parseInt(d.slice(0, 3), 6);
   st.person = { age: age || undefined, sex: d[3] === "1" ? "male" : d[3] === "2" ? "female" : undefined };
   st.jobZone = +d[4] || null;
-  D.personality.items.forEach((it, k) => { if (+d[5 + k]) st.p[it.id] = +d[5 + k]; });
-  D.interests.items.forEach((it, k) => { if (+d[5 + nP + k]) st.i[it.id] = +d[5 + nP + k]; });
+  st.have = +d[5] || null;
+  D.personality.items.forEach((it, k) => { if (+d[6 + k]) st.p[it.id] = +d[6 + k]; });
+  D.interests.items.forEach((it, k) => { if (+d[6 + nP + k]) st.i[it.id] = +d[6 + nP + k]; });
   return st;
 }
 
@@ -341,6 +349,7 @@ function finishQuiz(kind) {
     if (res.quality.flagged && !S.qualityAck) { qualityCheck(res.quality); return; }
     go("#/animal");
   } else {
+    if (!S.have) { go("#/have"); return; }
     if (!S.jobZone) { go("#/zone"); return; }
     go("#/results");
   }
@@ -374,16 +383,36 @@ function careerIntro() {
   loadJobs();
 }
 
+// Training the visitor has now, on the same five levels as O*NET Job Zones. Splits jobs into "fits your training now"
+// and "needs more", and never changes a score.
+function haveScreen() {
+  const q = T.haveQuestion;
+  render(html`
+  <section class="quiz stack">
+    <p class="eyebrow">${T.career.haveEyebrow}</p>
+    <h2>${esc(q.question)}</h2>
+    <p class="muted small">${T.career.haveNote}</p>
+    <div class="options">
+      ${q.options.map((label, k) => `<button class="opt" data-h="${k + 1}" aria-pressed="${S.have === k + 1}"><span class="key">${num(k + 1)}</span>${esc(label)}</button>`).join("")}
+    </div>
+  </section>`);
+  app.querySelectorAll("[data-h]").forEach(b => b.onclick = () => {
+    S.have = +b.dataset.h;
+    if (S.jobZone && S.jobZone < S.have) S.jobZone = null;
+    persist(); go(S.jobZone ? "#/results" : "#/zone");
+  });
+}
+
 function zone() {
-  const f = D.interests.filters.job_zone;
-  const q = T.zoneQuestion || { question: f.question, options: f.options.map(o => o.label) };
+  const q = T.zoneQuestion;
+  const from = S.have || 1; // going further than you are now is the only meaningful answer
   render(html`
   <section class="quiz stack">
     <p class="eyebrow">${T.career.zoneEyebrow}</p>
     <h2>${esc(q.question)}</h2>
     <p class="muted small">${T.career.zoneNote}</p>
     <div class="options">
-      ${q.options.map((label, k) => `<button class="opt" data-z="${k + 1}" aria-pressed="${S.jobZone === k + 1}"><span class="key">${num(k + 1)}</span>${esc(label)}</button>`).join("")}
+      ${q.options.map((label, k) => k + 1 < from ? "" : `<button class="opt" data-z="${k + 1}" aria-pressed="${S.jobZone === k + 1}"><span class="key">${num(k + 1)}</span>${esc(label)}${k + 1 === S.have ? `<span class="muted">${T.career.zoneSame}</span>` : ""}</button>`).join("")}
     </div>
   </section>`);
   app.querySelectorAll("[data-z]").forEach(b => b.onclick = () => { S.jobZone = +b.dataset.z; persist(); go("#/results"); });
@@ -504,8 +533,9 @@ function animalScreen(st, shared) {
   if (!shared) save.bind(app, T, S, restore);
 }
 
-function zoneFilterChips(active) {
-  return [1, 2, 3, 4, 5].map(z => `<button class="chip" data-zone="${z}" aria-pressed="${active.has(z)}" title="${T.zones.long[z]}">${T.zones.short[z]}</button>`).join("");
+function levelOptions(selected, from = 1, notSet = false) {
+  return (notSet ? `<option value="0"${selected ? "" : " selected"}>${T.results.notSet}</option>` : "") +
+    [1, 2, 3, 4, 5].filter(z => z >= from).map(z => `<option value="${z}"${selected === z ? " selected" : ""}>${T.levelNames[z]}</option>`).join("");
 }
 
 async function resultsScreen(st, shared) {
@@ -518,8 +548,10 @@ async function resultsScreen(st, shared) {
   const styles = workStyleProfile(res, D.personality, D.wsMap);
   const matches = matchJobs(jobsData.jobs, interests.raw, styles);
   const order = Object.entries(interests.raw).sort((a, b) => b[1] - a[1]);
-  const zones = new Set([1, 2, 3, 4, 5].filter(z => z <= (st.jobZone || 5)));
-  let growingOnly = false, trendingOnly = false, query = "", shown = PAGE;
+  // Training now and the most the person would do. Changes here are saved for the visitor's own results only.
+  const lv = { have: st.have || 0, willing: Math.max(st.jobZone || 5, st.have || 0) };
+  let view = "dir", growingOnly = false, trendingOnly = false, query = "", shown = PAGE, families = FAMILIES;
+  const opened = new Map(); // family code -> how many of its jobs are listed
 
   const code = order.slice(0, 3).map(([k], i) => `${k}${interests.tiedWithNext[i] && i < 2 ? "<span class='muted'>=</span>" : ""}`).join("");
 
@@ -539,12 +571,17 @@ async function resultsScreen(st, shared) {
   ${todaySection(st, jobsData, matches, shared)}
 
   <section class="section">
-    <h2>${T.results.jobsTitle(shared)}</h2>
+    <h2 id="jobs-title">${T.results.jobsTitle(shared)}</h2>
     <p class="muted">${T.results.jobsLede(num(WEIGHTS.interests * 100), num(WEIGHTS.personality * 100))}</p>
     <div class="filters">
-      <div><p class="small muted" style="margin-bottom:6px">${T.results.prep}</p><div class="chips" id="zones">${zoneFilterChips(zones)}</div></div>
+      <div class="row levels">
+        <label class="field"><span class="small muted">${T.results.haveLabel}</span><select id="have">${levelOptions(lv.have, 1, true)}</select></label>
+        <label class="field"><span class="small muted">${T.results.willingLabel}</span><select id="willing">${levelOptions(lv.willing, lv.have || 1)}</select></label>
+      </div>
+      <div class="chips" id="view"><button class="chip" data-view="dir" aria-pressed="true">${T.results.viewDir}</button><button class="chip" data-view="list" aria-pressed="false">${T.results.viewList}</button></div>
       <div class="row"><input type="search" id="q" placeholder="${T.results.search}" aria-label="${T.results.search}"><button class="chip" id="grow" aria-pressed="false">${T.results.growing}</button><button class="chip" id="trend" aria-pressed="false">${T.results.trending}</button></div>
     </div>
+    <p class="muted small" id="level-note"></p>
     <div class="jobs" id="jobs"></div>
     <div class="more" id="more"></div>
   </section>
@@ -555,46 +592,102 @@ async function resultsScreen(st, shared) {
   </section>
   ${shared ? "" : save.panel(T, S)}`);
 
-  const list = app.querySelector("#jobs"), more = app.querySelector("#more");
+  const list = app.querySelector("#jobs"), more = app.querySelector("#more"), note = app.querySelector("#level-note");
+  const haveSel = app.querySelector("#have"), willSel = app.querySelector("#willing");
+  const card = (m, h) => jobCard(m, interests, styles, lv.have, h);
   const drawJobs = () => {
     const q = query.trim().toLowerCase();
     const hit = m => [m.job.title, m.job.local?.title, ...m.job.modernTitles, ...(m.job.trendingTitles || []), ...(m.job.local?.modernTitles || [])].some(t => t && t.toLowerCase().includes(q));
-    const filtered = matches.filter(m => zones.has(m.job.jobZone) && (!growingOnly || m.job.outlook?.bright) && (!trendingOnly || m.job.trendingTitles?.length) && (!q || hit(m)));
-    list.innerHTML = filtered.slice(0, shown).map(m => jobCard(m, interests, styles)).join("") || `<p class="muted">${T.results.none}</p>`;
-    more.innerHTML = filtered.length > shown ? `<button class="btn" id="more-btn">${T.results.more(num(filtered.length - shown))}</button>` : "";
-    const mb = more.querySelector("#more-btn");
-    if (mb) mb.onclick = () => { shown += PAGE; drawJobs(); };
+    // O*NET has no Job Zone 1 occupations any more, so "little or none" falls back to the lowest level that exists.
+    const reach = Math.max(lv.willing, 2);
+    const pass = m => m.job.jobZone <= reach && (!growingOnly || m.job.outlook?.bright) && (!trendingOnly || m.job.trendingTitles?.length);
+    note.innerHTML = [lv.willing === 1 ? T.results.noZone1 : "", lv.have ? "" : T.results.haveMissing].filter(Boolean).join(" ");
+    note.hidden = !note.innerHTML;
+    if (view === "list" || q) {
+      const filtered = matches.filter(m => pass(m) && (!q || hit(m)));
+      list.innerHTML = filtered.slice(0, shown).map(m => card(m)).join("") || `<p class="muted">${T.results.none}</p>`;
+      more.innerHTML = filtered.length > shown ? `<button class="btn" data-more="list">${T.results.more(num(filtered.length - shown))}</button>` : "";
+      return;
+    }
+    const fams = jobFamilies(matches.filter(pass));
+    list.innerHTML = fams.slice(0, families).map(f => familyBlock(f, card, lv.have, opened.get(f.code))).join("") || `<p class="muted">${T.results.none}</p>`;
+    more.innerHTML = fams.length > families ? `<button class="btn" data-more="families">${T.results.moreFamilies(num(fams.length - families))}</button>` : "";
   };
-  app.querySelectorAll("#zones .chip").forEach(b => b.onclick = () => {
-    const z = +b.dataset.zone;
-    zones.has(z) ? zones.delete(z) : zones.add(z);
-    b.setAttribute("aria-pressed", zones.has(z));
-    shown = PAGE; drawJobs();
-  });
+  const redraw = () => { shown = PAGE; drawJobs(); };
+  const setView = v => {
+    view = v;
+    app.querySelectorAll("#view .chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.view === v));
+  };
+  const keepLevels = () => {
+    if (shared) return;
+    S.have = lv.have || null; S.jobZone = lv.willing; persist();
+  };
+  haveSel.onchange = () => {
+    lv.have = +haveSel.value;
+    lv.willing = Math.max(lv.willing, lv.have);
+    willSel.innerHTML = levelOptions(lv.willing, lv.have || 1);
+    keepLevels(); redraw();
+  };
+  willSel.onchange = () => { lv.willing = +willSel.value; keepLevels(); redraw(); };
+  app.querySelectorAll("#view .chip").forEach(b => b.onclick = () => { setView(b.dataset.view); redraw(); });
   const grow = app.querySelector("#grow");
-  grow.onclick = () => { growingOnly = !growingOnly; grow.setAttribute("aria-pressed", growingOnly); shown = PAGE; drawJobs(); };
+  grow.onclick = () => { growingOnly = !growingOnly; grow.setAttribute("aria-pressed", growingOnly); redraw(); };
   const trend = app.querySelector("#trend");
-  trend.onclick = () => { trendingOnly = !trendingOnly; trend.setAttribute("aria-pressed", trendingOnly); shown = PAGE; drawJobs(); };
+  trend.onclick = () => { trendingOnly = !trendingOnly; trend.setAttribute("aria-pressed", trendingOnly); redraw(); };
   const search = app.querySelector("#q");
-  search.oninput = e => { query = e.target.value; shown = PAGE; drawJobs(); };
-  // "These activities today": a job chip searches the list for that job, widening the preparation filter if needed.
+  search.oninput = e => { query = e.target.value; redraw(); };
+  more.onclick = e => {
+    const b = e.target.closest("[data-more]");
+    if (!b) return;
+    if (b.dataset.more === "list") shown += PAGE; else families += FAMILIES;
+    drawJobs();
+  };
+  list.onclick = e => {
+    const b = e.target.closest("[data-fam]");
+    if (!b) return;
+    const [famCode, act] = b.dataset.fam.split(":");
+    if (act === "less") opened.delete(famCode); else opened.set(famCode, (opened.get(famCode) || 0) + PAGE);
+    drawJobs();
+    if (act === "less") app.querySelector(`[data-family="${famCode}"]`)?.scrollIntoView({ block: "start" });
+  };
+  // "These activities today": a job chip searches the list for that job, widening the training range if needed.
   app.querySelectorAll("[data-find]").forEach(b => b.onclick = () => {
     const m = matches.find(x => x.job.code === b.dataset.find);
     if (!m) return;
-    if (!zones.has(m.job.jobZone)) {
-      zones.add(m.job.jobZone);
-      app.querySelector(`#zones [data-zone="${m.job.jobZone}"]`)?.setAttribute("aria-pressed", "true");
-    }
+    if (m.job.jobZone > Math.max(lv.willing, 2)) { lv.willing = m.job.jobZone; willSel.value = lv.willing; }
     growingOnly = trendingOnly = false;
     grow.setAttribute("aria-pressed", false); trend.setAttribute("aria-pressed", false);
-    query = search.value = m.job.title; shown = PAGE; drawJobs();
-    list.scrollIntoView({ behavior: "smooth", block: "start" });
+    setView("list");
+    query = search.value = m.job.title; redraw();
+    app.querySelector("#jobs-title").scrollIntoView({ behavior: "smooth", block: "start" });
   });
   drawJobs();
   if (!shared) save.bind(app, T, S, restore);
 }
 
-function jobCard(m, interests, styles) {
+// One job family: its best matches, split into what fits the person's training now and what needs more, or the
+// whole family once opened.
+function familyBlock(f, card, have, open) {
+  const good = f.jobs.filter(m => ["top", "strong", "good"].includes(m.band)).length;
+  let body;
+  if (open) {
+    body = f.jobs.slice(0, open).map(m => card(m, "h4")).join("") +
+      `<div class="row">${f.jobs.length > open ? `<button class="btn" data-fam="${f.code}:more">${T.results.more(num(f.jobs.length - open))}</button>` : ""}<button class="btn ghost" data-fam="${f.code}:less">${T.results.showFewer}</button></div>`;
+  } else {
+    const now = have ? f.jobs.filter(m => m.job.jobZone <= have) : f.jobs, later = have ? f.jobs.filter(m => m.job.jobZone > have) : [];
+    const a = now.slice(0, later.length ? 2 : 3), b = later.slice(0, now.length ? 2 : 3);
+    const group = (title, ms) => ms.length ? `${title ? `<p class="sub">${title}</p>` : ""}${ms.map(m => card(m, "h4")).join("")}` : "";
+    body = (have ? (a.length ? group(T.results.readyNow, a) : `<p class="muted small">${T.results.noneNow}</p>`) + group(T.results.later, b) : group("", a)) +
+      (f.jobs.length > a.length + b.length ? `<div class="row"><button class="btn ghost" data-fam="${f.code}:more">${T.results.showAll(num(f.jobs.length))}</button></div>` : "");
+  }
+  return html`
+  <section class="family" data-family="${f.code}">
+    <div class="family-head"><h3>${T.families[f.code] || f.code}</h3><span class="muted small">${T.results.famCount(num(f.jobs.length), num(good))}</span></div>
+    ${body}
+  </section>`;
+}
+
+function jobCard(m, interests, styles, have = 0, tag = "h3") {
   const j = m.job, L = j.local || {};
   const iPct = Math.max(0, Math.min(100, (m.interestR + 1) * 50));
   const pPct = m.personalityPct ?? 0;
@@ -609,34 +702,31 @@ function jobCard(m, interests, styles) {
   const aka = titles.filter(t => t.toLowerCase() !== jobTitle(j).toLowerCase() && !trending.some(x => x.toLowerCase() === t.toLowerCase())).slice(0, 4);
   return html`
   <article class="job">
-    <div class="job-top">
-      <span class="rank">${num(m.rank)}</span>
-      <div>
-        <h3>${esc(jobTitle(j))}</h3>
-        ${L.title ? `<p class="aka" dir="ltr">${esc(j.title)}</p>` : ""}
-        ${trending.length ? `<p class="aka trend-titles"><span class="badge trend" title="${T.results.trendTitle}">${trendingNew.length ? T.results.trendBadge : T.results.trendBadgeSame}</span> <span dir="ltr">${trendingNew.map(esc).join(", ")}</span></p>` : ""}
-        ${aka.length ? `<p class="aka">${T.results.aka} ${aka.map(esc).join(T.results.list)}</p>` : ""}
-        <div class="badges">
-          ${j.outlook?.bright ? `<span class="badge grow" title="${T.results.growTitle}">${T.results.growBadge}</span>` : ""}
-          ${j.outlook?.declining ? `<span class="badge shrink" title="${T.results.shrinkTitle}">${T.results.shrinkBadge}</span>` : ""}
-          <span class="badge">${T.zones.long[j.jobZone]}</span>
-        </div>
-        ${outlookLine(j.outlook?.projection)}
-        ${aiLine(j.ai)}
-        <div class="fits">
-          <div class="fit"><div class="lbl"><span>${T.results.interests}</span><b>${T.results.fit[interestLabel(m.interestR)]}</b></div><div class="bar"><div style="width:${iPct}%"></div></div></div>
-          <div class="fit" title="${T.results.relTitle}"><div class="lbl"><span>${T.results.personality}</span><b>${T.results.fit[personalityLabel(m.personalityPct)]}</b></div><div class="bar"><div style="width:${pPct}%;background:#818cf8"></div></div></div>
-        </div>
-        <details><summary>${T.results.why}</summary>
-          <div class="why">
-            <p class="muted">${esc(L.description || j.description)}</p>
-            <p><b>${T.results.interestsBold}</b> ${T.results.jobMostly(jobTop.map(riasecName).join(T.results.list), common.length ? common.map(riasecName).join(T.results.and) : "")}</p>
-            ${hl.length ? `<p><b>${T.results.stylesHead}</b></p><ul>${hl.map(h => `<li>${T.results.styleLevel(esc(styleName(h.style)), level(h.z))}</li>`).join("")}</ul>` : `<p class="muted">${T.results.noStyles}</p>`}
-            <a href="https://www.onetonline.org/link/summary/${j.code}" target="_blank" rel="noopener">${T.results.onet}</a>
-          </div>
-        </details>
-      </div>
+    <${tag}>${esc(jobTitle(j))}</${tag}>
+    ${L.title ? `<p class="aka" dir="ltr">${esc(j.title)}</p>` : ""}
+    ${trending.length ? `<p class="aka trend-titles"><span class="badge trend" title="${T.results.trendTitle}">${trendingNew.length ? T.results.trendBadge : T.results.trendBadgeSame}</span> <span dir="ltr">${trendingNew.map(esc).join(", ")}</span></p>` : ""}
+    ${aka.length ? `<p class="aka">${T.results.aka} ${aka.map(esc).join(T.results.list)}</p>` : ""}
+    <div class="badges">
+      <span class="badge band-${m.band}" title="${T.results.bandTitle}">${T.results.band[m.band]}</span>
+      <span class="badge">${T.zones.long[j.jobZone]}</span>
+      ${have ? `<span class="badge ${j.jobZone <= have ? "ready" : ""}">${j.jobZone <= have ? T.results.fitsNow : T.results.needsMore}</span>` : ""}
+      ${j.outlook?.bright ? `<span class="badge grow" title="${T.results.growTitle}">${T.results.growBadge}</span>` : ""}
+      ${j.outlook?.declining ? `<span class="badge shrink" title="${T.results.shrinkTitle}">${T.results.shrinkBadge}</span>` : ""}
     </div>
+    ${outlookLine(j.outlook?.projection)}
+    ${aiLine(j.ai)}
+    <div class="fits">
+      <div class="fit"><div class="lbl"><span>${T.results.interests}</span><b>${T.results.fit[interestLabel(m.interestR)]}</b></div><div class="bar"><div style="width:${iPct}%"></div></div></div>
+      <div class="fit" title="${T.results.relTitle}"><div class="lbl"><span>${T.results.personality}</span><b>${T.results.fit[personalityLabel(m.personalityPct)]}</b></div><div class="bar"><div style="width:${pPct}%;background:#818cf8"></div></div></div>
+    </div>
+    <details><summary>${T.results.why}</summary>
+      <div class="why">
+        <p class="muted">${esc(L.description || j.description)}</p>
+        <p><b>${T.results.interestsBold}</b> ${T.results.jobMostly(jobTop.map(riasecName).join(T.results.list), common.length ? common.map(riasecName).join(T.results.and) : "")}</p>
+        ${hl.length ? `<p><b>${T.results.stylesHead}</b></p><ul>${hl.map(h => `<li>${T.results.styleLevel(esc(styleName(h.style)), level(h.z))}</li>`).join("")}</ul>` : `<p class="muted">${T.results.noStyles}</p>`}
+        <a href="https://www.onetonline.org/link/summary/${j.code}" target="_blank" rel="noopener">${T.results.onet}</a>
+      </div>
+    </details>
   </article>`;
 }
 
@@ -649,7 +739,7 @@ function todaySection(st, jobsData, matches, shared) {
   if (!liked.length) return "";
   const chip = m => {
     const j = m.job, modern = LANG === "fa" ? "" : j.trendingTitles?.[0] || "";
-    return `<button class="chip today-job" data-find="${j.code}" title="${esc(jobTitle(j))}. ${esc(T.results.todayFind)}">${esc(modern || jobTitle(j))} <span class="muted">#${num(m.rank)}</span></button>`;
+    return `<button class="chip today-job" data-find="${j.code}" title="${esc(jobTitle(j))}. ${esc(T.results.todayFind)}">${esc(modern || jobTitle(j))} <span class="muted">· ${T.results.band[m.band]}</span></button>`;
   };
   return html`
   <section class="section">
@@ -761,6 +851,7 @@ function route() {
     case "/personality-review": return reviewQuiz();
     case "/animal": return animalScreen(S, false);
     case "/career": return careerIntro();
+    case "/have": return haveScreen();
     case "/zone": return zone();
     case "/results": return resultsScreen(S, false);
     case "/animals": return gallery();
