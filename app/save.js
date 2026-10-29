@@ -48,7 +48,7 @@ function crc32(bytes) {
   return (c ^ 0xffffffff) >>> 0;
 }
 
-function withTextChunk(png, keyword, text) {
+export function withTextChunk(png, keyword, text) {
   const data = new TextEncoder().encode(`${keyword}\0${text}`);
   const chunk = new Uint8Array(12 + data.length);
   const view = new DataView(chunk.buffer);
@@ -64,7 +64,7 @@ function withTextChunk(png, keyword, text) {
   return out;
 }
 
-function readTextChunk(bytes, keyword) {
+export function readTextChunk(bytes, keyword) {
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   if (bytes.length < 8 || view.getUint32(0) !== 0x89504e47) return null;
   for (let p = 8; p + 8 <= bytes.length;) {
@@ -82,11 +82,11 @@ function readTextChunk(bytes, keyword) {
 }
 
 // ---------- the star map card ----------
-function loadImage(src) {
+export function loadImage(src) {
   return new Promise((res, rej) => { const img = new Image(); img.onload = () => res(img); img.onerror = rej; img.src = src; });
 }
 
-function wrap(ctx, text, maxWidth) {
+export function wrap(ctx, text, maxWidth) {
   const words = text.split(" "), lines = [];
   let line = "";
   for (const w of words) {
