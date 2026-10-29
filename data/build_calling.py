@@ -4,7 +4,8 @@ For every occupation in data/jobs.json it stores:
   areas    O*NET's 41 specific interest areas (scale OI, "how characteristic the area is of the occupation"), added in
            release 30.3 and based on the Comprehensive Assessment of Basic Interests (Su et al., 2019).
   acts     importance (IM, 1-5) of the 41 generalized work activities.
-  context  a selection of work context ratings (CX, 1-5, or the percent of workers in one answer category).
+  context  a selection of work context ratings (CX, 1-5, or the percent of workers in one answer category), in the
+           order listed in meta.context.
   home     1 if the job can plausibly be done from home under Dingel and Neiman's rules (2020, NBER w26948), applied
            to the current O*NET data, else 0.
   tasks    the occupation's most important core tasks, for the "a typical day" line on job cards.
@@ -143,7 +144,7 @@ def build(src, version, jobs):
             "code": c,
             "areas": [round(a[e], 2) for e in area_ids] if a and len(a) == 41 else None,
             "acts": [round(g[e], 2) for e in act_ids] if g and len(g) == 41 else None,
-            "context": {k: round(v, 2) for k, v in cx.items()} or None,
+            "context": [round(cx[name], 2) if name in cx else None for name, _, _ in CONTEXT] if cx else None,
             "home": can_work_from_home(cx, g),
             "tasks": [t for *_, t in sorted(tasks.get(c, []))[:MAX_TASKS]],
         })
@@ -153,10 +154,11 @@ def build(src, version, jobs):
             "built": date.today().isoformat(),
             "areas": [[e, area_names[e]] for e in area_ids],
             "acts": [[e, act_names[e]] for e in act_ids],
-            "context": {name: [eid, context_names[eid], scale if isinstance(scale, str) else f"{scale[0]}{scale[1]}"] for name, eid, scale in CONTEXT},
+            "context": [[name, eid, context_names[eid], scale if isinstance(scale, str) else f"{scale[0]}{scale[1]}"] for name, eid, scale in CONTEXT],
             "notes": "areas: O*NET specific interest areas, scale OI (how characteristic of the occupation; ratings made by AI "
                      "models checked against experts, O*NET 30.3+). acts: generalized work activities, importance 1-5. "
-                     "context: work context, CX = mean rating 1-5, CXPn/CTPn = percent of workers in answer category n. "
+                     "context: work context in the order of meta.context, CX = mean rating 1-5, CXPn/CTPn = percent of workers in "
+                     "answer category n. "
                      "home: 1 if none of Dingel and Neiman's (2020) work-at-home exclusions apply. tasks: most important "
                      "core tasks.",
             "credit": "This site incorporates information from the O*NET Database by the U.S. Department of Labor, Employment "
