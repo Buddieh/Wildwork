@@ -8,12 +8,14 @@ on:
     branches: [main]
     paths:
       - index.html
+      - calling/**
       - app/**
       - questionnaire/**
       - data/jobs.json
+      - data/calling.json
       - .github/workflows/pages.yml
   workflow_run:
-    workflows: ["Refresh job data"]
+    workflows: ["Refresh job data", "Refresh calling data"]
     types: [completed]
   workflow_dispatch:
 
@@ -37,10 +39,12 @@ jobs:
           mkdir -p _site/questionnaire _site/data
           cp index.html _site/
           cp -r fa _site/fa
+          cp -r calling _site/calling
           cp -r app _site/app
           rm -f _site/app/constellations/_*.json
           cp questionnaire/*.json questionnaire/scoring.js _site/questionnaire/
           cp data/jobs.json _site/data/
+          [ -f data/calling.json ] && cp data/calling.json _site/data/
           [ -f data/jobs-fa.json ] && cp data/jobs-fa.json _site/data/
           touch _site/.nojekyll
       - name: Push to gh-pages
