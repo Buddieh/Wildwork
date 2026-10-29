@@ -1,0 +1,35 @@
+name: Refresh calling data
+
+# Rebuilds data/calling.json (interest areas, work activities, working conditions and core tasks for the Calling test)
+# from the latest O*NET release. Runs after each monthly job-data refresh, so both files describe the same release.
+on:
+  workflow_run:
+    workflows: ["Refresh job data"]
+    types: [completed]
+  workflow_dispatch:
+  push:
+    paths:
+      - data/build_calling.py
+      - .github/workflows/calling-data.yml
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 data/build_calling.py
+      - name: Commit if changed
+        run: |
+          git add data/calling.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh calling data from O*NET"
+          git push
