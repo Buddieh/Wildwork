@@ -13,6 +13,8 @@ There is also a Persian version at https://buddieh.github.io/Wildwork/fa/. No va
 
 Nothing is stored online. Progress saves in the browser, and a downloadable "star map" (a picture of your constellation with your answers hidden inside it) or a copyable star code lets you continue on another device.
 
+**Calling** (experimental, English only) is a separate test at https://buddieh.github.io/Wildwork/calling/ for finding what you love doing. In about 15 minutes it asks about your hobbies and what you enjoy in them, sorts O*NET's 41 interest areas, and asks what gives or drains your energy, what you want work to be for, and how you react to day-in-the-life snapshots of real jobs. It combines all of that into one score per occupation and groups the best into directions, each with small experiments to try this month. It doesn't use the other tests' answers, and saves its own answers the same way: a picture or a code, nothing online.
+
 **Website:** https://buddieh.github.io/Wildwork/
 
 ## How it's built
@@ -22,6 +24,8 @@ A static site with no build step and no server: everything runs in the browser a
 - `index.html`, `fa/index.html`, `app/`: the site, with its English and Persian text in `app/i18n/`. `app/match.js` is the job matching, `app/animals.js` the animals, `app/constellations/` their drawings.
 - `questionnaire/`: items, norms and scoring, with the research notes in [ANALYSIS.md](questionnaire/ANALYSIS.md).
 - `data/jobs.json`: O*NET occupations, rebuilt monthly by `.github/workflows/job-data.yml`. `data/jobs-fa.json` holds their Persian titles and descriptions; occupations without one fall back to English.
+- `calling/index.html`, `app/calling/`: the Calling test. `content.js` holds its questions, `days.js` the workday snapshots and `score.js` the scoring, which the test's "How it works" page explains. `node tests/calling-profiles.mjs` runs made-up people through the scoring and checks their results.
+- `data/calling.json`: interest areas, work activities, working conditions and core tasks per occupation for the Calling test, rebuilt from O*NET by `data/build_calling.py` after each job-data refresh (`.github/workflows/calling-data.yml`).
 - `.github/workflows/pages.yml` publishes the site to the `gh-pages` branch whenever any of this changes on `main`.
 
 To run it locally, serve the repository root, for example `python3 -m http.server`, and open http://localhost:8000.

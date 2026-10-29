@@ -234,6 +234,12 @@ function home() {
     <div class="card"><p class="num">${T.home.part1}</p><h3>${T.home.part1Title}</h3><p class="muted">${T.home.part1Text}</p></div>
     <div class="card"><p class="num">${T.home.part2}</p><h3>${T.home.part2Title}</h3><p class="muted">${T.home.part2Text}</p></div>
   </section>
+  ${T.home.calling ? `<section class="card calling-link">
+    <p class="eyebrow">${T.home.calling.eyebrow}</p>
+    <h2>${T.home.calling.title}</h2>
+    <p class="muted">${T.home.calling.text}</p>
+    <a class="btn" href="${new URL("calling/", ROOT).href}">${T.home.calling.cta}</a>
+  </section>` : ""}
   ${started ? "" : save.panel(T, S)}
   ${LANG === "fa" ? `<p class="notice small">${T.faNotice}</p>` : ""}
   <p class="muted small">${T.home.saveNote} <a href="#/method">${T.nav.method}</a></p>
@@ -892,7 +898,7 @@ function reviewQuiz() {
 
 function chrome() {
   document.querySelector(".sky").innerHTML = `<svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">${starfield(7, 1600, 1000, { count: 380, band: true, scale: 1.6 })}</svg>`;
-  document.querySelector(".top nav").innerHTML = `<a href="#/animals">${T.nav.animals}</a><a href="#/method">${T.nav.method}</a><a href="${new URL(T.langSwitch.href, ROOT).href}" lang="${LANG === "fa" ? "en" : "fa"}">${T.langSwitch.label}</a>`;
+  document.querySelector(".top nav").innerHTML = `<a href="#/animals">${T.nav.animals}</a><a href="#/method">${T.nav.method}</a>${T.nav.calling ? `<a href="${new URL("calling/", ROOT).href}">${T.nav.calling}</a>` : ""}<a href="${new URL(T.langSwitch.href, ROOT).href}" lang="${LANG === "fa" ? "en" : "fa"}">${T.langSwitch.label}</a>`;
   document.querySelector(".brand").href = "#/";
   document.querySelector(".foot").innerHTML = `<p>${T.footer.ipip}</p><p>${T.footer.onet}</p><p>${T.footer.privacy}</p>`;
 }

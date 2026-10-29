@@ -7,7 +7,7 @@ export default {
   pct: p => { const n = Math.max(1, Math.min(99, Math.round(p))); const s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); },
   percentile: "percentile",
   langSwitch: { href: "fa/", label: "فارسی" },
-  nav: { method: "How it works", animals: "The animals" },
+  nav: { method: "How it works", animals: "The animals", calling: "Calling (new)" },
   footer: {
     ipip: 'Personality items: <a href="https://ipip.ori.org/">International Personality Item Pool</a> (public domain), IPIP-NEO-120 by John A. Johnson. Scores compare you with a large, mostly US online sample.',
     onet: 'This site incorporates information from the O*NET Interest Profiler and from O*NET OnLine and the O*NET Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license. O*NET® is a trademark of USDOL/ETA. Job data and growth outlook describe the US labor market.',
@@ -32,6 +32,13 @@ export default {
     part2: "Part 2 · about 6 minutes", part2Title: "Your work",
     part2Text: "60 activities from the US Department of Labor's O*NET Interest Profiler. Your interests (70%) and personality (30%) are matched against 900+ real occupations.",
     saveNote: "Your progress saves in this browser automatically.",
+    // The Calling test is English only for now; fa.js leaves these out, and the Persian home page shows no link.
+    calling: {
+      eyebrow: "New · experimental",
+      title: "Calling: find what you love doing",
+      text: "A separate test that starts from your hobbies and what you enjoy about them, adds what gives you energy and what you want work to be for, and lets you try on real workdays before showing which job each one was. About 15 minutes; it doesn't use your answers here.",
+      cta: "Try Calling",
+    },
   },
   start: {
     title: "Before you start",
