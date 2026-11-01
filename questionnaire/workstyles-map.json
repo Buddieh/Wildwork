@@ -1,0 +1,173 @@
+{
+  "purpose": "Bridge from IPIP-NEO-120 facet T-scores to O*NET Work Styles, so each occupation's Work Styles ratings can be compared with a person's personality. Person score for a style = mean of the listed facet T-scores (reversed facets as 100 - T).",
+  "onet_source": "O*NET 30.1+ Work Styles.txt: scale WI (impact, -3 to +3) and DR (distinctiveness rank). Element IDs are resolved from the database file in step 3; names follow the O*NET Work Styles revision report.",
+  "status": "Expert judgement by content match of facet to style definition; not empirically validated. Treat as a hypothesis to check once occupation data are loaded.",
+  "map": {
+    "Achievement Orientation": [
+      [
+        "C4",
+        1
+      ]
+    ],
+    "Attention to Detail": [
+      [
+        "C2",
+        1
+      ]
+    ],
+    "Cautiousness": [
+      [
+        "C6",
+        1
+      ]
+    ],
+    "Dependability": [
+      [
+        "C3",
+        1
+      ]
+    ],
+    "Self-Confidence": [
+      [
+        "C1",
+        1
+      ]
+    ],
+    "Leadership Orientation": [
+      [
+        "E3",
+        1
+      ]
+    ],
+    "Social Orientation": [
+      [
+        "E2",
+        1
+      ],
+      [
+        "E1",
+        1
+      ]
+    ],
+    "Cooperation": [
+      [
+        "A4",
+        1
+      ]
+    ],
+    "Empathy": [
+      [
+        "A6",
+        1
+      ],
+      [
+        "A3",
+        1
+      ]
+    ],
+    "Humility": [
+      [
+        "A5",
+        1
+      ]
+    ],
+    "Integrity": [
+      [
+        "A2",
+        1
+      ]
+    ],
+    "Sincerity": [
+      [
+        "A2",
+        1
+      ]
+    ],
+    "Self-Control": [
+      [
+        "N2",
+        -1
+      ],
+      [
+        "N5",
+        -1
+      ]
+    ],
+    "Stress Tolerance": [
+      [
+        "N6",
+        -1
+      ],
+      [
+        "N1",
+        -1
+      ]
+    ],
+    "Adaptability": [
+      [
+        "O4",
+        1
+      ]
+    ],
+    "Innovation": [
+      [
+        "O1",
+        1
+      ],
+      [
+        "O5",
+        1
+      ]
+    ],
+    "Intellectual Curiosity": [
+      [
+        "O5",
+        1
+      ]
+    ],
+    "Tolerance for Ambiguity": [
+      [
+        "O4",
+        1
+      ],
+      [
+        "N1",
+        -1
+      ]
+    ],
+    "Initiative": [
+      [
+        "E4",
+        1
+      ],
+      [
+        "C4",
+        1
+      ],
+      [
+        "E3",
+        1
+      ]
+    ],
+    "Optimism": [
+      [
+        "E6",
+        1
+      ],
+      [
+        "N3",
+        -1
+      ]
+    ],
+    "Perseverance": [
+      [
+        "C5",
+        1
+      ],
+      [
+        "N6",
+        -1
+      ]
+    ]
+  }
+}

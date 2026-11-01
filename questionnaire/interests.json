@@ -1,0 +1,465 @@
+{
+  "instrument": "O*NET Interest Profiler Short Form (60 items)",
+  "citation": "Rounds, J., Su, R., Lewis, P., & Rivkin, D. (2010). O*NET Interest Profiler Short Form Psychometric Characteristics: Summary. National Center for O*NET Development. Items from the O*NET Interest Profiler, U.S. Department of Labor, Employment and Training Administration.",
+  "license": "O*NET content is offered under CC BY 4.0. Required credit: 'This site incorporates information from the O*NET Interest Profiler by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY 4.0 license. O*NET(R) is a trademark of USDOL/ETA.' Items are used verbatim; any change must be stated.",
+  "instructions": "Read each work activity and decide how much you would enjoy doing it. Don't worry about whether you have the education or training, or how much money you'd make. Just think about whether you'd like the work itself.",
+  "scale": [
+    {
+      "value": 1,
+      "label": "Strongly Dislike"
+    },
+    {
+      "value": 2,
+      "label": "Dislike"
+    },
+    {
+      "value": 3,
+      "label": "Unsure"
+    },
+    {
+      "value": 4,
+      "label": "Like"
+    },
+    {
+      "value": 5,
+      "label": "Strongly Like"
+    }
+  ],
+  "scoring": "Scale raw = sum of its 10 items (10-50). Use the full 6-score profile for matching (profile correlation with O*NET occupational interest profiles), not only the top letter. See scoring.js.",
+  "order": "Present in 'n' order: items rotate R, I, A, S, E, C so types never cluster. The official O*NET order differs; order does not change scoring.",
+  "reliability_source": "O*NET IP Short Form psychometric report: alpha N = 1,061; test-retest N = 125.",
+  "types": [
+    {
+      "id": "R",
+      "name": "Realistic",
+      "summary": "Doers: hands-on work with tools, machines, plants, animals, the outdoors",
+      "alpha": 0.78,
+      "retest": 0.79
+    },
+    {
+      "id": "I",
+      "name": "Investigative",
+      "summary": "Thinkers: research, analysis, solving abstract problems",
+      "alpha": 0.82,
+      "retest": 0.78
+    },
+    {
+      "id": "A",
+      "name": "Artistic",
+      "summary": "Creators: self-expression, design, unstructured creative work",
+      "alpha": 0.78,
+      "retest": 0.82
+    },
+    {
+      "id": "S",
+      "name": "Social",
+      "summary": "Helpers: teaching, caring, counselling, serving people",
+      "alpha": 0.78,
+      "retest": 0.85
+    },
+    {
+      "id": "E",
+      "name": "Enterprising",
+      "summary": "Persuaders: leading, selling, starting and running things",
+      "alpha": 0.87,
+      "retest": 0.82
+    },
+    {
+      "id": "C",
+      "name": "Conventional",
+      "summary": "Organizers: data, records, clear procedures and systems",
+      "alpha": 0.83,
+      "retest": 0.86
+    }
+  ],
+  "items": [
+    {
+      "id": "I001",
+      "n": 1,
+      "text": "Build kitchen cabinets",
+      "type": "R"
+    },
+    {
+      "id": "I002",
+      "n": 2,
+      "text": "Develop a new medicine",
+      "type": "I"
+    },
+    {
+      "id": "I003",
+      "n": 3,
+      "text": "Write books or plays",
+      "type": "A"
+    },
+    {
+      "id": "I004",
+      "n": 4,
+      "text": "Teach an individual an exercise routine",
+      "type": "S"
+    },
+    {
+      "id": "I005",
+      "n": 5,
+      "text": "Buy and sell stocks and bonds",
+      "type": "E"
+    },
+    {
+      "id": "I006",
+      "n": 6,
+      "text": "Develop a spreadsheet using computer software",
+      "type": "C"
+    },
+    {
+      "id": "I007",
+      "n": 7,
+      "text": "Drive a truck to deliver packages to offices and homes",
+      "type": "R"
+    },
+    {
+      "id": "I008",
+      "n": 8,
+      "text": "Investigate the cause of a fire",
+      "type": "I"
+    },
+    {
+      "id": "I009",
+      "n": 9,
+      "text": "Paint sets for plays",
+      "type": "A"
+    },
+    {
+      "id": "I010",
+      "n": 10,
+      "text": "Teach children how to play sports",
+      "type": "S"
+    },
+    {
+      "id": "I011",
+      "n": 11,
+      "text": "Negotiate business contracts",
+      "type": "E"
+    },
+    {
+      "id": "I012",
+      "n": 12,
+      "text": "Calculate the wages of employees",
+      "type": "C"
+    },
+    {
+      "id": "I013",
+      "n": 13,
+      "text": "Lay brick or tile",
+      "type": "R"
+    },
+    {
+      "id": "I014",
+      "n": 14,
+      "text": "Study ways to reduce water pollution",
+      "type": "I"
+    },
+    {
+      "id": "I015",
+      "n": 15,
+      "text": "Play a musical instrument",
+      "type": "A"
+    },
+    {
+      "id": "I016",
+      "n": 16,
+      "text": "Help people with personal or emotional problems",
+      "type": "S"
+    },
+    {
+      "id": "I017",
+      "n": 17,
+      "text": "Manage a retail store",
+      "type": "E"
+    },
+    {
+      "id": "I018",
+      "n": 18,
+      "text": "Proofread records or forms",
+      "type": "C"
+    },
+    {
+      "id": "I019",
+      "n": 19,
+      "text": "Test the quality of parts before shipment",
+      "type": "R"
+    },
+    {
+      "id": "I020",
+      "n": 20,
+      "text": "Develop a way to better predict the weather",
+      "type": "I"
+    },
+    {
+      "id": "I021",
+      "n": 21,
+      "text": "Write scripts for movies or television shows",
+      "type": "A"
+    },
+    {
+      "id": "I022",
+      "n": 22,
+      "text": "Teach sign language to people who are deaf or hard of hearing",
+      "type": "S"
+    },
+    {
+      "id": "I023",
+      "n": 23,
+      "text": "Represent a client in a lawsuit",
+      "type": "E"
+    },
+    {
+      "id": "I024",
+      "n": 24,
+      "text": "Inventory supplies using a hand-held computer",
+      "type": "C"
+    },
+    {
+      "id": "I025",
+      "n": 25,
+      "text": "Repair household appliances",
+      "type": "R"
+    },
+    {
+      "id": "I026",
+      "n": 26,
+      "text": "Conduct chemical experiments",
+      "type": "I"
+    },
+    {
+      "id": "I027",
+      "n": 27,
+      "text": "Compose or arrange music",
+      "type": "A"
+    },
+    {
+      "id": "I028",
+      "n": 28,
+      "text": "Give career guidance to people",
+      "type": "S"
+    },
+    {
+      "id": "I029",
+      "n": 29,
+      "text": "Operate a beauty salon or barber shop",
+      "type": "E"
+    },
+    {
+      "id": "I030",
+      "n": 30,
+      "text": "Install software across computers on a large network",
+      "type": "C"
+    },
+    {
+      "id": "I031",
+      "n": 31,
+      "text": "Repair and install locks",
+      "type": "R"
+    },
+    {
+      "id": "I032",
+      "n": 32,
+      "text": "Work in a biology lab",
+      "type": "I"
+    },
+    {
+      "id": "I033",
+      "n": 33,
+      "text": "Perform jazz or tap dance",
+      "type": "A"
+    },
+    {
+      "id": "I034",
+      "n": 34,
+      "text": "Help conduct a group therapy session",
+      "type": "S"
+    },
+    {
+      "id": "I035",
+      "n": 35,
+      "text": "Market a new line of clothing",
+      "type": "E"
+    },
+    {
+      "id": "I036",
+      "n": 36,
+      "text": "Record rent payments",
+      "type": "C"
+    },
+    {
+      "id": "I037",
+      "n": 37,
+      "text": "Raise fish in a fish hatchery",
+      "type": "R"
+    },
+    {
+      "id": "I038",
+      "n": 38,
+      "text": "Study the movement of planets",
+      "type": "I"
+    },
+    {
+      "id": "I039",
+      "n": 39,
+      "text": "Draw pictures",
+      "type": "A"
+    },
+    {
+      "id": "I040",
+      "n": 40,
+      "text": "Perform rehabilitation therapy",
+      "type": "S"
+    },
+    {
+      "id": "I041",
+      "n": 41,
+      "text": "Manage a department within a large company",
+      "type": "E"
+    },
+    {
+      "id": "I042",
+      "n": 42,
+      "text": "Operate a calculator",
+      "type": "C"
+    },
+    {
+      "id": "I043",
+      "n": 43,
+      "text": "Set up and operate machines to make products",
+      "type": "R"
+    },
+    {
+      "id": "I044",
+      "n": 44,
+      "text": "Invent a replacement for sugar",
+      "type": "I"
+    },
+    {
+      "id": "I045",
+      "n": 45,
+      "text": "Sing in a band",
+      "type": "A"
+    },
+    {
+      "id": "I046",
+      "n": 46,
+      "text": "Take care of children at a day-care center",
+      "type": "S"
+    },
+    {
+      "id": "I047",
+      "n": 47,
+      "text": "Sell merchandise at a department store",
+      "type": "E"
+    },
+    {
+      "id": "I048",
+      "n": 48,
+      "text": "Keep inventory records",
+      "type": "C"
+    },
+    {
+      "id": "I049",
+      "n": 49,
+      "text": "Assemble electronic parts",
+      "type": "R"
+    },
+    {
+      "id": "I050",
+      "n": 50,
+      "text": "Examine blood samples using a microscope",
+      "type": "I"
+    },
+    {
+      "id": "I051",
+      "n": 51,
+      "text": "Create special effects for movies",
+      "type": "A"
+    },
+    {
+      "id": "I052",
+      "n": 52,
+      "text": "Do volunteer work at a non-profit organization",
+      "type": "S"
+    },
+    {
+      "id": "I053",
+      "n": 53,
+      "text": "Start your own business",
+      "type": "E"
+    },
+    {
+      "id": "I054",
+      "n": 54,
+      "text": "Keep shipping and receiving records",
+      "type": "C"
+    },
+    {
+      "id": "I055",
+      "n": 55,
+      "text": "Put out forest fires",
+      "type": "R"
+    },
+    {
+      "id": "I056",
+      "n": 56,
+      "text": "Do laboratory tests to identify diseases",
+      "type": "I"
+    },
+    {
+      "id": "I057",
+      "n": 57,
+      "text": "Edit movies",
+      "type": "A"
+    },
+    {
+      "id": "I058",
+      "n": 58,
+      "text": "Teach a high-school class",
+      "type": "S"
+    },
+    {
+      "id": "I059",
+      "n": 59,
+      "text": "Manage a clothing store",
+      "type": "E"
+    },
+    {
+      "id": "I060",
+      "n": 60,
+      "text": "Stamp, sort, and distribute mail for an organization",
+      "type": "C"
+    }
+  ],
+  "filters": {
+    "job_zone": {
+      "question": "How much more education or training are you willing to do for the right job?",
+      "note": "Not a scored scale. Filters occupations by O*NET Job Zone, like the official Interest Profiler does.",
+      "options": [
+        {
+          "value": 1,
+          "label": "Little or none: start working right away"
+        },
+        {
+          "value": 2,
+          "label": "Some: high-school level or a few months of training"
+        },
+        {
+          "value": 3,
+          "label": "Medium: vocational school, apprenticeship or associate's degree"
+        },
+        {
+          "value": 4,
+          "label": "Considerable: a bachelor's degree"
+        },
+        {
+          "value": 5,
+          "label": "Extensive: a graduate or professional degree"
+        }
+      ]
+    }
+  }
+}
